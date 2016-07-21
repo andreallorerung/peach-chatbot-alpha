@@ -5,20 +5,27 @@
 ! array topicmacro = physical|practical|family|emotional|spiritual
 ! array discuss = talk about|speak about|discuss
 ! array other = other|another|something else
-! array not = not|no
+//! array not = not|no|nay//already defined in begin.rive
 
-+ *
-- Now matching against concerns.rive triggers. {topic=global}
+! array topicphysical1 = breathing|breathe|breath|urine|constipation|diarrhoea|eat|appetite|indigestion
+
++ set global
+- Topic set to global {topic=global}
+
++ set (@topicmacro)
+- Topic set to <star> {topic=<star>}
 
 > topic global
 
     // desire to change topic
-    + [*] (@desire) (@change) [*] topic [please]
+    + [*] (@desire) (@change) [*] (topic|concern) [please]
     - What other topic would you like to talk about instead?
+    - What other concern would you like to talk about?
+    - What would you like to talk about?
 
     // desire to change topic *
-    + [*] (@desire) (@change) [*] topic *
-    - {@ desire change topic} {@ <star3>}
+    + [*] (@desire) (@change) [*] (topic|concern) *
+    - {@ desire to change topic} {@ <star3>}
 
     // topicmacro (follow up to "desire to change topic")
     + [*] (@topicmacro) [concern]
@@ -26,17 +33,42 @@
     - {@ discuss <star1>}
 
     // not desire to change topic
-    + {weight=10}[*] (@not) (@desire) (@change) [*] topic
+    + {weight=10}[*] (@not) (@desire) (@change) [*] (topic|concern)
     - Ok, let's not change the topic then.
+    - Ok, we will stay on the topic then.
 
     // desire to discuss other
-    + [*] (@desire) (@discuss) (@other) [topic]
+    + [*] (@desire) (@discuss) (@other) [(topic|concern)]
     - {@ desire change topic}
 
     // discuss topicmacro
     + [*] (@discuss) (@topicmacro) [concern]
-    - Ok, let's talk about <star2> concerns.
+    - Ok, let's talk about <star2> concerns. {topic=<star2>}
+    - Let's talk about <star2> then. {topic=<star2>}
 
+< topic
+
+> topic physical includes global
     + *
-    - No match for input.
+    - We are in the practical concerns topic
+< topic
+
+> topic practical includes global
+    + *
+    - We are in the practical concerns topic
+< topic
+
+> topic family includes global
+    + *
+    - We are in the family concerns topic
+< topic
+
+> topic emotional includes global
+    + *
+    - We are in the emotional concerns topic
+< topic
+
+> topic spiritual includes global
+    + *
+    - We are in the spiritual concerns topic
 < topic
