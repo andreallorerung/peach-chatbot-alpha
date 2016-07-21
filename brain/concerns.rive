@@ -19,6 +19,8 @@
 ! array emotional2 = lonely|loneliness|isolated|isolation|depressed|depression|sad|sadness|worry|fear|anxiety
 ! array spiritual = loss of faith|loss of meaning|loss of purpose|uneasy|regret
 
+//! array topicmicro = physical1|physical2//cannot compose arrays
+
 + set global
 - Topic set to global {topic=global}
 
@@ -29,7 +31,8 @@
 
     // desire to change topic
     + [*] (@desire) (@change) [*] (topic|concern) [please]
-    - What other {random}@topic{/random} would you like to {random}@discuss{/random} {random}instead {/random}?
+    //- What other {random}<@topic>{/random} would you like to {random}@discuss{/random} {random}instead {/random}?//cannot use arrays in reply
+    - What other {random}topic concern{/random} would you like to {random}discuss|talk about{/random}{random} instead|{/random}?
     - What would you like to talk about?
 
     // desire to change topic *
@@ -62,7 +65,7 @@
     - These are the issues you have highlighted: <call> get_issues physical </call>
 
     + *
-    - We are in the practical concerns topic
+    - We are in the physical concerns topic
 < topic
 
 > topic practical includes global
