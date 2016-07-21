@@ -6,21 +6,30 @@
 ! array discuss = talk about|speak about|discuss
 ! array other = other|another|something else
 //! array not = not|no|nay//already defined in begin.rive
+! array topic = topic|concern|issue|problem
 
-! array topicphysical1 = breathing|breathe|breath|urine|constipation|diarrhoea|eat|appetite|indigestion
+! array physical1 = breathing|breathe|breath|urine|constipation|diarrhoea|eat|appetite|indigestion
+! array physical2 = mouth|nausea|vomit|sleep|nightmare|tired|exhausted|fatigued|swollen|fever|high temperature
+! array physical3 = walking|tingling|pain|hot flushes|sweating|skin|wound|surgery
+! array physical4 = weight|memory|concentration|taste|sight|hearing|speech|appearance|sexuality
+! array practical1 = caring|responsible|work|education|finance|housing|travel|transport|parking|communication
+! array practical2 = housework|chores|house|shopping|grocery|washing|bathing|dressing|preparing food
+! array family = partner|spouse|children|child|relative|friend
+! array emotional1 = plans|interest|activities|hobbies|express feelings|anger|frustration|guilt|hopeless|hopelessness
+! array emotional2 = lonely|loneliness|isolated|isolation|depressed|depression|sad|sadness|worry|fear|anxiety
+! array spiritual = loss of faith|loss of meaning|loss of purpose|uneasy|regret
 
 + set global
 - Topic set to global {topic=global}
 
 + set (@topicmacro)
-- Topic set to <star> {topic=<star>}
+- Topic set to <star> {topic=<star>} \n\s\s\s\s {@ highlighted}
 
 > topic global
 
     // desire to change topic
     + [*] (@desire) (@change) [*] (topic|concern) [please]
-    - What other topic would you like to talk about instead?
-    - What other concern would you like to talk about?
+    - What other {random}@topic{/random} would you like to {random}@discuss{/random} {random}instead {/random}?
     - What would you like to talk about?
 
     // desire to change topic *
@@ -49,6 +58,9 @@
 < topic
 
 > topic physical includes global
+    + highlighted
+    - These are the issues you have highlighted: <call> get_issues physical </call>
+
     + *
     - We are in the practical concerns topic
 < topic
