@@ -29,3 +29,23 @@ class Concerns(object):
             "userid")
         else:
             self._scores[item] = value
+
+class ConcernsFactory(object):
+    '''Factory class that returns an appropriate Concerns object per userid'''
+
+    _usersessions = collections.defaultdict()
+
+    @classmethod
+    def _create_concerns(cls, userid):
+        new_concern = Concerns(userid) #isn't there a bit of pernicious reduncancy here? userid is stored both in Concerns and ConcernsFactory
+        return new_concern
+
+    @classmethod
+    def get(cls, userid):
+        try:
+            return ConcernsFactory._usersessions[userid]
+        except KeyError:
+            new_concern = ConcernsFactory._create_concerns(userid)
+            ConcernsFactory._usersessions[userid] = new_concern
+
+            return new_concern

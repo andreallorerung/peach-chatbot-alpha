@@ -5,7 +5,8 @@ def test_init():
     var = Concerns("id0")
 
     assert "id0" == var["userid"]
-    var["get_something_that_isn't_there"]
+    with pytest.raises(KeyError):
+        var["get_something_that_isn't_there"]
 
 def test_setget():
     var = Concerns("id0")
