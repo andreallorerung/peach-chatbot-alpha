@@ -1,0 +1,42 @@
+! version = 2.00
+
+! array desire = desire to|wish to|want to|would like to|wanna|let us
+! array change = change|switch
+! array topicmacro = physical|practical|family|emotional|spiritual
+! array discuss = talk about|speak about|discuss
+! array other = other|another|something else
+! array not = not|no
+
++ *
+- Now matching against concerns.rive triggers. {topic=global}
+
+> topic global
+
+    // desire to change topic
+    + [*] (@desire) (@change) [*] topic [please]
+    - What other topic would you like to talk about instead?
+
+    // desire to change topic *
+    + [*] (@desire) (@change) [*] topic *
+    - {@ desire change topic} {@ <star3>}
+
+    // topicmacro (follow up to "desire to change topic")
+    + [*] (@topicmacro) [concern]
+    % what other topic would you like to talk about instead?
+    - {@ discuss <star1>}
+
+    // not desire to change topic
+    + {weight=10}[*] (@not) (@desire) (@change) [*] topic
+    - Ok, let's not change the topic then.
+
+    // desire to discuss other
+    + [*] (@desire) (@discuss) (@other) [topic]
+    - {@ desire change topic}
+
+    // discuss topicmacro
+    + [*] (@discuss) (@topicmacro) [concern]
+    - Ok, let's talk about <star2> concerns.
+
+    + *
+    - No match for input.
+< topic

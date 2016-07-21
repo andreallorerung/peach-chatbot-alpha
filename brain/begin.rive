@@ -166,6 +166,15 @@
 ! sub (k)       = kissyface
 ! sub (f)       = rose
 ! sub (w)       = wilted rose
+! sub let's = let us
+! sub lets = let us
+! sub lets' = let us
+! sub topics = topic
+! sub concerns = concern
+! sub problem = concern
+! sub problems = concern
+! sub issue = concern
+! sub issues = concern
 
 // Person substitutions
 ! person i am    = you are
@@ -186,5 +195,5 @@
 ! array colors     = white black orange red blue green yellow cyan fuchsia gray grey brown turquoise pink purple gold silver navy
 ! array height     = tall long wide thick
 ! array measure    = inch in centimeter cm millimeter mm meter m inches centimeters millimeters meters
-! array yes        = yes yeah yep yup ya yea
+! array yes        = yes yeah yep yup ya yea ye
 ! array no         = no nah nope nay
