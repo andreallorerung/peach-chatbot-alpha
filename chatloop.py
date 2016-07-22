@@ -1,5 +1,15 @@
 import os
+from botcontroller import macros
 from rivescript import RiveScript
+
+USERID = "localuser"
+USERNAME = "Nic"
+WELCOME = "Bot> Hello {}, welcome.".format(USERNAME)
+CHECKLISTMSG = ("Bot> Let me check what your concerns are and we will go through "
+"them briefly.\nBot> I would like you to gather a bit more information about "
+"them ahead of your visit.")
+PREISSUES = ("Bot> Here is the list of issues you have selected."
+"\nBot>We will look at them from the most distressful to the least distressful:")
 
 def main(args):
 
@@ -12,13 +22,25 @@ def main(args):
     bot.load_directory(brain)
     bot.sort_replies()
 
+    macros.set_issue("userid", "respiratory", 5)
+    macros.set_issue("userid", "urinary", 8)
+    macros.set_issue("userid", "sleeping", 9)
+    macros.set_issue("userid", "chores", 4)
+    macros.set_issue("userid", "relative-friend", 10)
+
+    print(WELCOME)
+    print(CHECKLISTMSG)
+    issue_list = macros.get_all_issues(USERID)
+    print(PREISSUES)
+    print(macros.format_issue_list(issue_list))
+
     while True:
         msg = raw_input("You> ")
         if msg == "/q":
             quit()
 
-        reply = bot.reply("localuser", msg)
-        print "Bot> ", reply
+        reply = bot.reply(USERID, msg)
+        print "Bot>", reply
 
 def _create_bot(brain):
     if not args or not len(args):

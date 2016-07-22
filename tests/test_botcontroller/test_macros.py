@@ -11,11 +11,7 @@ def test_format_issue_list():
     issue_list = macros.get_all_issues("userid")
     formatted_issue_list = macros.format_issue_list(issue_list)
 
-    assert (formatted_issue_list[0]) == "relative-friend: 10"
-    assert (formatted_issue_list[1]) == "sleeping: 9"
-    assert (formatted_issue_list[2]) == "urinary: 8"
-    assert (formatted_issue_list[3]) == "respiratory: 5"
-    assert (formatted_issue_list[4]) == "chores: 4"
+    assert "relative-friend: 10\nsleeping: 9\nurinary: 8\nrespiratory: 5\nchores: 4\n" == (formatted_issue_list)
 
 def test_all_issues():
     macros.set_issue("userid", "respiratory", 5)
@@ -26,11 +22,11 @@ def test_all_issues():
 
     issue_list = macros.get_all_issues("userid")
 
-    assert issue_list[0] == ("relative-friend", 10)
-    assert issue_list[1] == ("sleeping", 9)
-    assert issue_list[2] == ("urinary", 8)
-    assert issue_list[3] == ("respiratory", 5)
-    assert issue_list[4] == ("chores", 4)
+    assert ("relative-friend", 10) == issue_list[0]
+    assert ("sleeping", 9)         == issue_list[1]
+    assert ("urinary", 8)          == issue_list[2]
+    assert ("respiratory", 5)      == issue_list[3]
+    assert ("chores", 4)           == issue_list[4]
 
 def test_setget():
     macros.set_issue("userid", "breathing", 7)
