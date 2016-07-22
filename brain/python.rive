@@ -27,7 +27,7 @@
     # fetch score for it too
 
     #for each in all_issues:
-    #    check if marcos.get_issue(rs.current_user(), issue) is None
+    #    check if marcos.get_issue(rs.current_user(), issue) is other than None
 
     return 0
 < object

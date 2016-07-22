@@ -12,7 +12,8 @@ def test_change_topic():
 
     # perform:
     messages = ["desire to change topic", "I want to change the topic",
-    "I wish to change the topic please"]
+    "I wish to change the topic please", "desire discuss other",
+    "I want to talk about something else"]
 
     for msg in messages:
         reply = bot.reply("localuser", msg)

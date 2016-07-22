@@ -32,11 +32,6 @@
 
 > topic global
 
-    // not desire to change topic
-    + [*] (@not) (@desire) (@change) [*] (@topic) [please]
-    - Ok, let's not change the topic then.
-    - Ok, we will stay on the topic then.
-
     // desire to change topic
     + [*] (@desire) (@change) [*] (@topic) [please]
     //- What other {random}<@topic>{/random} would you like to {random}@discuss{/random} {random}instead {/random}?//cannot use arrays in reply
@@ -47,14 +42,19 @@
     + [*] (@desire) (@change) [*] (@topic) *
     - {@ desire to change topic} {@ <star3>}
 
+    // not desire to change topic
+    + [*] (@not) (@desire) (@change) [*] (@topic) [*]
+    - Ok, let's not change the topic then.
+    - Ok, we will stay on the topic then.
+
+    // desire to discuss other (redirects to desire change topic)
+    + [*] (@desire) (@discuss) (@other) [@topic]
+    - {@ desire change topic}
+
     // topicmacro (follow up to "desire to change topic")
     + [*] (@topicmacro) [concern]
     % what other topic would you like to talk about instead?
     - {@ discuss <star1>}
-
-    // desire to discuss other
-    + [*] (@desire) (@discuss) (@other) [@topic]
-    - {@ desire change topic}
 
     // discuss topicmacro
     + [*] (@discuss) [*] (@topicmacro) [concern] [*]
