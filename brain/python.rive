@@ -26,6 +26,8 @@
     from botcontroller import macros
 
     issues = macros.get_all_issues(rs.current_user())
+
+    return format_issue_list(issues)
 < object
 
 > object set_issue python

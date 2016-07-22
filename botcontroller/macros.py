@@ -14,6 +14,16 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating",
 "depression","worry-fear-anxiety","lost-faith-spiritual","lost-meaning-purpose",
 "regret"]
 
+def format_issue_list(issue_list):
+    '''Formats a list of tuples for output through the chatbot interface'''
+    formatted = []
+
+    for issue_tuple in issue_list:
+        issue = issue_tuple[0]
+        score = issue_tuple[1]
+        formatted.append("{}: {}".format(issue, score))
+    return formatted
+
 def get_all_issues(userid):
     '''Returns all the issues highlighted so far for the userid, sorted in
     descending order by level of distress (most distressful first)'''
