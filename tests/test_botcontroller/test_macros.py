@@ -1,6 +1,21 @@
 import py.test
 from botcontroller import macros
 
+def test_allissues():
+    macros.set_issue("userid", "respiratory", 5)
+    macros.set_issue("userid", "urinary", 8)
+    macros.set_issue("userid", "sleeping", 9)
+    macros.set_issue("userid", "chores", 4)
+    macros.set_issue("userid", "relative-friend", 10)
+
+    issue_list = macros.get_issues("userid")
+
+    assert issue_list[0] == ("relative-friend", 10)
+    assert issue_list[1] == ("sleeping", 9)
+    assert issue_list[2] == ("urinary", 8)
+    assert issue_list[3] == ("respiratory", 5)
+    assert issue_list[4] == ("chores", 4)
+
 def test_setget():
     macros.set_issue("userid", "breathing", 7)
 

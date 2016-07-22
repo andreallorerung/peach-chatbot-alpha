@@ -1,5 +1,30 @@
 '''Module defining the python objects to be called inside '.rive' files '''
 from botcontroller import concerns as model
+from operator import itemgetter
+
+'''List representing all issues that can be selected'''
+ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating",
+"indigestion","mouth","nausea-vomit","sleeping","fatigue","swelling","fever",
+"walking","tingling","pain","hot-flushes","skin","wound-care","weight",
+"memory-concentration","sensory","speaking","appearance","sexuality",
+"caring-responsibilities","work-education","finance-housing","travel",
+"transport","communication-NHS","chores","washing-dressing","preparing-meal",
+"partner","children","relative-friend","planning","interests-activities",
+"expressing-feelings","anger-frustration","guilt","hopelessness","loneliness",
+"depression","worry-fear-anxiety","lost-faith-spiritual","lost-meaning-purpose",
+"regret"]
+
+def get_issues(userid):
+    '''Returns all the issues highlighted so far for the userid, sorted in
+    descending order by level of distress (most distressful first)'''
+    issue_list = []
+
+    for issue in ALL_ISSUES:
+        score = get_issue(userid, issue)
+        if score is not None:
+            issue_list.append( ( issue, score) )
+
+    return sorted(issue_list, key=itemgetter(1), reverse=True)
 
 def get_issue(userid, issue):
     '''Returns an issue score from the map of issues for the current user'''

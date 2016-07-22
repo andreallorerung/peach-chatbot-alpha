@@ -28,8 +28,21 @@
 
     #for each in all_issues:
     #    check if marcos.get_issue(rs.current_user(), issue) is other than None
+    # if so, retrieve key and score in a linear data structure, sorted by score
+    # value
 
-    return 0
+    # return this data structure
+    from operator import itemgetter
+    from botcontroller import macros
+
+    issue_list = []
+
+    for issue in ALL_ISSUES:
+        score = macros.get_issue(rs.current_user(), issue)
+        if score is not None:
+            issue_list.append( ( issue, score) )
+
+    return sorted(issue_list, key=itemgetter(1))
 < object
 
 > object set_issue python
