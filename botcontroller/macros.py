@@ -14,7 +14,7 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating",
 "depression","worry-fear-anxiety","lost-faith-spiritual","lost-meaning-purpose",
 "regret"]
 
-def get_issues(userid):
+def get_all_issues(userid):
     '''Returns all the issues highlighted so far for the userid, sorted in
     descending order by level of distress (most distressful first)'''
     issue_list = []
@@ -39,8 +39,8 @@ def set_issue(userid, issue, score):
 def validate_parameters(args, num=1):
     '''Checks that there are enough arguments being passed into the macro'''
     if not args or len(args) < num:
-        raise ValueError("get_issues macro called without arguments. Needs "
-                        "exactly one.")
+        raise ValueError(" macro called without arguments. Needs "
+                        "exactly {}.".format(num))
     else:
         return True
 
