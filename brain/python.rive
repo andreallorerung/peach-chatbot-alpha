@@ -25,7 +25,7 @@
 > object get_all_issues python
     from botcontroller import macros
 
-    issues = macros.get_issues
+    issues = macros.get_all_issues(rs.current_user())
 < object
 
 > object set_issue python
