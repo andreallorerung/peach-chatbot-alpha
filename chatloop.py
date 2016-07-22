@@ -3,7 +3,7 @@ from rivescript import RiveScript
 
 def main(args):
 
-    if len(args) <= 1:
+    if len(args) < 2:
         brain = "./brain"
     else:
         brain = args[1]

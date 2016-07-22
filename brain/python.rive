@@ -1,0 +1,43 @@
+! version = 2.0
+
+// See:
+// http://rivescript.readthedocs.io/en/latest/rivescript.html#module-rivescript.python
+// http://rivescript.readthedocs.io/en/latest/rivescript.html#module-rivescript.rivescript
+// For an explanation of the references to an "rs" python object throughout the
+// following macros.
+
+> object dummy python
+    from botcontroller import macros
+
+    return macros.dummy_f()
+< object
+
+> object get_issue python
+    from botcontroller import macros
+
+    macros.validate_parameters(args)
+    issue = args[0]
+
+    score = macros.get_issue(rs.current_user(), issue)
+    return "{}: {}".format(issue, score)
+< object
+
+> object get_issues python
+    # iterate through list of issues and for each format it for printing and
+    # fetch score for it too
+
+    #for each in all_issues:
+    #    check if marcos.get_issue(rs.current_user(), issue) is None
+
+    return 0
+< object
+
+> object set_issue python
+    from botcontroller import macros
+
+    macros.validate_parameters(args, 2)
+    issue, score = args[0], args[1]
+
+    macros.set_issue(rs.current_user(), issue, score)
+
+< object

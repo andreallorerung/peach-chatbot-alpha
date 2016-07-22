@@ -9,6 +9,7 @@ account for multiple concurrent users of the chatbot component.
 '''
 import collections
 
+
 class Concerns(object):
     '''Data model for a user's concerns'''
 
@@ -20,7 +21,7 @@ class Concerns(object):
         if item == "userid":
             return self._userid
         else:
-            return self._scores[item]
+            return self._check_key(item)
 
     def __setitem__(self, item, value):
         if item == "userid":
@@ -29,6 +30,12 @@ class Concerns(object):
             "userid")
         else:
             self._scores[item] = value
+
+    def _check_key(self, item):
+        try:
+            return self._scores[item]
+        except KeyError:
+            return None
 
 class ConcernsFactory(object):
     '''Factory class that returns an appropriate Concerns object per userid'''
@@ -41,7 +48,7 @@ class ConcernsFactory(object):
         return new_concern
 
     @classmethod
-    def get(cls, userid):
+    def getConcerns(cls, userid):
         try:
             return cls._usersessions[userid]
         except KeyError:

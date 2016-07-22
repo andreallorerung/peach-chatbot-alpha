@@ -1,9 +1,9 @@
 ! version = 2.00
 
-! array desire = desire to|wish to|want to|would like to|wanna|let us
+! array desire = desire to|wish to|want to|would like to|wanna|let us|desire|want|wish
 ! array change = change|switch
 ! array topicmacro = physical|practical|family|emotional|spiritual
-! array discuss = talk about|speak about|discuss
+! array discuss = talk|talk about|speak|speak about|discuss
 ! array other = other|another|something else
 //! array not = not|no|nay//already defined in begin.rive
 ! array topic = topic|concern|issue|problem
@@ -21,6 +21,9 @@
 
 //! array topicmicro = physical1|physical2//cannot compose arrays
 
++ concern breathing 6
+- Setting concern. <call>set_issue breathing 6</call>
+
 + set global
 - Topic set to global {topic=global}
 
@@ -29,14 +32,19 @@
 
 > topic global
 
+    // not desire to change topic
+    + [*] (@not) (@desire) (@change) [*] (@topic) [please]
+    - Ok, let's not change the topic then.
+    - Ok, we will stay on the topic then.
+
     // desire to change topic
-    + [*] (@desire) (@change) [*] (topic|concern) [please]
+    + [*] (@desire) (@change) [*] (@topic) [please]
     //- What other {random}<@topic>{/random} would you like to {random}@discuss{/random} {random}instead {/random}?//cannot use arrays in reply
     - What other {random}topic concern{/random} would you like to {random}discuss|talk about{/random}{random} instead|{/random}?
     - What would you like to talk about?
 
     // desire to change topic *
-    + [*] (@desire) (@change) [*] (topic|concern) *
+    + [*] (@desire) (@change) [*] (@topic) *
     - {@ desire to change topic} {@ <star3>}
 
     // topicmacro (follow up to "desire to change topic")
@@ -44,25 +52,27 @@
     % what other topic would you like to talk about instead?
     - {@ discuss <star1>}
 
-    // not desire to change topic
-    + {weight=10}[*] (@not) (@desire) (@change) [*] (topic|concern)
-    - Ok, let's not change the topic then.
-    - Ok, we will stay on the topic then.
-
     // desire to discuss other
-    + [*] (@desire) (@discuss) (@other) [(topic|concern)]
+    + [*] (@desire) (@discuss) (@other) [@topic]
     - {@ desire change topic}
 
     // discuss topicmacro
-    + [*] (@discuss) (@topicmacro) [concern]
+    + [*] (@discuss) [*] (@topicmacro) [concern] [*]
     - Ok, let's talk about <star2> concerns. {topic=<star2>}
     - Let's talk about <star2> then. {topic=<star2>}
+
+    + set global
+    - Topic set to global {topic=global}
+
+    + *
+    - I'm sorry, I did not understand that.
 
 < topic
 
 > topic physical includes global
     + highlighted
-    - These are the issues you have highlighted: <call> get_issues physical </call>
+    - These are the issues you have highlighted:\n \s\s\s\s
+    ^ <call>get_issue breathing</call>
 
     + *
     - We are in the physical concerns topic
