@@ -13,7 +13,7 @@
     uservar = args[0]
 
     curr_value = rs.get_uservar(rs.current_user(), uservar)
-    rs.set_uservar(rs.current_user(), str(uservar), str(int(curr_value) + 1) )
+    rs.set_uservar(rs.current_user(), str(uservar), macros.increase(curr_value) )
 < object
 
 > object dummy python

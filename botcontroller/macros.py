@@ -17,7 +17,7 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indig
 
 '''map of microtopics to macrotopics'''
 CLASSES = {
-    ("respiratory", "urinary","constipation","diarrhoea","eating","indigestion") : "physical",
+    ("respiratory", "urinary","constipation-diarrhoea","eating","indigestion") : "physical",
     ("mouth","nausea-vomit","sleeping","fatigue","swelling","fever") : "physical",
     ("walking","tingling","pain","hot-flushes","skin","wound-care") : "physical",
     ("weight","memory-concentration","sensory","speaking","appearance","sexuality") : "physical",
@@ -30,6 +30,9 @@ CLASSES = {
 }
 
 micro_to_macro = EquivalenceClasses.from_dict(CLASSES)
+
+def increase(num):
+    return str(int(num) + 1)
 
 def format_issue_list(issue_list):
     '''Formats a list of tuples for output through the chatbot interface'''
