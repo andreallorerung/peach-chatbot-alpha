@@ -2,7 +2,7 @@
 
 ! array desire = desire to|wish to|want to|would like to|wanna|let us|desire|want|wish
 ! array change = change|switch
-! array topicmacro = physical|practical|family|emotional|spiritual
+! array topicmacro = physical|physical1|physical2|physical3|physical4|practical|family|emotional|spiritual
 ! array discuss = talk|talk about|speak|speak about|discuss
 ! array other = other|another|something else
 ! array topic = topic|concern|issue|problem
@@ -44,7 +44,7 @@
     // discuss topicmacro
     + [*] (@discuss) [*] (@topicmacro) [concern] [*]
     - Ok, let's talk about <star2> concerns.{topic=<star2>}
-    - Let's talk about <star2> then.{topic=<star2>}
+    //- Let's talk about <star2> then.{topic=<star2>}
 
     // next topic
     + next (@topic)
@@ -56,11 +56,6 @@
     + set (@topicmacro)
     - Topic set to <star> {topic=<star>} \n\s\s\s\s {@ highlighted}
 
-< topic
-
-> topic physical includes global
-    + *
-    - We are in the physical concerns topic
 < topic
 
 > topic practical includes global

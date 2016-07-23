@@ -17,9 +17,10 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indig
 
 '''map of microtopics to macrotopics'''
 CLASSES = {
-    ("respiratory", "urinary","constipation","diarrhoea","eating","indigestion") : "physical_1",
-    ("mouth","nausea-vomit","sleeping","fatigue","swelling","fever") : "physical_2",
-    ("weight","memory-concentration","sensory","speaking","appearance","sexuality") : "physical_3",
+    ("respiratory", "urinary","constipation","diarrhoea","eating","indigestion") : "physical",
+    ("mouth","nausea-vomit","sleeping","fatigue","swelling","fever") : "physical",
+    ("walking","tingling","pain","hot-flushes","skin","wound-care") : "physical",
+    ("weight","memory-concentration","sensory","speaking","appearance","sexuality") : "physical",
     ("caring-responsibilities","work-education","finance-housing","travel","transport","communication-NHS") : "practical_1",
     ("chores","washing-dressing","preparing-meal") : "practical_2",
     ("partner","children","relative-friend") : "family",

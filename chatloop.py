@@ -15,7 +15,7 @@ HIGHLIGHTED = [("respiratory", 5),
                 ("urinary",  8),
                 ("sleeping", 9),
                 ("chores", 4),
-                ("relative-friend", 10)]
+                ("relative-friend", 7)]
 
 def main(args):
 
@@ -38,7 +38,9 @@ def main(args):
     print(macros.format_issue_list(issue_list))
 
     micro_most_distressful = issue_list[0][0]
+    print "micro most distressful: {}".format(micro_most_distressful)
     macrotopic_for_most_distressful = macros.micro_to_macro[micro_most_distressful]
+    print "macro most distressful: {}".format(macrotopic_for_most_distressful)
     print "Bot>", bot.reply(USERID, "set global")
     print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
     print "Bot>", bot.reply(USERID, "discuss {}".format(micro_most_distressful)) #refactor issue_list to key-value pairs rather than couples

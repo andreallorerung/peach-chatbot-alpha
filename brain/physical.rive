@@ -1,0 +1,45 @@
+! array respiratory = respiratory|breathing|breathe|breath|gasping|gasp|wheezing
+! array urinary = urinary|urinating|urine|pee|peeing|piss|pissing
+! array constipation = constipation|stool|defecation|defecating|pooping|poop|shit|crap|shite|dung|excrement|fecal matter|feces|diarrhoea|diarrhea|loose stool
+! array eating = eat|eating|appetite|feed|injest|have a meal|having a meal|hunger|appetence|appetency|appetition
+! array indigestion = indigestion
+
+! array mouth = sore mouth|dry mouth|aching mouth|inflamed mouth|mouth inflammation|mouth pain
+! array nausea = nausea|vomit|vomiting|queasy|queasiness|regurgitation|sick|sickness|heave|heaving|puke|puking|throw up
+! array sleeping = sleep|sleeping|nightmare|dormancy|snooze|bad dream
+! array fatigue = fatigue|lethargy|weariness|exhaustion|feebleness|tired|tiredness|sleepy|sleepiness|fainting|faint
+! array swelling = swelling|limb|tummy|belly|abdomen|arm|leg
+! array fever = fever|high temperature|burning up
+
+! array walking = walking|getting around
+! array tingling = tingling|goose bumps
+! array pain = pain|ache|agony|burn|cramp|illness|injury|irritation|sickness|hurt|hurting
+! array hotflushes = hot flushes|sweating|clammy
+! array skin = dry skin|itch|itchy skin|sore skin
+! array woundcare = wound care|after surgery|from surgery|damage|lesion|pain|incision|section
+
+! array weight = weight change|mass change|difference in weight|gain|lose|loss|lost
+! array concentration = memory|recollection|rememberance|thought|memorization|recall|concentration|focusing|study
+! array sensory = sensory|sensual|seeing|see|visual|looking|view|watch|stare|gaze|glare|read|eyes|hear|listen|auditory|aural|ears|audiovisual|taste|flavour|sweet|bitter|tongue
+! array speaking = speak|speaking|talk|say|shout|tell|voice|whisper|converse|mumble|vocal|sound|speech|tone|yell|song
+! array appearance = appearance|look|image|presentation|countenance|face|figure|guise|looks|semblance|complexion
+! array sexuality = sexuality|sex|femininity|masculinity|homosexuality|lesbianism|bisexuality|manhood|manliness|womanhood|womanliness
+
+> topic physical includes global
+
+    // [discuss] relative-friend
+    + [*] [@discuss] [*] (@sleeping) [*]
+    - <set physicalissue=<star1>>
+    ^ Are you having trouble sleeping in general, or is there somthing in\s
+    ^ particular that is preventing you from sleeping well?
+
+    + dummy
+    - How severe is your <get physicalissue> problem?
+
+    + dummy
+    - Have you often had similar problems in the past?
+
+    + dummy
+    - Is your <get physicalissue> problem other areas of your life?
+
+< topic

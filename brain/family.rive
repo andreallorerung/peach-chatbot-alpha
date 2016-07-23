@@ -15,9 +15,14 @@
     - <set familyissue=<star1>>{topic=relative-friend}
     ^ What is it about your <get familyissue> that concerns you?
 
-    // [discuss] relative-friend
+    // [discuss] partner
     + [*] [@discuss] [*] (@partner) [*]
     - <set familyissue=<star1>>{topic=patner}
+    ^ What is it about your <get familyissue> that concerns you?
+
+    // [discuss] children
+    + [*] [@discuss] [*] (@children) [*]
+    - <set familyissue=<star1>>{topic=children}
     ^ What is it about your <get familyissue> that concerns you?
 
     + *
