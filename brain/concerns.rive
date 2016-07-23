@@ -5,21 +5,7 @@
 ! array topicmacro = physical|practical|family|emotional|spiritual
 ! array discuss = talk|talk about|speak|speak about|discuss
 ! array other = other|another|something else
-//! array not = not|no|nay//already defined in begin.rive
 ! array topic = topic|concern|issue|problem
-
-! array physical1 = breathing|breathe|breath|urine|constipation|diarrhoea|eat|appetite|indigestion
-! array physical2 = mouth|nausea|vomit|sleep|nightmare|tired|exhausted|fatigued|swollen|fever|high temperature
-! array physical3 = walking|tingling|pain|hot flushes|sweating|skin|wound|surgery
-! array physical4 = weight|memory|concentration|taste|sight|hearing|speech|appearance|sexuality
-! array practical1 = caring|responsible|work|education|finance|housing|travel|transport|parking|communication
-! array practical2 = housework|chores|house|shopping|grocery|washing|bathing|dressing|preparing food
-! array family = partner|spouse|children|child|relative|friend
-! array emotional1 = plans|interest|activities|hobbies|express feelings|anger|frustration|guilt|hopeless|hopelessness
-! array emotional2 = lonely|loneliness|isolated|isolation|depressed|depression|sad|sadness|worry|fear|anxiety
-! array spiritual = loss of faith|loss of meaning|loss of purpose|uneasy|regret
-
-//! array topicmicro = physical1|physical2//cannot compose arrays
 
 + concern breathing 6
 - Setting concern. <call>set_issue breathing 6</call>
@@ -34,7 +20,6 @@
 
     // desire to change topic
     + [*] (@desire) (@change) [*] (@topic) [please]
-    //- What other {random}<@topic>{/random} would you like to {random}@discuss{/random} {random}instead {/random}?//cannot use arrays in reply
     - What other {random}topic concern{/random} would you like to {random}discuss|talk about{/random}{random} instead|{/random}?
     - What would you like to talk about?
 
@@ -64,18 +49,9 @@
     + set global
     - Topic set to global {topic=global}
 
-    + *
-    - I'm sorry, I did not understand that.
-
 < topic
 
 > topic physical includes global
-    //+ highlighted
-    //- These are the issues you have highlighted:\n \s\s\s\s
-    //^ <call>get_issue breathing</call>
-
-
-
     + *
     - We are in the physical concerns topic
 < topic
@@ -86,8 +62,13 @@
 < topic
 
 > topic family includes global
+
+    // discuss topicmicro
+    + [*] (@discuss) [*] (@family) [*]
+    - Changing topic to relative-friend. {topic=relative-friend}
+
     + *
-    - We are in the family concerns topic
+    - Now in family topic
 < topic
 
 > topic emotional includes global

@@ -6,10 +6,11 @@ USERID = "localuser"
 USERNAME = "Nic"
 WELCOME = "Bot> Hello {}, welcome.".format(USERNAME)
 CHECKLISTMSG = ("Bot> Let me check what your concerns are and we will go through "
-"them briefly.\nBot> I would like you to gather a bit more information about "
-"them ahead of your visit.")
+"them briefly."
+"\nBot> I would like you to gather a bit more information about them ahead of "
+"your visit.")
 PREISSUES = ("Bot> Here is the list of issues you have selected."
-"\nBot>We will look at them from the most distressful to the least distressful:")
+"\nBot> We will look at them from the most distressful to the least distressful:")
 
 def main(args):
 
@@ -33,6 +34,10 @@ def main(args):
     issue_list = macros.get_all_issues(USERID)
     print(PREISSUES)
     print(macros.format_issue_list(issue_list))
+
+    # macrotopic_for_most_distressful = macros.micro_to_macro[issue_list[0][0]]
+    # print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
+    # print "Bot>", bot.reply(USERID, "discuss issue_list[0][0]") #refactor issue_list to key-value pairs rather than couples
 
     while True:
         msg = raw_input("You> ")

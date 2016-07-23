@@ -1,0 +1,7 @@
+! array friend = friend|mate|buddy|classmate|colleague|chum|pal
+! array relative = relative|aunt|cousin|father|mother|niece|sibling|uncle|blood|cognate|in-law|kinsperson|nephew|dad|mom|sister|brother
+
+> topic relative-friend includes family
+    + *
+    - Now in relative-friend topic.
+< topic

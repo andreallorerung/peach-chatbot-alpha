@@ -1,18 +1,28 @@
 '''Module defining the python objects to be called inside '.rive' files '''
 from botcontroller import concerns as model
+from botcontroller.equivalence import EquivalenceClasses
 from operator import itemgetter
 
 '''List representing all issues that can be selected'''
-ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating",
-"indigestion","mouth","nausea-vomit","sleeping","fatigue","swelling","fever",
-"walking","tingling","pain","hot-flushes","skin","wound-care","weight",
-"memory-concentration","sensory","speaking","appearance","sexuality",
-"caring-responsibilities","work-education","finance-housing","travel",
-"transport","communication-NHS","chores","washing-dressing","preparing-meal",
-"partner","children","relative-friend","planning","interests-activities",
-"expressing-feelings","anger-frustration","guilt","hopelessness","loneliness",
-"depression","worry-fear-anxiety","lost-faith-spiritual","lost-meaning-purpose",
-"regret"]
+ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indigestion",
+"mouth","nausea-vomit","sleeping","fatigue","swelling","fever",
+"walking","tingling","pain","hot-flushes","skin","wound-care",
+"weight","memory-concentration","sensory","speaking","appearance","sexuality",
+"caring-responsibilities","work-education","finance-housing","travel","transport","communication-NHS",
+"chores","washing-dressing","preparing-meal",
+"partner","children","relative-friend",
+"planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness",
+"loneliness","depression","worry-fear-anxiety",
+"lost-faith-spiritual","lost-meaning-purpose","regret"]
+
+'''map of microtopics to macrotopics'''
+CLASSES = {
+    ("partner","children","relative-friend"): "family",
+    ("planning","interests-activities","expressing-feelings",
+    "anger-frustration","guilt","hopelessness") : "emotional_1",
+}
+
+micro_to_macro = EquivalenceClasses.from_dict(CLASSES)
 
 def format_issue_list(issue_list):
     '''Formats a list of tuples for output through the chatbot interface'''

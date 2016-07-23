@@ -2,7 +2,6 @@
 
 > begin
 	+ request // This trigger is tested first.
-    * <get greeting> eq undefined => <set greeting=1>{topic=global}
     - {ok}    // An {ok} in the response means it's okay to get a real reply
 < begin
 
