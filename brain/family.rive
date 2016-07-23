@@ -1,3 +1,5 @@
+! array partner = partner|spouse|husband|wife|man|woman|boyfriend|girlfriend|lover|consort|bride|groom|other half
+! array children = child|son|daughter|boy|girl|children|sons|daughters|boys|girls
 ! array friend = friend|mate|buddy|classmate|colleague|chum|pal
 ! array relative = relative|aunt|cousin|father|mother|niece|sibling|uncle|blood|cognate|in-law|kinsperson|nephew|dad|mom|sister|brother
 
@@ -8,14 +10,90 @@
     - What is it that concerns you about your family/friends?
     ^ {topic=relative-friend}
 
-    // [discuss] microtopic
+    // [discuss] relative-friend
     + [*] [@discuss] [*] (@relative|@friend) [*]
     - <set familyissue=<star1>>{topic=relative-friend}
     ^ What is it about your <get familyissue> that concerns you?
 
+    // [discuss] relative-friend
+    + [*] [@discuss] [*] (@partner) [*]
+    - <set familyissue=<star1>>{topic=patner}
+    ^ What is it about your <get familyissue> that concerns you?
+
     + *
     - Now in family topic
-    
+
+< topic
+
+> topic partner includes family
+
+    // description
+    + [*] (@thirdperson|@partner) [*]
+    % what is it about your * that concern you?
+    - Is there anything else you would like to tell me about them?
+
+    // description
+    + *
+    % what is it about your * that concern you?
+    - Are there any more details you would like to tell me?
+
+    // yes
+    + (@yes)
+    % is there anything else you would like to tell me about them?
+    - What is it?
+
+    // yes *
+    + [*] [@yes] (*)
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // no
+    + [*] (@no) [*]
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // anything following "What is it?"
+    + *
+    % what is it?
+    - I think that is enough information for the moment. {@ next topic}
+
+< topic
+
+> topic children includes family
+
+    // description
+    + [*] (@thirdperson|@children) [*]
+    % what is it about your * that concern you?
+    - Is there anything else you would like to tell me about them?
+
+    // description
+    + *
+    % what is it about your * that concern you?
+    - Are there any more details you would like to tell me?
+
+    // yes
+    + (@yes)
+    % is there anything else you would like to tell me about them?
+    - What is it?
+
+    // yes *
+    + [*] [@yes] (*)
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // no
+    + [*] (@no) [*]
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // anything following "What is it?"
+    + *
+    % what is it?
+    - I think that is enough information for the moment. {@ next topic}
+
+    + *
+    - In topic relative-friend
+
 < topic
 
 > topic relative-friend includes family

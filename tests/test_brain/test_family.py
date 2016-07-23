@@ -73,12 +73,12 @@ def test_issue_identified():
     # Wrong answer:
     assert "dad" in replies[4]# assert "nephew" in replies[4]
 
-def test_relativefriend_description():
+def test_description():
     # perform:
     messages = ["she doesn't like me anymore",
     "he has been very mean", "we used to be best friends but now ..."]
 
-    for msg in messages:
+    for msg in messages[:1]:
         # enter global topic:
         m = "set global"
         bot.reply("localuser", m)
