@@ -1,7 +1,25 @@
 ! array friend = friend|mate|buddy|classmate|colleague|chum|pal
 ! array relative = relative|aunt|cousin|father|mother|niece|sibling|uncle|blood|cognate|in-law|kinsperson|nephew|dad|mom|sister|brother
 
-> topic relative-friend includes family
+> topic family includes global
+
+    // discuss microtopic redirect
+    + [*] (@discuss) [*] relativefriend [*]
+    - What is it that concerns you about your family/friends?
+    ^ {topic=relative-friend}
+
+    // [discuss] microtopic
+    + [*] [@discuss] [*] (@relative|@friend) [*]
+    - What is it about your <star1> that concerns you?
+    ^ <set familyissue=star1>{topic=relative-friend}
+
     + *
-    - Now in relative-friend topic.
+    - Now in family topic
+< topic
+
+> topic relative-friend includes family
+
+    + *
+    - In topic relative-friend
+    
 < topic

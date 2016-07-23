@@ -49,6 +49,9 @@
     + set global
     - Topic set to global {topic=global}
 
+    + set (@topicmacro)
+    - Topic set to <star> {topic=<star>} \n\s\s\s\s {@ highlighted}
+
 < topic
 
 > topic physical includes global
@@ -59,16 +62,6 @@
 > topic practical includes global
     + *
     - We are in the practical concerns topic
-< topic
-
-> topic family includes global
-
-    // discuss topicmicro
-    + [*] (@discuss) [*] (@relative|@friend|relativefriend) [*]
-    - Changing topic to relative-friend. {topic=relative-friend}
-
-    + *
-    - Now in family topic
 < topic
 
 > topic emotional includes global

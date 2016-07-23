@@ -17,7 +17,6 @@ def test_change_topic():
 
     for msg in messages:
         reply = bot.reply("localuser", msg)
-
         # test:
         assert "would you like to" in reply
 
