@@ -197,3 +197,4 @@
 ! array measure    = inch in centimeter cm millimeter mm meter m inches centimeters millimeters meters
 ! array yes        = yes yeah yep yup ya yea ye
 ! array not        = no nah nope nay not
+! array thirdperson = he|she|it|his|her|him|her|they|their|them

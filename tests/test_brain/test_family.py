@@ -72,3 +72,77 @@ def test_issue_identified():
     assert "aunt" in replies[3]# assert "uncle" in replies[3]
     # Wrong answer:
     assert "dad" in replies[4]# assert "nephew" in replies[4]
+
+def test_relativefriend_description():
+    # perform:
+    messages = ["she doesn't like me anymore",
+    "he has been very mean", "we used to be best friends but now ..."]
+
+    for msg in messages:
+        # enter global topic:
+        m = "set global"
+        bot.reply("localuser", m)
+
+        # enter family topic:
+        m = "discuss family"
+        bot.reply("localuser", m)
+
+        # problem with cousin
+        m = "cousin"
+        bot.reply("localuser", m)
+
+        reply = bot.reply("localuser", msg)
+        # test:
+        assert "you would like to tell me" in reply
+
+def test_yes():
+    # perform:
+    messages = ["yes",
+    "yea"]
+
+    for msg in messages:
+        # enter global topic:
+        m = "set global"
+        bot.reply("localuser", m)
+
+        # enter family topic:
+        m = "discuss family"
+        bot.reply("localuser", m)
+
+        # problem with cousin
+        m = "cousin"
+        bot.reply("localuser", m)
+
+        # problem with cousin
+        m = "they are mean"
+        bot.reply("localuser", m)
+
+        reply = bot.reply("localuser", msg)
+        # test:
+        assert "what is it" in reply.lower()
+
+def test_yes():
+    # perform:
+    messages = ["yes there is something else",
+    "yea there is this: ...", "the problem is also that ..."]
+
+    for msg in messages:
+        # enter global topic:
+        m = "set global"
+        bot.reply("localuser", m)
+
+        # enter family topic:
+        m = "discuss family"
+        bot.reply("localuser", m)
+
+        # problem with cousin
+        m = "cousin"
+        bot.reply("localuser", m)
+
+        # problem with cousin
+        m = "they are mean"
+        bot.reply("localuser", m)
+
+        reply = bot.reply("localuser", msg)
+        # test:
+        assert "next topic" in reply

@@ -10,16 +10,47 @@
 
     // [discuss] microtopic
     + [*] [@discuss] [*] (@relative|@friend) [*]
-    - What is it about your <star1> that concerns you?
-    ^ <set familyissue=star1>{topic=relative-friend}
+    - <set familyissue=<star1>>{topic=relative-friend}
+    ^ What is it about your <get familyissue> that concerns you?
 
     + *
     - Now in family topic
+    
 < topic
 
 > topic relative-friend includes family
 
+    // description
+    + [*] (@thirdperson|@relative|@friend) [*]
+    % what is it about your * that concern you?
+    - Is there anything else you would like to tell me about them?
+
+    // description
+    + *
+    % what is it about your * that concern you?
+    - Are there any more details you would like to tell me?
+
+    // yes
+    + (@yes)
+    % is there anything else you would like to tell me about them?
+    - What is it?
+
+    // yes *
+    + [*] [@yes] (*)
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // no
+    + [*] (@no) [*]
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // anything following "What is it?"
+    + *
+    % what is it?
+    - I think that is enough information for the moment. {@ next topic}
+
     + *
     - In topic relative-friend
-    
+
 < topic
