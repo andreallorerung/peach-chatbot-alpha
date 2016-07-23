@@ -11,6 +11,11 @@ CHECKLISTMSG = ("Bot> Let me check what your concerns are and we will go through
 "your visit.")
 PREISSUES = ("Bot> Here is the list of issues you have selected."
 "\nBot> We will look at them from the most distressful to the least distressful:")
+HIGHLIGHTED = [("respiratory", 5),
+                ("urinary",  8),
+                ("sleeping", 9),
+                ("chores", 4),
+                ("relative-friend", 10)]
 
 def main(args):
 
@@ -23,11 +28,8 @@ def main(args):
     bot.load_directory(brain)
     bot.sort_replies()
 
-    macros.set_issue("userid", "respiratory", 5)
-    macros.set_issue("userid", "urinary", 8)
-    macros.set_issue("userid", "sleeping", 9)
-    macros.set_issue("userid", "chores", 4)
-    macros.set_issue("userid", "relative-friend", 10)
+    for issue in HIGHLIGHTED:
+        macros.set_issue("userid", *issue)
 
     print(WELCOME)
     print(CHECKLISTMSG)
@@ -35,9 +37,11 @@ def main(args):
     print(PREISSUES)
     print(macros.format_issue_list(issue_list))
 
-    # macrotopic_for_most_distressful = macros.micro_to_macro[issue_list[0][0]]
-    # print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
-    # print "Bot>", bot.reply(USERID, "discuss issue_list[0][0]") #refactor issue_list to key-value pairs rather than couples
+    micro_most_distressful = issue_list[0][0]
+    macrotopic_for_most_distressful = macros.micro_to_macro[micro_most_distressful]
+    print "Bot>", bot.reply(USERID, "set global")
+    print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
+    print "Bot>", bot.reply(USERID, "discuss {}".format(micro_most_distressful)) #refactor issue_list to key-value pairs rather than couples
 
     while True:
         msg = raw_input("You> ")

@@ -64,7 +64,7 @@
 > topic family includes global
 
     // discuss topicmicro
-    + [*] (@discuss) [*] (@family) [*]
+    + [*] (@discuss) [*] (@relative|@friend|relativefriend) [*]
     - Changing topic to relative-friend. {topic=relative-friend}
 
     + *
