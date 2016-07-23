@@ -17,9 +17,15 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indig
 
 '''map of microtopics to macrotopics'''
 CLASSES = {
-    ("partner","children","relative-friend"): "family",
-    ("planning","interests-activities","expressing-feelings",
-    "anger-frustration","guilt","hopelessness") : "emotional_1",
+    ("respiratory", "urinary","constipation","diarrhoea","eating","indigestion") : "physical_1",
+    ("mouth","nausea-vomit","sleeping","fatigue","swelling","fever") : "physical_2",
+    ("weight","memory-concentration","sensory","speaking","appearance","sexuality") : "physical_3",
+    ("caring-responsibilities","work-education","finance-housing","travel","transport","communication-NHS") : "practical_1",
+    ("chores","washing-dressing","preparing-meal") : "practical_2",
+    ("partner","children","relative-friend") : "family",
+    ("planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness") : "emotional_1",
+    ("loneliness","depression","worry-fear-anxiety") : "emotional_2",
+    ("lost-faith-spiritual","lost-meaning-purpose","regret") : "spiritual"
 }
 
 micro_to_macro = EquivalenceClasses.from_dict(CLASSES)
