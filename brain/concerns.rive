@@ -7,9 +7,6 @@
 ! array other = other|another|something else
 ! array topic = topic|concern|issue|problem
 
-+ concern breathing 6
-- Setting concern. <call>set_issue breathing 6</call>
-
 + set global
 - Topic set to global {topic=global}
 
@@ -56,11 +53,6 @@
     + set (@topicmacro)
     - Topic set to <star> {topic=<star>} \n\s\s\s\s {@ highlighted}
 
-< topic
-
-> topic practical includes global
-    + *
-    - We are in the practical concerns topic
 < topic
 
 > topic emotional includes global

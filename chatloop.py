@@ -14,7 +14,8 @@ PREISSUES = ("Bot> Here is the list of issues you have selected."
 HIGHLIGHTED = [("respiratory", 5),
                 ("urinary",  8),
                 ("sleeping", 9),
-                ("chores", 4),
+                # ("chores", 4),
+                ("caring-responsibilities", 11),
                 ("relative-friend", 7)]
 
 def main(args):

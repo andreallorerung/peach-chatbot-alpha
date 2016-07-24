@@ -1,0 +1,72 @@
+! version = 2.0
+
+! array responsibility = care|caring|responsible|responsibility|responsibilities|look after|tend|watch|nurse|nurture|provide|burden|obligation|caringresponsibilities
+! array work = work|job|working|industry|performance|task|grind|obligation|stress|sweat|toil|travail|business
+! array education = education|school|learning|learn|scholarship|teaching|teach|apprentiship|tuition|reading|university|academic|academy|institution|college|degree|graduation|graduate
+! array finance = finance|bank|banking|business|economic|economics|economical|money|financial|bill|cash|check|fund|pay|payment|salary|wage|wealth|coin|fee|stipend|allowance|benefits|income|profit|aid|interest
+! array housing = housing|house|flat|dwelling|habitation|home|residence|roof|shelter|apartment|building|abode|rental|rent|lease|tenant|tenants|tenancy|homeless|homelessness|landlord|landlords|evict|eviction
+! array travel = travel|insurance|sightseeing|sightsee|tour|peregrination|voyage|vacation|visit|abroad|coverage
+! array transport = transport|transit|commute|commuting|car|bus|train|plane|walk|bike|ride|riding|on foot|cycle|cycling
+! array communication = communication|correspondence|reading|writing|email|phone|GP|doctor|contact|inform|interact|tell|speak|network|internet|website
+
+! array chores = chore|chores|errand|housework|routine|clean|neat|tidy|wash|laundry|dirt|garden|plants|housekeeping|ironing|mop|mopping|sweeping|broom
+! array washing = washing|bath|bathing
+! array dressing = dressed|dressing|clothing|robing
+! array preparing = prepare|food|meal|lunch|dinner|tea|coffee|drink|breakfast|supper|eat|cooking|diet|boil|roast|fry|brew
+
+> topic practical includes global
+    //responsibilities
+    + [*] [@discuss] [*] (@responsibility) [*]
+    - Tell me more about your responsibilities.
+
+    + *
+    % tell me more about your responsibilities
+    - Do you believe this is relevant to your relationship with family or friends?
+
+    + [*] (@not) [*]
+    % do you believe this is relevant to your relationship with family or friends
+    - Ok ...
+
+    + [*] (@yes)
+    % do you believe this is relevant to your relationship with family or friends
+    - Adding topic or checking if already exists ...
+
+    //work
+    + [*] [@discuss] [*] (@work) [*]
+    - Are you afraid for your job security?
+    - Would you say this is also a money concern?
+    - How has your condition been affecting your work?
+
+    //education
+    + [*] [@discuss] [*] (@education) [*]
+    - How is your condition affecting your performance?
+    - Are you concerned about how this may affect your future?
+    - Have you looked into equal opportunities policies your school may have for people affected by serious conditions?
+
+    //finance
+    + [*] [@discuss] [*] (@finance) [*]
+    - Is your condition the primary reason for your financial problems?
+    - Are you receiving benefits?
+
+    //housing
+    + [*] [@discuss] [*] (@housing) [*]
+    - Are you afraid your housing situation is worsening?
+
+    //travel
+    + [*] [@discuss] [*] (@travel) [*]
+    - Is travelling important for you at this time?
+
+    //transport
+    + [*] [@discuss] [*] (@transport) [*]
+    - Is the transportation issue affecting other areas of your life, such as your work or other duties?
+
+    //communication-NHS
+    + [*] [@discuss] [*] (@communication) [*]
+    - How would you prefer to communicate with the NHS?
+
+    //chores etc
+    + [*] [@discuss] [*] (@chores|@washing|@dressing|@preparing) [*]
+    - Is there anyone in your family that could help you with <star>?
+    - Is there any way you could pay someone to help you with <star>?
+
+< topic
