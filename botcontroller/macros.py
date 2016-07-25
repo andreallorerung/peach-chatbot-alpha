@@ -54,7 +54,6 @@ def get_all_issues(userid):
         if score is not None:
             issue_list.append( ( issue, score) )
 
-    print sorted(issue_list, key=itemgetter(1), reverse=True)
     return sorted(issue_list, key=itemgetter(1), reverse=True)
 
 def get_issue(userid, issue):
