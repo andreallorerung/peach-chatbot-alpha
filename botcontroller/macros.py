@@ -1,37 +1,10 @@
 '''Module defining the python objects to be called inside '.rive' files '''
+import topics_model
 from botcontroller import concerns as model
-from botcontroller.equivalence import EquivalenceClasses
 from operator import itemgetter
 
-'''List representing all issues that can be selected'''
-ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indigestion",
-"mouth","nausea-vomit","sleeping","fatigue","swelling","fever",
-"walking","tingling","pain","hot-flushes","skin","wound-care",
-"weight","memory-concentration","sensory","speaking","appearance","sexuality",
-"caring-responsibilities","work-education","finance-housing","travel","transport","communication-NHS",
-"chores","washing-dressing","preparing-meal",
-"partner","children","relative-friend",
-"planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness",
-"loneliness","depression","worry-fear-anxiety",
-"faith","meaning","regret"]
-
-'''map of microtopics to macrotopics'''
-CLASSES = {
-    (tuple(ALL_ISSUES[0:5])) : "physical",
-    (tuple(ALL_ISSUES[6:11])) : "physical",
-    (tuple(ALL_ISSUES[12:17])) : "physical",
-    (tuple(ALL_ISSUES[18:23])) : "physical",
-    (tuple(ALL_ISSUES[24:29])) : "practical",
-    (tuple(ALL_ISSUES[25:27])) : "practical",
-    (tuple(ALL_ISSUES[28:30])) : "family",
-    (tuple(ALL_ISSUES[31:36])) : "emotional",
-    (tuple(ALL_ISSUES[37:39])) : "emotional",
-    (tuple(ALL_ISSUES[40:42])) : "spiritual"
-}
-
-micro_to_macro = EquivalenceClasses.from_dict(CLASSES)
-
 def increase(num):
+    '''Increases the number parameter'''
     return str(int(num) + 1)
 
 def format_issue_list(issue_list):
@@ -49,7 +22,7 @@ def get_all_issues(userid):
     descending order by level of distress (most distressful first)'''
     issue_list = []
 
-    for issue in ALL_ISSUES:
+    for issue in topics_model.ALL_ISSUES:
         score = get_issue(userid, issue)
         if score is not None:
             issue_list.append( ( issue, score) )

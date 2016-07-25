@@ -1,4 +1,5 @@
 import os
+from botcontroller import topics_model
 from botcontroller import macros
 from rivescript import RiveScript
 
@@ -24,27 +25,14 @@ HIGHLIGHTED = [("respiratory", 5),
 
 def main(args):
 
-    if len(args) < 2:
-        brain = "./brain"
-    else:
-        brain = args[1]
-
-    bot = RiveScript()
-    bot.load_directory(brain)
-    bot.sort_replies()
-
-    for issue in HIGHLIGHTED:
-        macros.set_issue("userid", *issue)
-
-    print(WELCOME)
-    print(CHECKLISTMSG)
+    bot = _create_bot(args)
+    _set_highlighted_issues(HIGHLIGHTED)
     issue_list = macros.get_all_issues(USERID)
-    print(PREISSUES)
-    print(macros.format_issue_list(issue_list))
 
+    print _format_welcome_message(USERID, issue_list)
     micro_most_distressful = issue_list[0][0]
+    macrotopic_for_most_distressful = topics_model.micro_to_macro[micro_most_distressful]
     print "micro most distressful: {}".format(micro_most_distressful)
-    macrotopic_for_most_distressful = macros.micro_to_macro[micro_most_distressful]
     print "macro most distressful: {}".format(macrotopic_for_most_distressful)
     print "Bot>", bot.reply(USERID, "set global")
     print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
@@ -58,24 +46,48 @@ def main(args):
         reply = bot.reply(USERID, msg)
         print "Bot>", reply
 
-def _create_bot(brain):
-    if not args or not len(args):
-        brain = "./brain"
-    else:
-        brain = args[0]
+def _set_highlighted_issues(highlighted):
+    for issue in highlighted:
+        macros.set_issue("userid", *issue)
+
+def _format_welcome_message(userid, issue_list):
+    issue_list = macros.get_all_issues(USERID)
+
+    output = "{}\n{}\n{}\n{}".format(WELCOME,
+    CHECKLISTMSG,
+    PREISSUES,
+    macros.format_issue_list(issue_list))
+
+    return output
+
+def _create_bot(args):
+    brain = _select_brain(args)
 
     bot = RiveScript()
-
-    if os.path.isdir(brain):
-        bot.load_directory(brain)
-    elif os.path.isfile(brain):
-        bot.load_file(brain)
-    else:
-        raise ValueError("no directory or file found at specified filepath for "
-                         "chatbot brain.")
+    bot = _load_brain(bot, brain)
     bot.sort_replies()
 
     return bot
+
+def _select_brain(args):
+    if not args or len(args) <= 1:
+        brain = "./brain"
+    else:
+        brain = args[1]
+    return brain
+
+def _load_brain(bot, brain):
+    new_bot = bot
+
+    if os.path.isdir(brain):
+        new_bot.load_directory(brain)
+    elif os.path.isfile(brain):
+        new_bot.load_file(brain)
+    else:
+        raise ValueError("no directory or file found at specified filepath for "
+                         "chatbot brain.")
+
+    return new_bot
 
 if __name__ == '__main__':
     import sys
