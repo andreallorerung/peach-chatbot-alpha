@@ -1,0 +1,21 @@
+! version = 2.0
+
+! array faith = lost faith|lost belief|lost confidence|lost hope|lost certainty|church|religion|canon|creed|cult|gospel|piety|theism|theology|worship|belief|believe|believed
+! array meaning = meaning|purpose|goal|end|plan|essence|explanation|significance|spirit|substance|value|heart|import
+! array regret = regret|concern|apology|bitterness|dissatisfaction|grief|nostalgia|qualm|remorse|repentance|sorrow|worry|conscience|penitence|sin|error|evil|fault|immorality|immoral|misdeed|transgression|wrong|wrongdoing|debt|imperfection|pride|tort|vice|cheat|deviate|stray|break|go back
+
+> topic spiritual includes global
+
+    //faith
+    + [*] (@faith) [*]
+    - Have you spoken to anyone in your spiritual community about this?
+
+    //meaning
+    + [*] (@meaning) [*]
+    - Do you feel this lack of meaning is due to not having or being able to pursue goals or objectives in your life?
+
+    //regret
+    + [*] (@regret) [*]
+    - Do you believe there is any way for you to make up for your mistakes?
+
+< topic

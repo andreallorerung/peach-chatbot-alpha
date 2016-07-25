@@ -12,11 +12,6 @@
 ! array depression = depression|depressed|bleak|bummer|deslation|desperation|distress|dolor|dull|gloom|misery|sad|sadness|sorrow|unhappy|woe|despondent|blue|destroyed|down|low|hurting|weeping|grim
 ! array worry = worry|worried|afraid|fear|anxious|anxiety|anguish|concern|doubt|pain|torment|bothered|distressed|disturbed|frightened|perturbed|upset|distraught|fearful|fretful|scared|dread|horror|panic|scare|fright|apprehensive|jittery|restless|restlessness
 
-//wrong file:
-//! array faith = lost faith|lost belief|lost confidence|lost hope|lost certainty|church|religion|canon|creed|cult|gospel|piety|theism|theology|worship
-//! array meaning
-//! array regret
-
 > topic emotional includes global
     // planning
     + [*] [@discuss] [*] (@planning|@interests) [*]
