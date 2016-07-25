@@ -17,16 +17,16 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indig
 
 '''map of microtopics to macrotopics'''
 CLASSES = {
-    ("respiratory", "urinary","constipation-diarrhoea","eating","indigestion") : "physical",
-    ("mouth","nausea-vomit","sleeping","fatigue","swelling","fever") : "physical",
-    ("walking","tingling","pain","hot-flushes","skin","wound-care") : "physical",
-    ("weight","memory-concentration","sensory","speaking","appearance","sexuality") : "physical",
-    ("caring-responsibilities","work-education","finance-housing","travel","transport","communication-NHS") : "practical",
-    ("chores","washing-dressing","preparing-meal") : "practical",
-    ("partner","children","relative-friend") : "family",
-    ("planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness") : "emotional",
-    ("loneliness","depression","worry-fear-anxiety") : "emotional",
-    ("faith","meaning","regret") : "spiritual"
+    (tuple(ALL_ISSUES[0:5])) : "physical",
+    (tuple(ALL_ISSUES[6:11])) : "physical",
+    (tuple(ALL_ISSUES[12:17])) : "physical",
+    (tuple(ALL_ISSUES[18:23])) : "physical",
+    (tuple(ALL_ISSUES[24:29])) : "practical",
+    (tuple(ALL_ISSUES[25:27])) : "practical",
+    (tuple(ALL_ISSUES[28:30])) : "family",
+    (tuple(ALL_ISSUES[31:36])) : "emotional",
+    (tuple(ALL_ISSUES[37:39])) : "emotional",
+    (tuple(ALL_ISSUES[40:42])) : "spiritual"
 }
 
 micro_to_macro = EquivalenceClasses.from_dict(CLASSES)
