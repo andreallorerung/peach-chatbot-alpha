@@ -53,10 +53,5 @@
     + set (@topicmacro)
     - Topic set to <star> {topic=<star>} \n\s\s\s\s {@ highlighted}
 
-< topic
-
-
-> topic spiritual includes global
-    + *
-    - We are in the spiritual concerns topic
+    
 < topic

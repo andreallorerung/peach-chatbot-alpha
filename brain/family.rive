@@ -19,7 +19,7 @@
 
     // [discuss] partner
     + [*] [@discuss] [*] (@partner) [*]
-    - <set familyissue=<star1>>{topic=patner}
+    - <set familyissue=<star1>>{topic=partner}
     ^ What is it about your <get familyissue> that concerns you?
 
     // [discuss] children
@@ -44,6 +44,8 @@
     % what is it about your * that concern you?
     - Are there any more details you would like to tell me?
 
+    // yes-no follow up answers must be specified for each previous answer
+    // so they have to be repeated here:
     // yes
     + (@yes)
     % is there anything else you would like to tell me about them?
@@ -55,14 +57,32 @@
     - I think that is enough information for the moment. {@ next topic}
 
     // no
-    + [*] (@no) [*]
+    + [*] (@not) [*]
     % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // yes
+    + (@yes)
+    % are there any more details you would like to tell me?
+    - What is it?
+
+    // yes *
+    + [*] [@yes] (*)
+    % are there any more details you would like to tell me?
+    - I think that is enough information for the moment. {@ next topic}
+
+    // no
+    + [*] (@not) [*]
+    % are there any more details you would like to tell me?
     - I think that is enough information for the moment. {@ next topic}
 
     // anything following "What is it?"
     + *
     % what is it?
     - I think that is enough information for the moment. {@ next topic}
+
+    + *
+    - I'm sorry I did not understand.
 
 < topic
 

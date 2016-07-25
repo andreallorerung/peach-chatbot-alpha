@@ -30,10 +30,14 @@
 > topic physical includes global
 
     // [discuss] relative-friend
-    + [*] [@discuss] [*] (@respiratory|@urinary|@constipation|@eating|@indigestion|@mouth|@nausea|@sleeping|@fatigue|@swelling|@fever|@walking|@concentration|@sensory|@speaking|@appearance|@sexuality) [*]
+    + [*]
+    ^ (@respiratory|@urinary|@constipation|@eating|@indigestion|@mouth|@nausea|
+    ^ @sleeping|@fatigue|@swelling|@fever|@walking|@concentration|@sensory|
+    ^ @speaking|@appearance|@sexuality) [*]
+    * <get physicalissue> ne undefined => {@ *}
     - <set physicalissue=<star1>>
     ^ <set counter=0>
-    ^ Does the problem present itself in particular conditions? <get physicalissue>
+    ^ Does the problem present itself in particular conditions?
     //^ Are you having trouble sleeping in general, or is there somthing in\s
     //^ particular that is preventing you from sleeping well?
 

@@ -13,10 +13,14 @@ PREISSUES = ("Bot> Here is the list of issues you have selected."
 "\nBot> We will look at them from the most distressful to the least distressful:")
 HIGHLIGHTED = [("respiratory", 5),
                 ("urinary",  8),
-                ("sleeping", 9),
-                # ("chores", 4),
-                ("caring-responsibilities", 11),
-                ("relative-friend", 7)]
+                ("sleeping", 2),
+                ("chores", 1),
+                ("caring-responsibilities", 4),
+                ("relative-friend", 7),
+                ("faith", 9),
+                ("meaning", 11),
+                ("regret", 9),
+                ("partner", 3)]
 
 def main(args):
 

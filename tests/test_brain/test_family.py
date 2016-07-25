@@ -55,7 +55,8 @@ def test_issue_identified():
     # perform:
     messages = ["discuss friend", "I think my mate ...", "aunt",
     "I like my aunt but I don't like my uncle",
-    "my nephew hates me but my dad doesn't"]
+    "my nephew hates me but my dad doesn't",
+    "my wife does not talk to me anymore"]
 
     replies = []
     for msg in messages[:]:
@@ -72,6 +73,7 @@ def test_issue_identified():
     assert "aunt" in replies[3]# assert "uncle" in replies[3]
     # Wrong answer:
     assert "dad" in replies[4]# assert "nephew" in replies[4]
+    assert "wife" in replies[5]
 
 def test_description():
     # perform:

@@ -13,7 +13,7 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indig
 "partner","children","relative-friend",
 "planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness",
 "loneliness","depression","worry-fear-anxiety",
-"lost-faith-spiritual","lost-meaning-purpose","regret"]
+"faith","meaning","regret"]
 
 '''map of microtopics to macrotopics'''
 CLASSES = {
@@ -26,7 +26,7 @@ CLASSES = {
     ("partner","children","relative-friend") : "family",
     ("planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness") : "emotional",
     ("loneliness","depression","worry-fear-anxiety") : "emotional",
-    ("lost-faith-spiritual","lost-meaning-purpose","regret") : "spiritual"
+    ("faith","meaning","regret") : "spiritual"
 }
 
 micro_to_macro = EquivalenceClasses.from_dict(CLASSES)
@@ -54,6 +54,7 @@ def get_all_issues(userid):
         if score is not None:
             issue_list.append( ( issue, score) )
 
+    print sorted(issue_list, key=itemgetter(1), reverse=True)
     return sorted(issue_list, key=itemgetter(1), reverse=True)
 
 def get_issue(userid, issue):
