@@ -13,46 +13,43 @@ import collections
 class Concerns(object):
     '''Data model for a user's concerns'''
 
-    def __init__(self, userid, scores=collections.defaultdict()):
-        self._userid = userid
+    def __init__(self, scores=collections.defaultdict()):
         self._scores = scores
 
     def __getitem__(self, item):
-        if item == "userid":
-            return self._userid
-        else:
-            return self._check_key(item)
+        return self._check_key(item)
 
     def __setitem__(self, item, value):
-        if item == "userid":
-            raise ValueError("Cannot set the userid property of a Concerns "
-            "object, it is necessary to reinitialize the instance to change "
-            "userid")
-        else:
-            self._scores[item] = value
+        self._scores[item] = value
 
     def _check_key(self, item):
+        '''Checks to see if a value for the "item" parameter has been stored
+        in the map'''
         try:
             return self._scores[item]
         except KeyError:
             return None
 
 class ConcernsFactory(object):
-    '''Factory class that returns an appropriate Concerns object per userid'''
+    '''Factory class that returns an appropriate Concerns object per userid.
+    Responsible for associating userids with concerns'''
 
+    '''Collection of user sessions with the chatbot'''
     _usersessions = collections.defaultdict()
 
     @staticmethod
-    def _create_concerns(userid):
-        new_concern = Concerns(userid) #isn't there a bit of pernicious reduncancy here? userid is stored both in Concerns and ConcernsFactory
+    def _create_concerns():
+        '''Creates a new Concerns data model for the userid'''
+        new_concern = Concerns()
         return new_concern
 
     @classmethod
     def getConcerns(cls, userid):
+        '''Returns the Concerns data model for the userid'''
         try:
             return cls._usersessions[userid]
         except KeyError:
-            new_concern = cls._create_concerns(userid)
+            new_concern = cls._create_concerns()
             cls._usersessions[userid] = new_concern
 
             return new_concern
