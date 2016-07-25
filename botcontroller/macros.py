@@ -24,8 +24,8 @@ CLASSES = {
     ("caring-responsibilities","work-education","finance-housing","travel","transport","communication-NHS") : "practical",
     ("chores","washing-dressing","preparing-meal") : "practical",
     ("partner","children","relative-friend") : "family",
-    ("planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness") : "emotional_1",
-    ("loneliness","depression","worry-fear-anxiety") : "emotional_2",
+    ("planning","interests-activities","expressing-feelings","anger-frustration","guilt","hopelessness") : "emotional",
+    ("loneliness","depression","worry-fear-anxiety") : "emotional",
     ("lost-faith-spiritual","lost-meaning-purpose","regret") : "spiritual"
 }
 

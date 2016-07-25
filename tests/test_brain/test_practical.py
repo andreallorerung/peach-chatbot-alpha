@@ -290,7 +290,7 @@ def test_chores():
     # perform:
     messages = ["I find it difficult to get dressed", "I cannot do housework anymore", "cooking has become a nightmare", "taking a bath is uncomfortable"]
 
-    for msg in messages[:1]:
+    for msg in messages[:4]:
 
         reply = bot.reply("localuser", msg)
         # test:
