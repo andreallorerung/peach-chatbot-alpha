@@ -38,6 +38,7 @@ def main(args):
     print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
     print "Bot>", bot.reply(USERID, "discuss {}".format(micro_most_distressful)) #refactor issue_list to key-value pairs rather than couples
 
+    # chatloop:
     while True:
         msg = raw_input("You> ")
         if msg == "/q":
