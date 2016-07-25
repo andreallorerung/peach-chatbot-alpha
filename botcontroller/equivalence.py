@@ -3,7 +3,7 @@
 class EquivalenceClasses(object):
     '''An equivalence class is here implemented as a dictionary with multiple keys
     for the same value.
-    
+
     Adapted from original implementation here:
     http://stackoverflow.com/a/11105962/6219368'''
 
@@ -30,6 +30,8 @@ class EquivalenceClasses(object):
                 self._keys[k] = first_key
 
     def _extract_keys(self, key):
+        '''Extract many keys from a single key-tuple. Returns the first element
+        of the tuple and a list of the rest of the elements in the tuple'''
         if isinstance(key, tuple):
            if not key:
               raise ValueError(u'Empty tuple cannot be used as a key')
@@ -42,6 +44,7 @@ class EquivalenceClasses(object):
 
     @classmethod
     def from_dict(cls, dictionary):
+        '''Builds an equivalnce class from a dictionary'''
         result = cls()
         for key, val in dictionary.items():
             result[key] = val
