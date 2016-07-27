@@ -1,19 +1,20 @@
 '''Module to define the way concrete synonym generators are instantiated'''
 from gensim.models.word2vec import Word2Vec
+from synonym_model import Word2VecSynonymModel
 
 
-class SynonymModelBuilder(object):
+class SynonymModelFactory(object):
     '''To provide an appropriate synonym model'''
 
-    _model
+    _synonym_model = None
 
     @classmethod
-    def buildW2CModel(cls):
-        if _synonym_model:
-            return _synonym_model
+    def getModel(cls):
+        if cls._synonym_model:
+            return cls._synonym_model
         else:
-            _synonym_model =
+            cls._synonym_model = \
             Word2VecSynonymModel(word2vecmodel=Word2Vec.load_word2vec_format(
                 './synonym/.trainedWord2Vec/GoogleNews-vectors-negative300.bin',
                 binary=True))
-            return _synonym_model
+            return cls._synonym_model

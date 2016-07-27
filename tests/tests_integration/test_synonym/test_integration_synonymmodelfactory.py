@@ -1,6 +1,6 @@
-import pytest
 from gensim.models.word2vec import Word2Vec
-from synonym.synonym_model import *
+from synonym.synonym_model import Word2VecSynonymModel
+from synonym.synonym_model_factory import SynonymModelFactory
 
 WORDS_TO_GET_SYNONYMS_FOR = ["dad",
                             "hopeless",
@@ -47,10 +47,14 @@ EXPECTED_SYNONYMS = {
                 "grammatical_constructions"]
 }
 
+def test_getnotinitialized():
+    synonym_model = SynonymModelFactory.getModel()
+
+    assert type(synonym_model) is Word2VecSynonymModel
+    assert type(synonym_model.model) is Word2Vec
+
 def test_synonyms_based_on_google_trained_word2vecmodel():
-    model = Word2VecSynonymModel(word2vecmodel=Word2Vec.load_word2vec_format(
-                './synonym/.trainedWord2Vec/GoogleNews-vectors-negative300.bin',
-                binary=True))
+    model = SynonymModelFactory.getModel()
 
     for word in WORDS_TO_GET_SYNONYMS_FOR:
         list_of_couples = model.get_synonyms(word)
