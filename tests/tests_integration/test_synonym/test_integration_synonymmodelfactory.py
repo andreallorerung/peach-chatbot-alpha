@@ -1,6 +1,6 @@
 from gensim.models.word2vec import Word2Vec
-from synonym.synonym_model import Word2VecSynonymModel
-from synonym.synonym_model_factory import SynonymModelFactory
+from synonym.synonym_extractor import Word2VecSynonymExtractor
+from synonym.synonym_extractor_factory import SynonymExtractorFactory
 
 WORDS_TO_GET_SYNONYMS_FOR = ["dad",
                             "hopeless",
@@ -48,16 +48,16 @@ EXPECTED_SYNONYMS = {
 }
 
 def test_getnotinitialized():
-    synonym_model = SynonymModelFactory.getModel()
+    synonym_extractor = SynonymExtractorFactory.getExtractor()
 
-    assert type(synonym_model) is Word2VecSynonymModel
-    assert type(synonym_model.model) is Word2Vec
+    assert type(synonym_extractor) is Word2VecSynonymExtractor
+    assert type(synonym_extractor.model) is Word2Vec
 
 def test_synonyms_based_on_google_trained_word2vecmodel():
-    model = SynonymModelFactory.getModel()
+    extractor = SynonymExtractorFactory.getExtractor()
 
     for word in WORDS_TO_GET_SYNONYMS_FOR:
-        list_of_couples = model.get_synonyms(word)
+        list_of_couples = extractor.extract_synonyms(word)
 
         for synonym, couple in zip(EXPECTED_SYNONYMS[word], list_of_couples):
             first_element_of_couple = couple[0]
