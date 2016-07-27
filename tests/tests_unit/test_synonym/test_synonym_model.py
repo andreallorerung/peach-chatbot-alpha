@@ -2,12 +2,11 @@ import pytest
 import mock_word2vecmodel
 from synonym.synonym_model import *
 
-def test_synonymmodel():
+def test_synonymmodel_interface():
     assert hasattr(SynonymModel, "get_synonyms")
 
-def test_Word2VecSynonymModel():
+def test_Word2VecSynonymModel_dummy():
     model = Word2VecSynonymModel(word2vecmodel="dummy model")
-
     assert issubclass(type(model), SynonymModel)
 
 def test_Word2VecSynonymModel_mocked():
@@ -22,7 +21,7 @@ def test_Word2VecSynonymModel_mocked():
 def test_Word2VecSynonymModel_mocked_withcondition():
     model = mock_word2vecmodel.get_mock()
     model = Word2VecSynonymModel(word2vecmodel=model)
-    synonyms = model.get_synonyms("dad", 100)
+    synonyms = model.get_synonyms("dad", max_no_of_synonyms=100)
 
     assert type(synonyms) is list
     assert len(synonyms) == 100
