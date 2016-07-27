@@ -1,4 +1,5 @@
 import pytest
+from gensim.models.word2vec import Word2Vec
 from synonym.synonym_model import *
 
 WORDS_TO_GET_SYNONYMS_FOR = ["dad",
@@ -47,7 +48,9 @@ EXPECTED_SYNONYMS = {
 }
 
 def test_synonyms_based_on_google_trained_word2vecmodel():
-    model = Word2VecSynonymModel()
+    model = Word2VecSynonymModel(word2vecmodel=Word2Vec.load_word2vec_format(
+                './synonym/.trainedWord2Vec/GoogleNews-vectors-negative300.bin',
+                binary=True))
 
     for word in WORDS_TO_GET_SYNONYMS_FOR:
         list_of_couples = model.get_synonyms(word)

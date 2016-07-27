@@ -1,5 +1,4 @@
-'''Module resposible for setting up the word model instance'''
-from gensim.models.word2vec import Word2Vec
+'''Module to define the objects that will extract synonyms for words'''
 
 
 class SynonymModel(object):
@@ -17,19 +16,9 @@ class SynonymModel(object):
 class Word2VecSynonymModel(SynonymModel):
     '''To define a concrete model of synonyms that is built on top of the
     word2vec algorithm'''
-    def __init__(self, word2vecmodel=Word2Vec.load_word2vec_format(
-                './synonym/.trainedWord2Vec/GoogleNews-vectors-negative300.bin',
-                binary=True)):
+    def __init__(self, word2vecmodel):
         '''To initialize a model of synonyms that has a word2vec model'''
         self.model = word2vecmodel
 
     def get_synonyms(self, word, max_no_of_synonyms=10):
         return self.model.similar_by_word(word, max_no_of_synonyms)
-
-
-class SynonymModelBuilder(object):
-    '''To provide an appropriate synonym model'''
-
-    @staticmethod
-    def buildModel():
-        pass
