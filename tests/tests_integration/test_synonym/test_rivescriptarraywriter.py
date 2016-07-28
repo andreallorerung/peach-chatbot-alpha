@@ -1,4 +1,4 @@
-import synonym.rivescript_writer
+from synonym.rivescript_writer import RivescriptArrayWriter
 from synonym.rivescript_array import RivescriptArray
 
 FILEPATH = "tests/tests_integration/test_synonym/generated_array.rive"
@@ -6,7 +6,7 @@ FILEPATH = "tests/tests_integration/test_synonym/generated_array.rive"
 def test_write():
     # perform
     array = RivescriptArray("faith", ["belief","church","holy"])
-    synonym.rivescript_writer.write(FILEPATH, 'w', array)
+    RivescriptArrayWriter.writetofile(FILEPATH, 'w', array)
 
     # assert file content is as expected
     with open(FILEPATH, 'r') as f:
@@ -19,7 +19,7 @@ def test_write_many():
             RivescriptArray("partner", ["wife","husband","lover"]),
             RivescriptArray("nausea", ["queasy","throw up","sick"])]
 
-    synonym.rivescript_writer.write(FILEPATH, 'w', *arrays)
+    RivescriptArrayWriter.writetofile(FILEPATH, 'w', *arrays)
 
     # assert file content is as expected
     expected = ["! array faith = belief|church|holy\n",

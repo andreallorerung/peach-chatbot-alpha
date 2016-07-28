@@ -1,6 +1,6 @@
 '''Module to define the way concrete synonym generators are instantiated'''
 from gensim.models.word2vec import Word2Vec
-from synonym_extractor import Word2VecSynonymExtractor
+from synonym_word2vecextractor import Word2VecSynonymExtractor
 
 
 class SynonymExtractorFactory(object):

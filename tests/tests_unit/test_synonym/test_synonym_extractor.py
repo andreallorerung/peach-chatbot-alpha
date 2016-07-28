@@ -1,6 +1,7 @@
 import pytest
 import mock_word2vecmodel
-from synonym.synonym_extractor import *
+from synonym.synonym_extractor import SynonymExtractor
+from synonym.synonym_word2vecextractor import Word2VecSynonymExtractor
 
 def test_synonymmodel_interface():
     assert hasattr(SynonymExtractor, "extractSynonyms")

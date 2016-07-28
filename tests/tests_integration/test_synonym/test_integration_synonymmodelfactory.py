@@ -1,5 +1,5 @@
 from gensim.models.word2vec import Word2Vec
-from synonym.synonym_extractor import Word2VecSynonymExtractor
+from synonym.synonym_word2vecextractor import Word2VecSynonymExtractor
 from synonym.synonym_extractor_factory import SynonymExtractorFactory
 
 WORDS_TO_GET_SYNONYMS_FOR = ["dad",
@@ -63,6 +63,7 @@ def test_synonyms_based_on_google_trained_word2vecmodel():
         in zip(EXPECTED_SYNONYMS[word], synonymsExtracted):
             expectedSynonym = expectedSynonym.replace('_', ' ')
             assert expectedSynonym == actualSynonym
+            
         # list_of_couples = extractor.extractSynonyms(word)
         #
         # for synonym, couple in zip(EXPECTED_SYNONYMS[word], list_of_couples):
