@@ -1,9 +1,9 @@
 import pytest
 import mock_word2vecmodel
-from synonym.synonym_model import *
+from synonym.synonym_extractor import *
 
 def test_synonymmodel_interface():
-    assert hasattr(SynonymExtractor, "extract_synonyms")
+    assert hasattr(SynonymExtractor, "extractSynonyms")
 
 def test_Word2VecSynonymExtractor_dummy():
     model = Word2VecSynonymExtractor(word2vecmodel="dummy model")
@@ -12,7 +12,7 @@ def test_Word2VecSynonymExtractor_dummy():
 def test_Word2VecSynonymExtractor_mocked():
     model = mock_word2vecmodel.get_mock()
     model = Word2VecSynonymExtractor(word2vecmodel=model)
-    synonyms = model.extract_synonyms("dad")
+    synonyms = model.extractSynonyms("dad")
 
     assert type(synonyms) is list
     for synonym in synonyms:
@@ -21,7 +21,7 @@ def test_Word2VecSynonymExtractor_mocked():
 def test_Word2VecSynonymExtractor_mocked_withcondition():
     model = mock_word2vecmodel.get_mock()
     model = Word2VecSynonymExtractor(word2vecmodel=model)
-    synonyms = model.extract_synonyms("dad", max_no_of_synonyms=100)
+    synonyms = model.extractSynonyms("dad", max_no_of_synonyms=100)
 
     assert type(synonyms) is list
     assert len(synonyms) == 100

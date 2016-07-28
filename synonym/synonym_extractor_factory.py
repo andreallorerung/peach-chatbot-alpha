@@ -10,11 +10,16 @@ class SynonymExtractorFactory(object):
 
     @classmethod
     def getExtractor(cls):
+        '''To provide an appropriate synonym extractor object'''
         if cls._synonym_extractor:
             return cls._synonym_extractor
         else:
-            cls._synonym_extractor = \
-            Word2VecSynonymExtractor(word2vecmodel=Word2Vec.load_word2vec_format(
-                './synonym/.trainedWord2Vec/GoogleNews-vectors-negative300.bin',
-                binary=True))
+            cls._synonym_extractor = SynonymExtractorFactory._initializeInstance()
             return cls._synonym_extractor
+
+    @staticmethod
+    def _initializeInstance():
+        '''To initialize the synonym extractor instance (singleton)'''
+        modelLocation = './synonym/trainedWord2Vec/GoogleNews-vectors-negative300.bin'
+        trainedModel = Word2Vec.load_word2vec_format(modelLocation, binary=True)
+        return Word2VecSynonymExtractor(word2vecmodel=trainedModel)

@@ -7,7 +7,7 @@ class SynonymExtractor(object):
     def __init__():
         raise NotImplementedError("SynonymExtractor is an interface")
 
-    def extract_synonyms(word, max_no_of_synonyms):
+    def extractSynonyms(word, max_no_of_synonyms):
         '''To return synonyms for the specified word, up to max_no_of_synonyms
         '''
         raise NotImplementedError("SynonymExtractor is an interface")
@@ -20,5 +20,5 @@ class Word2VecSynonymExtractor(SynonymExtractor):
         '''To initialize an extractor of synonyms that has a word2vec model'''
         self.model = word2vecmodel
 
-    def extract_synonyms(self, word, max_no_of_synonyms=10):
+    def extractSynonyms(self, word, max_no_of_synonyms=10):
         return self.model.similar_by_word(word, max_no_of_synonyms)
