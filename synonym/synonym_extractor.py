@@ -21,4 +21,11 @@ class Word2VecSynonymExtractor(SynonymExtractor):
         self.model = word2vecmodel
 
     def extractSynonyms(self, word, max_no_of_synonyms=10):
-        return self.model.similar_by_word(word, max_no_of_synonyms)
+        cosinDistances = self.model.similar_by_word(word, max_no_of_synonyms)
+
+        similarWords = []
+        for cosinDistance in cosinDistances:
+            word = cosinDistance[0]
+            similarWords.append(word)
+            
+        return similarWords

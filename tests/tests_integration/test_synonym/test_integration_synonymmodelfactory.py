@@ -57,8 +57,13 @@ def test_synonyms_based_on_google_trained_word2vecmodel():
     extractor = SynonymExtractorFactory.getExtractor()
 
     for word in WORDS_TO_GET_SYNONYMS_FOR:
-        list_of_couples = extractor.extractSynonyms(word)
+        synonymsExtracted = extractor.extractSynonyms(word)
 
-        for synonym, couple in zip(EXPECTED_SYNONYMS[word], list_of_couples):
-            first_element_of_couple = couple[0]
-            assert synonym == first_element_of_couple
+        for expectedSynonym, actualSynonym\
+        in zip(EXPECTED_SYNONYMS[word], synonymsExtracted):
+            assert expectedSynonym == actualSynonym
+        # list_of_couples = extractor.extractSynonyms(word)
+        #
+        # for synonym, couple in zip(EXPECTED_SYNONYMS[word], list_of_couples):
+        #     first_element_of_couple = couple[0]
+        #     assert synonym == first_element_of_couple
