@@ -11,7 +11,8 @@ WORDS_TO_GET_SYNONYMS_FOR = ["dad",
                             "interests",
                             "finance",
                             "sleeping",
-                            "meaning"]
+                            "meaning",
+                            "not"]
 
 EXPECTED_SYNONYMS = {
     "dad":["Dad","father","grandpa","daddy","mom","stepdad","son","granddad",
@@ -45,6 +46,8 @@ EXPECTED_SYNONYMS = {
     ,"meaning":["meanings","means","Designated_hitter_Joe_Mauer","denotations",
                 "denote","mean","connotation","phrase","denotative",
                 "grammatical_constructions"]
+    ,"not":["do","did","anymore","necessarily","anything","anyway","does",
+            "never","want","neither"]
 }
 
 def test_getnotinitialized():
@@ -63,7 +66,7 @@ def test_synonyms_based_on_google_trained_word2vecmodel():
         in zip(EXPECTED_SYNONYMS[word], synonymsExtracted):
             expectedSynonym = expectedSynonym.replace('_', ' ')
             assert expectedSynonym == actualSynonym
-            
+
         # list_of_couples = extractor.extractSynonyms(word)
         #
         # for synonym, couple in zip(EXPECTED_SYNONYMS[word], list_of_couples):
