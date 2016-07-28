@@ -61,6 +61,7 @@ def test_synonyms_based_on_google_trained_word2vecmodel():
 
         for expectedSynonym, actualSynonym\
         in zip(EXPECTED_SYNONYMS[word], synonymsExtracted):
+            expectedSynonym = expectedSynonym.replace('_', ' ')
             assert expectedSynonym == actualSynonym
         # list_of_couples = extractor.extractSynonyms(word)
         #
