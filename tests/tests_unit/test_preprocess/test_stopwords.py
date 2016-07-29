@@ -15,7 +15,7 @@ nltkstopwords = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'y
 
 sentences = ["I do not believe in myself",
             "Why you do this?",
-            "why are you doing this?"
+            "why are you doing this?",
             "I do not think negations should be removed!",
             "My wife says she does not love me she has been distant",
             "My wife says she doesn't love me anymore, she has been distant",
@@ -25,11 +25,11 @@ sentences = ["I do not believe in myself",
 def test_nltkstopwordremover():
     stopwordremover = StopwordRemoverNLTK()
 
-
+    # nltkstopwordremover seems to eliminate too much
     without_stopwords = ["believe",
                        "this?",
-                       "doing this?",
-                       "think negations removed",
+                       "this?",
+                       "think negations removed!",
                        "wife says love distant",
                        "wife says doesn't love anymore, distant",
                        "want",
