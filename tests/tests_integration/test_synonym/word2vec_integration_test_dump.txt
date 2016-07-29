@@ -1,0 +1,73 @@
+>>> import gensim
+>>> model = gensim.models.Word2Vec.load_word2vec_format('./synonym/.trainedWord2Vec/GoogleNews-vectors-negative300.bin', binary=Tru
+e)
+>>> model.similar_by_word("dad")
+[(u'Dad', 0.8277661800384521), (u'father', 0.8040657043457031), (u'grandpa', 0.7544098496437073), (u'daddy', 0.7492207884788513), (u'mom', 0.7470090389251709), (u'stepdad', 0.7445034384727478), (u'son', 0.743105411529541), (u'granddad', 0.7417479157447815), (u'uncle', 0.7080007791519165), (u'brother', 0.6992480754852295)]
+>>> model.similar_by_word("hopeless")
+[(u'utterly_hopeless', 0.5964581370353699), (u'forlorn', 0.5776818990707397),
+ (u'hopelessly', 0.5626010298728943), (u'miserable', 0.5604095458984375),
+  (u'pathetic', 0.5594014525413513), (u'pitiful', 0.5581729412078857),
+   (u'helpless', 0.5568423271179199), (u'seemingly_hopeless', 0.5478963851928711),
+    (u'bleak', 0.547258198261261), (u'futile', 0.5467945337295532)]
+>>> model.similar_by_word("education")
+[(u'eduction', 0.7980329394340515), (u'eduation', 0.7175648808479309),
+(u'LISA_MICHALS_covers', 0.6817384362220764),
+(u'Matt_Krupnick_covers', 0.6798164248466492),
+(u'educational', 0.678000807762146), (u'educa_tion', 0.6616382598876953),
+ (u'edu_cation', 0.653440535068512), (u'educations', 0.6410858035087585),
+ (u'professionals_CEC_SmartBrief', 0.6308876276016235),
+ (u'curriculum', 0.6266546249389648)]
+>>> model.similar_by_word("pain")
+[(u'discomfort', 0.7086049914360046), (u'chronic_pain', 0.6349754929542542),
+(u'excruciating_pain', 0.6320813894271851), (u'ache', 0.6315440535545349),
+(u'arthritic_pain', 0.6127333641052246), (u'agony', 0.60426265001297),
+ (u'soreness', 0.5895638465881348), (u'throbbing_pain', 0.5864171981811523),
+  (u'dull_ache', 0.5807954668998718), (u'numbness', 0.5718204379081726)]
+>>> model.similar_by_word("faith")
+[(u'belief', 0.5861861705780029), (u'Godly_principles', 0.5788372755050659),
+(u'foundational_truths', 0.5716806650161743),
+(u'Biblical_principles', 0.5547292232513428),
+(u'devoutness', 0.5423147082328796), (u'religion', 0.5386273264884949),
+(u'congregational_polity', 0.5356523990631104),
+(u'beliefs', 0.5308504104614258), (u'religious_beliefs', 0.5302020907402039),
+(u'Jehovah_God', 0.5246164202690125)]
+>>> model.similar_by_word("friend")
+[(u'pal', 0.7476358413696289), (u'friends', 0.7098034620285034),
+(u'buddy', 0.6972495913505554), (u'dear_friend', 0.6960038542747498),
+(u'acquaintance', 0.6843013167381287), (u'cousin', 0.6713199019432068),
+(u'girlfriend', 0.6226291656494141), (u'colleague', 0.6204894781112671),
+(u'uncle', 0.6120923757553101), (u'roommate', 0.6118583083152771)]
+>>> model.similar_by_word("interests")
+[(u'detriment', 0.5237151980400085), (u'vested_interests', 0.5233569145202637),
+(u'wormholes_hypothetical_scientific', 0.522222638130188),
+(u'Getzschman_insisted', 0.5103049278259277), (u'desires', 0.5071064829826355),
+ (u'intersts', 0.5059144496917725), (u'interets', 0.5008925199508667),
+ (u'judiciary_Rehmat', 0.4860127568244934), (u'agendas', 0.481368750333786),
+ (u'intrests', 0.46915093064308167)]
+>>> model.similar_by_word("finance")
+[(u'Finance', 0.6549872756004333), (u'financing', 0.5868148803710938),
+(u'fi_nance', 0.5502375960350037), (u'reporter_Sue_Lannin', 0.5475003123283386),
+ (u'Ellen_Roseman_writes', 0.5470018982887268),
+ (u'professionals_ELFA_SmartBrief', 0.54392009973526),
+ (u'director_Karim_Naffah', 0.5383700132369995),
+ (u'initiatives_PFIs', 0.536559522151947),
+ (u'Agha_Jan_Mohtasim', 0.5305420160293579), (u'fin_ance', 0.5287728905677795)]
+>>> model.similar_by_word("sleeping")
+[(u'slept', 0.7412406206130981), (u'sleep', 0.7133430242538452),
+(u'asleep', 0.6265576481819153), (u'sleeping_soundly', 0.6213056445121765),
+(u'Sleeping', 0.6156397461891174), (u'snoozing', 0.6151816844940186),
+ (u'falling_asleep', 0.6116565465927124), (u'sleeps', 0.6036883592605591),
+  (u'bed', 0.5696081519126892), (u'dozing', 0.564988911151886)]
+>>> model.similar_by_word("meaning")
+[(u'meanings', 0.5785344243049622), (u'means', 0.5219776630401611),
+ (u'Designated_hitter_Joe_Mauer', 0.5154451727867126),
+ (u'denotations', 0.46200501918792725), (u'denote', 0.4598628878593445),
+ (u'mean', 0.45756709575653076), (u'connotation', 0.4568319022655487),
+  (u'phrase', 0.45196768641471863), (u'denotative', 0.44613438844680786),
+   (u'grammatical_constructions', 0.4423028528690338)]
+   >>> model.similar_by_word("not")
+   [(u'do', 0.7125734090805054), (u'did', 0.6864440441131592),
+   (u'anymore', 0.6689606308937073), (u'necessarily', 0.6628228425979614),
+   (u'anything', 0.658386766910553), (u'anyway', 0.6492442488670349),
+    (u'does', 0.645115077495575), (u'never', 0.631711483001709),
+    (u'want', 0.6176074743270874), (u'neither', 0.6098145842552185)]

@@ -15,7 +15,7 @@ def test_faith():
     bot.reply("localuser", msg)
 
     # perform:
-    messages = ["I don't know what to believe anymore",
+    messages = ["I don't know what to belief anymore",
     "I have lost faith", "I stopped going to church"]
 
     for msg in messages[:]:
