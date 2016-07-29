@@ -2,6 +2,7 @@ import os
 from botcontroller import topics_model
 from botcontroller import macros
 from rivescript import RiveScript
+import nltk.stem
 
 USERID = "localuser"
 USERNAME = "Nic"
@@ -38,11 +39,15 @@ def main(args):
     print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
     print "Bot>", bot.reply(USERID, "discuss {}".format(micro_most_distressful)) #refactor issue_list to key-value pairs rather than couples
 
+    stemmer = nltk.stem.snowball.SnowballStemmer('english')
+
     # chatloop:
     while True:
         msg = raw_input("You> ")
         if msg == "/q":
             quit()
+
+        msg = stemmer.stem(msg)
 
         reply = bot.reply(USERID, msg)
         print "Bot>", reply
