@@ -26,7 +26,7 @@
 ! var job      = robot
 ! var website  = www.rivescript.com
 
-// Substitutions
+// Substitutions: the thing on the left is reduced to the thing on the right
 ! sub &quot;    = "
 ! sub &apos;    = '
 ! sub &amp;     = &
@@ -166,15 +166,15 @@
 ! sub (k)       = kissyface
 ! sub (f)       = rose
 ! sub (w)       = wilted rose
-! sub let's = let us
-! sub lets = let us
-! sub lets' = let us
-! sub topics = topic
-! sub concerns = concern
-! sub problem = concern
-! sub problems = concern
-! sub issue = concern
-! sub issues = concern
+! sub let's 		= let us
+! sub lets 			= let us
+! sub lets' 		= let us
+! sub topics 		= topic
+! sub concerns 	= concern
+! sub problem 	= concern
+! sub problems 	= concern
+! sub issue 		= concern
+! sub issues 		= concern
 
 // Person substitutions
 ! person i am    = you are
