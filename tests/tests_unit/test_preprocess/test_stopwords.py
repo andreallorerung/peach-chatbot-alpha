@@ -22,6 +22,8 @@ sentences = ["I do not believe in myself",
             "they did not want me there",
             "I have been sick"]
 
+limit_cases = ["", 11, list(), None]
+
 def test_nltkstopwordremover():
     stopwordremover = StopwordRemoverNLTK()
 
@@ -39,3 +41,48 @@ def test_nltkstopwordremover():
     zip(without_stopwords, \
     [stopwordremover.removeStopwords(sentence) for sentence in sentences]):
         assert expected == actual
+
+def test_nltkstopwordremover_limitcases():
+        stopwordremover = StopwordRemoverNLTK()
+
+        without_stopwords = ["",
+                            "11",
+                            "[]",
+                            "None"]
+
+        for expected, actual in \
+        zip(without_stopwords, \
+        [stopwordremover.removeStopwords(sentence) for sentence in limit_cases]):
+            assert expected == actual
+
+
+def test_lenientstopwordremover():
+    stopwordremover = StopwordRemoverLenient()
+
+    without_stopwords = ["I not believe myself",
+                       "Why you this?",
+                       "why are you this?",
+                       "I not think negations should be removed!",
+                       "My wife says she not love me she has been distant",
+                       "My wife says she doesn't love me anymore, she has been distant",
+                       "they not want me there",
+                       "I have been sick"]
+
+    for expected, actual in \
+    zip(without_stopwords, \
+    [stopwordremover.removeStopwords(sentence) for sentence in sentences]):
+        assert expected == actual
+
+
+def test_lenientstopwordremover_limitcases():
+        stopwordremover = StopwordRemoverLenient()
+
+        without_stopwords = ["",
+                            "11",
+                            "[]",
+                            "None"]
+
+        for expected, actual in \
+        zip(without_stopwords, \
+        [stopwordremover.removeStopwords(sentence) for sentence in limit_cases]):
+            assert expected == actual
