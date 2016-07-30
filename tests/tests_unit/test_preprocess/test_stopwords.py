@@ -1,4 +1,6 @@
-from preprocess.stopwords_remover import *
+from preprocess.stopwords_remover import StopwordRemover
+from preprocess.stopword_remover_nltk import StopwordRemoverNLTK
+from preprocess.stopwords_remover_lenient import StopwordRemoverLenient
 
 nltkstopwords = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours',
 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers',
