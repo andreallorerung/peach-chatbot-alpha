@@ -9,6 +9,3 @@ class StopwordRemoverNLTK(stopwords_remover.StopwordRemover):
     def __init__(self):
         super(stopwords_remover.StopwordRemover)
         self.stopwords = nltk.corpus.stopwords.words("english")
-
-    def removeStopwords(self, sentence):
-        return self._removeStopwords(sentence)

@@ -12,6 +12,3 @@ class StopwordRemoverLenient(stopwords_remover.StopwordRemover):
         'against', 'between', 'into', 'through', 'above', 'below', 'to', 'from',
         'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'such', 'too',
         'very', 's', 'can', 'will', 'just'])
-
-    def removeStopwords(self, sentence):
-        return self._removeStopwords(sentence)

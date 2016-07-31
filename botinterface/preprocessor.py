@@ -1,8 +1,9 @@
+import nltk.tokenize.simple
 from preprocess.stemming_lancaster import Lancaster
 
 class MessagePreprocessor(object):
     def __init__(self):
-        pass
+        self.tokenizer = nltk.tokenize.simple.SpaceTokenizer()
 
     def _stem(self, message):
         stemmer = Lancaster()
@@ -15,4 +16,4 @@ class MessagePreprocessor(object):
 
     def _tokenize(self, sentence):
         '''To split a sentence into tokens'''
-        return str(sentence).split()
+        return self.tokenizer.tokenize(sentence)

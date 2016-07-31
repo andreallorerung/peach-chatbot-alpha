@@ -10,21 +10,11 @@ class StopwordRemover(object):
     def __init__(self):
         raise NotImplementedError("StopwordRemover is an abstract class")
 
-    def removeStopwords(self, input):
-        '''To remove stopwords from the input parameter'''
-        raise NotImplementedError("StopwordRemover is an abstract class")
-
-    def _removeStopwords(self, sentence):
+    def removeStopwords(self, tokens):
         '''To return a sentence without stopwords'''
-        tokens = self._tokenize(sentence)
         tokens_without_stopwords = self._excludeStopwords(tokens)
-        sentence_without_stopwords = " ".join(tokens_without_stopwords)
 
-        return sentence_without_stopwords
-
-    def _tokenize(self, sentence):
-        '''To split a sentence into tokens'''
-        return str(sentence).split()
+        return tokens_without_stopwords
 
     def _excludeStopwords(self, tokens):
         '''To return a filtered list of tokens'''
@@ -38,7 +28,7 @@ class StopwordRemover(object):
 
     def _isStopword(self, word):
         '''To decide whether a word is a stopword'''
-        word = word.lower()
+        word = str(word).lower()
         if word in self.stopwords:
             return True
         else:
