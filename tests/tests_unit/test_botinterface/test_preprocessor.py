@@ -31,3 +31,12 @@ def test_join():
     actual = preprocessor._join(tokens)
 
     assert expected == actual
+
+def test_removestopwords():
+
+    tokens = ["the", "message", "is", "so", "very", "full", "of", "stopwords",
+    "in", "so","and","such","ways"]
+
+    result = preprocessor._remove_stopwords(tokens)
+
+    assert len(result) < len(tokens)
