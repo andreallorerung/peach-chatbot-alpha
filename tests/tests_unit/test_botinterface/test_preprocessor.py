@@ -40,3 +40,11 @@ def test_removestopwords():
     result = preprocessor._remove_stopwords(tokens)
 
     assert len(result) < len(tokens)
+
+def test_process():
+    message = "The message is so very full of stopwords in so and such ways"
+
+    expected = "mess is ful stopword way"
+    actual = preprocessor.preprocess(message)
+
+    assert expected == actual
