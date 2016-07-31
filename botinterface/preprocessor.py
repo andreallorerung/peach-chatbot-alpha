@@ -1,9 +1,13 @@
+'''Module to provide an implementation of a preprocessor'''
 import nltk.tokenize.simple
+import preprocessor_abstract
 from preprocess import stemming_lancaster, stopwords_remover_lenient
 
 
-class MessagePreprocessor(object):
+class MessagePreprocessor(preprocessor_abstract.MessagePreprocessorInterface):
+    '''Class to implement the interface of a message processor'''
     def __init__(self):
+        '''To set appropriate objects to the properties of the preprocessor'''
         self.tokenizer = nltk.tokenize.simple.SpaceTokenizer()
         self.stopword_remover = stopwords_remover_lenient.\
                                 StopwordRemoverLenient()
@@ -18,9 +22,11 @@ class MessagePreprocessor(object):
         return processed_sentence
 
     def _stem(self, tokens):
+        '''To return a stemmed set of tokens'''
         return [self.stemmer.stem_word(token) for token in tokens]
 
     def _remove_stopwords(self, tokens):
+        '''To return a set of tokens where stopwords have been removed'''
         return self.stopword_remover.removeStopwords(tokens)
 
     def _tokenize(self, sentence):
