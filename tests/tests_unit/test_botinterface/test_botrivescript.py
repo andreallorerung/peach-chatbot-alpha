@@ -1,6 +1,6 @@
 import rivescript
 from botinterface.bot_rivescript import BotRivescript
-import mock_messageprocessor
+import mock_messageprocessor, mock_interpreter
 
 bot = BotRivescript()
 
@@ -48,4 +48,4 @@ def test_process():
     assert "Processed message: 'change me'" == preprocessed_message
 
 def test_reply():
-    pass
+    bot = BotRivescript(interpreter=mock_interpreter.getMock())
