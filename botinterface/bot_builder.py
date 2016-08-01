@@ -2,13 +2,17 @@ import bot_rivescript
 
 def build():
     return bot_rivescript.BotRivescript()
-# I want the builder to be able to add stuff to a bot, a preprocessing layer,
-# a bot brain and a postprocessing layer ... all this is doing is build a bot
-# brain. Maybe it's best to work the bot interface object first
 
 class BotBuilder(object):
-    def addPreprocessor(preprocessor):
+
+    def __init__(self):
+        self.bot = None
+
+    def addBrain(self, brain):
         pass
 
-    def addPostprocessor(postprocessor):
+    def addPreprocessor(self, preprocessor):
+        pass
+
+    def addPostprocessor(self, postprocessor):
         pass

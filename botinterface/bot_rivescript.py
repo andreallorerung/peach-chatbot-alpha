@@ -1,4 +1,5 @@
 '''Module to define one implementation of the general interface to the chatbot'''
+import os
 import rivescript
 import bot_abstract
 
@@ -6,12 +7,13 @@ import bot_abstract
 class BotRivescript(bot_abstract.BotInterface):
     '''Concrete class to define a general interface for the chatbot'''
     def __init__(self, preprocessor=None,
+                       brain="./brain",
                        interpreter=rivescript.RiveScript(),
                        postprocessor=None):
         '''The chatbot interface includes an optional message preprocessing and
         reply postprocessing layers'''
         self.preprocessor   = preprocessor
-        self.interpreter    = interpreter
+        self.interpreter    = self._loadBrain(interpreter, brain)
         self.postprocessor  = postprocessor
 
     def reply(self, message):
@@ -20,6 +22,23 @@ class BotRivescript(bot_abstract.BotInterface):
         reply = self._postprocess(reply)
 
         return reply
+
+    def _loadBrain(self, interpreter, brain):
+        interpreter = self._loadDirOrFile(interpreter, brain)
+        interpreter.sort_replies()
+
+    def _loadDirOrFile(self, interpreter, brain):
+        new_interpreter = interpreter
+
+        if os.path.isdir(brain):
+            new_interpreter.load_directory(brain)
+        elif os.path.isfile(brain):
+            new_interpreter.load_file(brain)
+        else:
+            raise ValueError("no directory or file found at specified filepath "
+                            "for chatbot brain.")
+
+        return new_interpreter
 
     def _preprocess(self, message):
         '''To tell the preprocessor to preprocess the message (if the

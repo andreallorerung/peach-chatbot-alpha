@@ -2,29 +2,26 @@ import rivescript
 from botinterface.bot_rivescript import BotRivescript
 import mock_messageprocessor
 
+bot = BotRivescript()
+
 def test_init():
-    bot = BotRivescript()
 
     assert bot is not None
 
 def test_hasreply():
-    bot = BotRivescript()
 
     assert hasattr(bot, "reply")
 
 def test_hasbot():
-    bot = BotRivescript()
 
-    # assert hasattr(bot, "interpreter")
-    assert type(bot.interpreter) is rivescript.RiveScript
+    assert hasattr(bot, "interpreter")
+    # assert type(bot.interpreter) is rivescript.RiveScript
 
 def test_haspreprocessor():
-    bot = BotRivescript()
 
     assert hasattr(bot, "preprocessor")
 
 def test_haspostprocessor():
-    bot = BotRivescript()
 
     assert hasattr(bot, "postprocessor")
 
@@ -35,7 +32,6 @@ def test_init_customparameters():
     assert bot.postprocessor == "super"
 
 def test_preandpostprocess_unchanged():
-    bot = BotRivescript()
 
     preprocessed_message = bot._preprocess("do not change")
     postprocessed_message = bot._postprocess("do not change")
@@ -50,3 +46,18 @@ def test_process():
     preprocessed_message = bot._preprocess("change me")
 
     assert "Processed message: 'change me'" == preprocessed_message
+
+def test_loaddirorfile():
+
+    path_to_mockfile = ".\\tests\\tests_unit\\test_botinterface\mock_brain.rive"
+    path_to_mockdir = ".\\tests\\tests_unit\\test_botinterface\mock_brain_dir"
+
+    interpreter = bot._loadDirOrFile(rivescript.RiveScript(), path_to_mockfile)
+    actual_bot_name_from_file = interpreter.get_variable("name")
+
+    interpreter = bot._loadDirOrFile(rivescript.RiveScript(), path_to_mockdir)
+    actual_bot_name_from_dir = interpreter.get_variable("name")
+
+    expected_bot_name = "mocked"
+    assert expected_bot_name == actual_bot_name_from_file
+    assert expected_bot_name == actual_bot_name_from_dir
