@@ -46,3 +46,6 @@ def test_process():
     preprocessed_message = bot._preprocess("change me")
 
     assert "Processed message: 'change me'" == preprocessed_message
+
+def test_reply():
+    pass
