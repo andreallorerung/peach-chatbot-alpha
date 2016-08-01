@@ -1,7 +1,7 @@
 import os
 from botcontroller import topics_model
 from botcontroller import macros
-from rivescript import RiveScript
+from botinterface import bot_builder
 import nltk.stem
 
 USERID = "localuser"
