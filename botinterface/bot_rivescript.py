@@ -27,6 +27,8 @@ class BotRivescript(bot_abstract.BotInterface):
         interpreter = self._loadDirOrFile(interpreter, brain)
         interpreter.sort_replies()
 
+        return interpreter
+
     def _loadDirOrFile(self, interpreter, brain):
         new_interpreter = interpreter
 
