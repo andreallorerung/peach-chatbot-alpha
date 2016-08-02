@@ -175,6 +175,12 @@
 ! sub problems 	= concern
 ! sub issue 		= concern
 ! sub issues 		= concern
+//substitutions to undo the stemming for topic words
+! sub phys = physical
+! sub pract = practical
+! sub famy = family
+! sub emot = emotional
+! sub spirit = spiritual
 
 // Person substitutions
 ! person i am    = you are

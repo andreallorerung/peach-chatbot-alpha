@@ -10,5 +10,5 @@ class StopwordRemoverLenient(stopwords_remover.StopwordRemover):
         self.stopwords = set(['do', 'does', 'did', 'doing', 'a', 'an', 'the',
         'and','but', 'if', 'or', 'as', 'of', 'at', 'by', 'for', 'with', 'about',
         'against', 'between', 'into', 'through', 'above', 'below', 'to', 'from',
-        'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'such','so',
+        'in', 'out', 'on', 'off', 'over', 'under', 'such','so',
         'too','very', 's', 'can', 'will', 'just'])

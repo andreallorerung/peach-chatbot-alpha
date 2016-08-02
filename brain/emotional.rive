@@ -1,16 +1,26 @@
 ! version = 2.0
 
-! array planning = planning|plan|plans|idea|project|projects|organizing
-! array interests = interest|interests|activity|activities|engrossment|game|games|sport|sports|football|preoccupation|pursuit|painting|paint|drawing|draw|photograph|hobby|hobbies|reading|writing
-! array expressing = express|expressing|communicate|communicating|convey|conveying|declare|declaring|reveal|revealing|show|showing|speak|speaking|tell|telling|voice|voicing|exhibit|exhibiting|manifest|manifesting|vent|venting|verbalize|verbalizing
-! array anger = anger|annoyiance|displeasure|exasperation|fury|hatred|impatience|indignation|ire|irritation|outrage|rage|resentment|temper|violence|infuriation|irascibility|irritability|tantrum|tantrums|mad
-! array frustration = frustration|grievance|disappointment|disappointed|dissatisfaction|disgruntlement|letdown|setback
-! array guilt = guilt|guilty|blame|disgrace|liability|regret|remorse|shame|crime|error|failing|infamy|lapse|misconduct|offense|selfreproach|slip|transgression|wickedness|wrong
-! array hopeless = hopeless|desperate|forlorn|helpless|impossible|useless|cynical|despairing|disconsolate|discouraging|downhearted|fatal|gone|despair|irreparable|irreversible|irrevocable|lost|past hope|shot down|sunk|unachievable|unavailing|unfortunate|vain
+//                    |idea|        |organizing
+! array planning = plan|ide|project|org
+//                                      |game|            |preccupation|                                    |writing
+! array interests = interest|act|engross|gam|sport|footbal|preoccup|pursuit|paint|draw|photograph|hobby|read|writ
+//                          |communicate| |declare|reveal|    |tell|voice|                  |verbalize
+! array expressing = express|commun|convey|decl|rev|show|speak|tel|voic|exhibit|manifest|vent|verb
+//              anger|                     |hate|impatience| |ire|irritation|outrage|rage|resentment|temper|violence|
+! array anger = ang|annoy|displeas|exasp|fury|hat|impaty|indign|ir|irrit|out|rag|res|temp|viol|infury|irasc|tantr|tantrum|mad
+//                          |grievance|
+! array frustration = frust|griev|disappoint|dissatisfact|disgruntl|letdown|setback
+//              guilt|blame|                        |shame|crime|error                                                         |wickedness|
+! array guilt = guil|blam|disgrac|liabil|regret|remors|sham|crim|er|fail|infamy|laps|misconduc|offens|selfreproach|slip|transgress|wick|wrong
+//                        |hope|                                  |cynical|              |discouraged| |fatal|gone|irreparable
+! array hopeless = hopeless|hop|desp|forlorn|helpless|imposs|useless|cyn|despair|disconsol|disco|downheart|fat|gon|irrep|irrevers|irrevoc|lost|shot down|sunk|unachiev|unavail|unfortun|vain
 
-! array loneliness = loneliness|lonely|alienation|alienated|desolation|solitude|heartache|alone|forlorn|friends|friend|lone|lonesome|seclusion|withdrawal
-! array depression = depression|depressed|bleak|bummer|deslation|desperation|distress|dolor|dull|gloom|misery|sad|sadness|sorrow|unhappy|woe|despondent|blue|destroyed|down|low|hurting|weeping|grim
-! array worry = worry|worried|afraid|fear|anxious|anxiety|anguish|concern|doubt|pain|torment|bothered|distressed|disturbed|frightened|perturbed|upset|distraught|fearful|fretful|scared|dread|horror|panic|scare|fright|apprehensive|jittery|restless|restlessness
+//                  lone|alienated|                                           |seclusion|
+! array loneliness = lon|aly|desol|solitud|heartach|alon|forlorn|friend|lonesom|seclud|withdraw
+//                                                      |dolor|dull|        |miserable|
+! array depression = depress|bleak|bum|desol|desp|distress|dol|dul|gloom|misery|mis|sad|sorrow|unhappy|woe|despond|blu|destroy|down|low|hurt|weep|grim
+//                                    |anguish|             |torment|bothered|                                              |scared| |horror|panic|
+! array worry = worry|afraid|fear|anxy|anct|concern|doubt|pain|tor|both|distress|disturb|fright|perturb|upset|distraught|fret|scar|dread|hor|pan|apprehend|jittery|restless
 
 > topic emotional includes global
     // planning
@@ -34,7 +44,7 @@
     - Have you lost contact with friends and family?
 
     //depression
-    + [*] (@depression) [*]
+    + [*] (@depression|@hopeless) [*]
     - Do you feel there is something other than your condition causing you to feel this way?
 
     //worry
