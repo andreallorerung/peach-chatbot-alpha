@@ -1,31 +1,54 @@
 ! version = 2.0
 
-! array respiratory = respiratory|breathing|breathe|breath|gasping|gasp|wheezing
-! array urinary = urinary|urinating|urine|pee|peeing|piss|pissing
-! array constipation = constipation|stool|defecation|defecating|pooping|poop|shit|crap|shite|dung|excrement|fecal matter|feces|diarrhoea|diarrhea|loose stool
-! array eating = eat|eating|appetite|feed|injest|have a meal|having a meal|hunger|appetence|appetency|appetition
-! array indigestion = indigestion
+//
+! array respiratory = respir|breath|gasp|wheez|asthm
+//
+! array urinary = urin|pee|piss
+//                                                              |fecal matter|feces|
+! array constipation = constip|stool|defec|poop|shit|crap|dung|excr|fec mat|fec|diarrhoe|diarrhe|loos stool
+//                        |feed|                |hunger|appetence
+! array eating = eat|appetit|fee|injest|hav meal|hung|appet
+//
+! array indigestion = indigest
 
-! array mouth = sore mouth|dry mouth|aching mouth|inflamed mouth|mouth inflammation|mouth pain
-! array nausea = nausea|vomit|vomiting|queasy|queasiness|regurgitation|sick|sickness|heave|heaving|puke|puking|throw up
-! array sleeping = sleep|sleeping|nightmare|dormancy|snooze|bad dream
-! array fatigue = fatigue|lethargy|weariness|exhaustion|feebleness|tired|tiredness|sleepy|sleepiness|fainting|faint
-! array swelling = swelling|limb|tummy|belly|abdomen|arm|leg
-! array fever = fever|high temperature|burning up
+//              sore mouth|   |aching mouth|
+! array mouth = sor mou|dry mou|ach mou|inflam mou|mou inflam|mou pain
+//                                              |heave|
+! array nausea = nause|vomit|queasy|regurgit|sick|heav|puk|throw up
+//
+! array sleeping = sleep|sleepy|nightm|dorm|snooz|bad dream
+//
+! array fatigue = fatigu|lethargy|letharg|weary|exhaust|feebl|tir|sleepy|faint
+//                              |belly|
+! array swelling = swel|limb|tummy|bel|abdom|arm|leg
+//
+! array fever = fev|high temp|burn up
 
-! array walking = walking|getting around
-! array tingling = tingling|goose bumps
-! array pain = pain|ache|agony|burn|cramp|illness|injury|irritation|sickness|hurt|hurting
-! array hotflushes = hot flushes|sweating|clammy
-! array skin = dry skin|itch|itchy skin|sore skin
-! array woundcare = wound care|after surgery|from surgery|damage|lesion|pain|incision|section
+//
+! array walking = walk|get around
+//
+! array tingling = tingl|goos bump
+//
+! array pain = pain|ach|agony|burn|cramp|il|injury|irrit|sick|hurt
+//                          |sweat|
+! array hotflushes = hot flush|swe|clammy
+//
+! array skin = dry skin|itch|itchy skin|sor skin
+//                                             |damage|lesion||incision|section|opening
+! array woundcare = wound care|aft surgery|surgery|dam|les|pain|incid|sect|op|cut
 
-! array weight = weight change|mass change|difference in weight|gain|lose|loss|lost
-! array concentration = memory|recollection|rememberance|thought|memorization|recall|concentration|focusing|study
-! array sensory = sensory|sensual|seeing|see|visual|looking|view|watch|stare|gaze|glare|read|eyes|hear|listen|auditory|aural|ears|audiovisual|taste|flavour|sweet|bitter|tongue
-! array speaking = speak|speaking|talk|say|shout|tell|voice|whisper|converse|mumble|vocal|sound|speech|tone|yell|song
-! array appearance = appearance|look|image|presentation|countenance|face|figure|guise|looks|semblance|complexion
-! array sexuality = sexuality|sex|femininity|masculinity|homosexuality|lesbianism|bisexuality|manhood|manliness|womanhood|womanliness
+//
+! array weight = weight chang|mass chang|diff weight|gain|los|loss|lost
+//                                                       |concentration|
+! array concentration = mem|recollect|rememb|thought|recal|cont|focusing|study|read
+//                                |image|
+! array sensory = sens|sensual|see|im|vis|look|view|watch|star|gaz|glar|read|ey|hear|list|audit|aur|ear|audiov|hallucin|tast|flavo|sweet|bit|tongu
+//                                                                 |vocal|          |tone|
+! array speaking = speak|talk|say|shout|tel|voic|whisp|convers|mumbl|voc|sound|speech|ton|yel|song|sing
+//                         |image|presentation|countenace       |complexion|pale
+! array appearance = appear|look|im|pres|count|fac|fig|guis|sembl|complect|pal
+//                                                                       |arousal|
+! array sexuality = sex|feminin|masculin|homosex|lesb|bisex|man|woman|gend|ar
 
 > topic physical includes global
 
