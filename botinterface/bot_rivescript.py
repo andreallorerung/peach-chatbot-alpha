@@ -18,7 +18,7 @@ class BotRivescript(bot_abstract.BotInterface):
 
     def reply(self, message):
         messagecontent = self._preprocess(message.getContent())
-        reply = interpreter.reply(message.getUserid(), messagecontent)
+        reply = self.interpreter.reply(message.getUserid(), messagecontent)
         reply = self._postprocess(reply)
 
         return reply
