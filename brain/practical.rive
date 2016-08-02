@@ -1,18 +1,30 @@
 ! version = 2.0
 
-! array responsibility = care|caring|responsible|responsibility|responsibilities|look after|tend|watch|nurse|nurture|provide|burden|obligation|caringresponsibilities
-! array work = work|job|working|industry|performance|task|grind|obligation|stress|sweat|toil|travail|business
-! array education = education|school|learning|learn|scholarship|teaching|teach|apprentiship|tuition|reading|university|academic|academy|institution|college|degree|graduation|graduate
-! array finance = finance|bank|banking|business|economic|economics|economical|money|financial|bill|cash|check|fund|pay|payment|salary|wage|wealth|coin|fee|stipend|allowance|benefits|income|profit|aid|interest
-! array housing = housing|house|flat|dwelling|habitation|home|residence|roof|shelter|apartment|building|abode|rental|rent|lease|tenant|tenants|tenancy|homeless|homelessness|landlord|landlords|evict|eviction
-! array travel = travel|insurance|sightseeing|sightsee|tour|peregrination|voyage|vacation|visit|abroad|coverage
-! array transport = transport|transit|commute|commuting|car|bus|train|plane|walk|bike|ride|riding|on foot|cycle|cycling
-! array communication = communication|correspondence|reading|writing|email|phone|GP|doctor|contact|inform|interact|tell|speak|network|internet|website
+//                      care|responsible|look after|        |nurture|   |burden|
+! array responsibility = car|respons|look aft|tend|watch|nurs|nurt|provid|burd|oblig
+//                                                                    |sweat|
+! array work = work|job|working|industry|perform|task|grind|oblig|stress|swe|toil|travail|busy
+//                                                   |apprentiship|tuition|      |academic|
+! array education = educ|school|learn|scholarship|teach|apprenty|tuit|read|univers|academ|academy|institut|colleg|degr|gradu
+//              finance| |business|        |bil|                  |salary|wage|wealth|         |allowance|benefits|
+! array finance = fin|bank|busy|econom|money|bil|cash|check|fund|pay|sal|wag|weal|coin|fee|stipend|allow|benefit|incom|profit|aid|interest
+//                                                        |apartment|               |tenant|
+! array housing = hous|flat|dwel|habit|hom|resid|roof|shelt|apart|build|abod|rent|leas|ten|tenants|tenancy|homeless|homelessness|landlord|landlords|evict
+//                   |insurance|                  |vacation|        |coverage|
+! array travel = travel|ins|sights|tour|peregrin|voy|vac|visit|abroad|cov
+//                                                      |plane|   |bike|ride|         |cycle
+! array transport = transport|transit|commut|car|bus|train|plan|walk|bik|rid|riding|foot|cyc
+//                                                                                          |tell|
+! array communication = commun|correspond|read|writ|email|phon|GP|doct|contact|inform|interact|tel|speak|network|internet|websit
 
-! array chores = chore|chores|errand|housework|routine|clean|neat|tidy|wash|laundry|dirt|garden|plants|housekeeping|ironing|mop|mopping|sweeping|broom
-! array washing = washing|bath|bathing
-! array dressing = dressed|dressing|clothing|robing
-! array preparing = prepare|food|meal|lunch|dinner|tea|coffee|drink|breakfast|supper|eat|cooking|diet|boil|roast|fry|brew
+//                                        |clean|                          |garden|
+! array chores = chor|errand|housework|routin|cle|neat|tidy|wash|laundry|dirt|gard|plant|housekeep|iron|mop|sweep|broom
+//
+! array washing = wash|bath
+//
+! array dressing = dress|cloth|rob
+//                                                                |supper|
+! array preparing = prep|food|meal|lunch|din|tea|coff|drink|breakfast|sup|eat|cook|diet|boil|roast|fry|brew
 
 > topic practical includes global
     //responsibilities
