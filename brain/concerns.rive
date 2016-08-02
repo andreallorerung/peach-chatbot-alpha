@@ -1,28 +1,28 @@
 ! version = 2.00
 
-! array desire = desire to|wish to|want to|would like to|wanna|let us|desire|want|wish
-! array change = change|switch
-! array topicmacro = physical|physical1|physical2|physical3|physical4|practical|family|emotional|spiritual
-! array discuss = talk|talk about|speak|speak about|discuss
-! array other = other|another|something else
-! array topic = topic|concern|issue|problem
+! array desire = desir|wish|want|would lik|wann|let us
+! array change = chang|switch|adjust|alt|mod|turn
+! array topicmacro = phys|pract|famy|emot|spirit
+! array discuss = talk|speak|discuss
+! array other = oth|anoth|someth els
+! array topic = top|concern|issu|problem
 
-+ set global
-- Topic set to global {topic=global}
++ set glob
+- Topic set to global{topic=global}
 
 + set (@topicmacro)
-- Topic set to <star> {topic=<star>} \n\s\s\s\s {@ highlighted}
+- Topic set to <star>{topic=<star>}{@ highlighted}
 
 > topic global
 
     // desire to change topic
-    + [*] (@desire) (@change) [*] (@topic) [please]
+    + [*] (@desire) (@change) [*] (@topic) [pleas]
     - What other {random}topic concern{/random} would you like to {random}discuss|talk about{/random}{random} instead|{/random}?
     - What would you like to talk about?
 
     // desire to change topic *
     + [*] (@desire) (@change) [*] (@topic) *
-    - {@ desire to change topic} {@ <star3>}
+    - {@ desir chang top} {@ <star3>}
 
     // not desire to change topic
     + [*] (@not) (@desire) (@change) [*] (@topic) [*]
@@ -31,7 +31,7 @@
 
     // desire to discuss other (redirects to desire change topic)
     + [*] (@desire) (@discuss) (@other) [@topic]
-    - {@ desire change topic}
+    - {@ desir chang top}
 
     // topicmacro (follow up to "desire to change topic")
     + [*] (@topicmacro) [concern]
