@@ -45,6 +45,6 @@ def test_process():
     message = "The message is so very full of stopwords in so and such ways"
 
     expected = "mess is ful stopword way"
-    actual = preprocessor.preprocess(message)
+    actual = preprocessor.process(message)
 
     assert expected == actual

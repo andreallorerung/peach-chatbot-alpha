@@ -6,6 +6,6 @@ class MessagePreprocessorInterface(object):
     def __init__(self):
         raise NotImplementedError("MessagePreprocessorInterface is an interface")
 
-    def preprocess(self, sentence):
+    def process(self, sentence):
         '''To preprocess the sentence'''
         raise NotImplementedError("MessagePreprocessorInterface is an interface")

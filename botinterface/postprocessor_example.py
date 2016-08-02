@@ -8,7 +8,7 @@ class MessagePostprocessorExample(object):
     def __init__(self):
         pass
 
-    def postprocess(self, output):
+    def process(self, output):
         '''To decorate an output message from the chatbot'''
         command = self._parse(output)
         queryKeyword = self._readKeyword(command)

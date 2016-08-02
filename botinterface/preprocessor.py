@@ -13,7 +13,7 @@ class MessagePreprocessor(preprocessor_abstract.MessagePreprocessorInterface):
                                 StopwordRemoverLenient()
         self.stemmer = stemming_lancaster.Lancaster()
 
-    def preprocess(self, sentence):
+    def process(self, sentence):
         tokens = self._tokenize(sentence)
         tokens = self._remove_stopwords(tokens)
         tokens = self._stem(tokens)

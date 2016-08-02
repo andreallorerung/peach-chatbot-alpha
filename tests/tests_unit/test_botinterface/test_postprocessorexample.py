@@ -37,6 +37,6 @@ def test_postprocess():
     output = "You can find more information here: {{ query.keyword='cats' }}"
 
     expected = "http://cats.com"
-    actual = postprocessor.postprocess(output)
+    actual = postprocessor.process(output)
 
     assert expected == actual
