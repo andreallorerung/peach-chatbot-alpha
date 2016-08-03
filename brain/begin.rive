@@ -202,6 +202,6 @@
 ! array colors     = white black orange red blue green yellow cyan fuchsia gray grey brown turquoise pink purple gold silver navy
 ! array height     = tall long wide thick
 ! array measure    = inch in centimeter cm millimeter mm meter m inches centimeters millimeters meters
-! array yes        = yes yeah yep yup ya yea ye
-! array not        = no nah nope nay not
-! array thirdperson = he|she|it|his|her|him|her|they|their|them
+! array yes        = ye|yeah|yep|yup|ya
+! array not        = no|nah|nop|nay|not
+! array thirdperson = he|she|it|his|her|him|they|their|them

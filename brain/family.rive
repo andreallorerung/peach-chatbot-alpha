@@ -1,9 +1,13 @@
 ! version = 2.0
 
-! array partner = partner|spouse|husband|wife|man|woman|boyfriend|girlfriend|lover|consort|bride|groom|other half|soulmate
-! array children = child|son|daughter|boy|girl|children|sons|daughters|boys|girls
-! array friend = friend|mate|buddy|classmate|colleague|chum|pal
-! array relative = relative|aunt|cousin|father|mother|niece|sibling|uncle|blood|cognate|in-law|kinsperson|nephew|dad|mom|sister|brother
+//
+! array partner = partn|spous|husband|wif|man|wom|boyfriend|girlfriend|lov|consort|brid|groom|oth half|soulm
+//
+! array children = child|childr|son|daught|boy|girl
+//                              |classmate|
+! array friend = friend|mat|buddy|classm|colleagu|chum|pal
+//                                                                 |uncle|    |cognate|
+! array relative = rel|aunt|cousin|fath|moth|niec|sibl|uncle|blood|cogn|in-law|kinsperson|nephew|dad|mom|sist|broth|sis|bro
 
 > topic family includes global
 
@@ -15,20 +19,17 @@
     // [discuss] relative-friend
     + [*] [@discuss] [*] (@relative|@friend) [*]
     - <set familyissue=<star1>>{topic=relative-friend}
-    ^ What is it about your <get familyissue> that concerns you?
+    ^ What is it about them that concerns you?
 
     // [discuss] partner
     + [*] [@discuss] [*] (@partner) [*]
     - <set familyissue=<star1>>{topic=partner}
-    ^ What is it about your <get familyissue> that concerns you?
+    ^ What is it about your partner that concerns you?
 
     // [discuss] children
     + [*] [@discuss] [*] (@children) [*]
     - <set familyissue=<star1>>{topic=children}
-    ^ What is it about your <get familyissue> that concerns you?
-
-    + *
-    - Now in family topic
+    ^ What is it about your children that concerns you?
 
 < topic
 
@@ -36,53 +37,41 @@
 
     // description
     + [*] (@thirdperson|@partner) [*]
-    % what is it about your * that concern you?
+    % what is it about your partner that concern you?
     - Is there anything else you would like to tell me about them?
 
     // description
     + *
-    % what is it about your * that concern you?
+    % what is it about them that concern you?
     - Are there any more details you would like to tell me?
 
-    // yes-no follow up answers must be specified for each previous answer
-    // so they have to be repeated here:
-    // yes
-    + (@yes)
+    // yes (has to be given weight otherwise the * matcher following
+    // "is there anything else you would like to tell me about them?" is
+    // triggered instead)
+    + {weight=10000}(@yes)
     % is there anything else you would like to tell me about them?
     - What is it?
 
     // yes *
-    + [*] [@yes] (*)
+    + [*] (@yes) (*)
     % is there anything else you would like to tell me about them?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
     // no
     + [*] (@not) [*]
     % is there anything else you would like to tell me about them?
-    - I think that is enough information for the moment. {@ next topic}
-
-    // yes
-    + (@yes)
-    % are there any more details you would like to tell me?
-    - What is it?
-
-    // yes *
-    + [*] [@yes] (*)
-    % are there any more details you would like to tell me?
-    - I think that is enough information for the moment. {@ next topic}
-
-    // no
-    + [*] (@not) [*]
-    % are there any more details you would like to tell me?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
     // anything following "What is it?"
     + *
     % what is it?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
+    // anything following "is there anything else you would like to tell me about them?"
+    // that doesn't contain a "yes" or "no"
     + *
-    - I'm sorry I did not understand.
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next top}
 
 < topic
 
@@ -90,36 +79,41 @@
 
     // description
     + [*] (@thirdperson|@children) [*]
-    % what is it about your * that concern you?
+    % what is it about them that concern you?
     - Is there anything else you would like to tell me about them?
 
     // description
     + *
-    % what is it about your * that concern you?
+    % what is it about them that concern you?
     - Are there any more details you would like to tell me?
 
-    // yes
-    + (@yes)
+    // yes (has to be given weight otherwise the * matcher following
+    // "is there anything else you would like to tell me about them?" is
+    // triggered instead)
+    + {weight=10000}(@yes)
     % is there anything else you would like to tell me about them?
     - What is it?
 
     // yes *
-    + [*] [@yes] (*)
+    + [*] (@yes) (*)
     % is there anything else you would like to tell me about them?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
     // no
-    + [*] (@no) [*]
+    + [*] (@not) [*]
     % is there anything else you would like to tell me about them?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
     // anything following "What is it?"
     + *
     % what is it?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
+    // anything following "is there anything else you would like to tell me about them?"
+    // that doesn't contain a "yes" or "no"
     + *
-    - In topic relative-friend
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next top}
 
 < topic
 
@@ -127,35 +121,41 @@
 
     // description
     + [*] (@thirdperson|@relative|@friend) [*]
-    % what is it about your * that concern you?
+    % what is it about them that concern you?
     - Is there anything else you would like to tell me about them?
 
     // description
     + *
-    % what is it about your * that concern you?
+    % what is it about them that concern you?
     - Are there any more details you would like to tell me?
 
-    // yes
-    + (@yes)
+    // yes (has to be given weight otherwise the * matcher following
+    // "is there anything else you would like to tell me about them?" is
+    // triggered instead)
+    + {weight=10000}(@yes)
     % is there anything else you would like to tell me about them?
     - What is it?
 
     // yes *
-    + [*] [@yes] (*)
+    + [*] (@yes) (*)
     % is there anything else you would like to tell me about them?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
     // no
-    + [*] (@no) [*]
+    + [*] (@not) [*]
     % is there anything else you would like to tell me about them?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
     // anything following "What is it?"
     + *
     % what is it?
-    - I think that is enough information for the moment. {@ next topic}
+    - I think that is enough information for the moment. {@ next top}
 
+    // anything following "is there anything else you would like to tell me about them?"
+    // that doesn't contain a "yes" or "no"
     + *
-    - In topic relative-friend
+    % is there anything else you would like to tell me about them?
+    - I think that is enough information for the moment. {@ next top}
+
 
 < topic

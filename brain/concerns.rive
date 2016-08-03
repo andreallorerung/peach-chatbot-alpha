@@ -47,11 +47,11 @@
     + next (@topic)
     - Ok, let's move on to the next topic ...
 
-    + set global
-    - Topic set to global {topic=global}
+    + set glob
+    - Topic set to global{topic=global}
 
     + set (@topicmacro)
-    - Topic set to <star> {topic=<star>} \n\s\s\s\s {@ highlighted}
+    - Topic set to <star>{topic=<star>}{@ highlighted}
 
 
 < topic
