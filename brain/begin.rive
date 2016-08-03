@@ -87,7 +87,8 @@
 ! sub ur        = your
 ! sub r         = are
 ! sub n         = and
-! sub im        = i am
+//some substitutions can break normalized input: 'immoral' gets stemmed to 'im'
+//! sub im        = i am
 ! sub wat       = what
 ! sub wats      = what is
 ! sub ohh       = oh

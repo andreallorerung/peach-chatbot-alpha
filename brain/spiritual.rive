@@ -1,8 +1,11 @@
 ! version = 2.0
 
-! array faith = faith|lost faith|lost belief|lost confidence|lost hope|lost certainty|church|religion|canon|creed|cult|gospel|piety|theism|theology|worship|belief
-! array meaning = meaning|purpose|goal|end|plan|essence|explanation|significance|spirit|substance|value|heart|import
-! array regret = regret|concern|apology|bitterness|dissatisfaction|grief|nostalgia|qualm|remorse|repentance|sorrow|worry|conscience|penitence|sin|error|evil|fault|immorality|immoral|misdeed|transgression|wrong|wrongdoing|debt|imperfection|pride|tort|vice|cheat|deviate|stray|break|go back
+//                                                                                      |theism|     |worship
+! array faith = fai|lost believ|confid|hop|certainty|church|relig|canon|cree|cult|gospel|piety|the|theolog|wor
+//                                      |essence|explanation|
+! array meaning = mean|purpos|goal|end|plan|ess|expl|sign|spirit|subst|valu|heart|import
+//                   |immoral|       |bitterness|                                |repentance|        |conscience|    |error|           |misdeed|         |wrongdoing|                    |vice|cheat|deviate|
+! array regret = regret|im|concern|apolog|bit|dissatisfact|grief|nostalg|qualm|remors|rep|sorrow|worry|conscy|penit|sin|er|evil|fault|misdee|transgress|wrong|wrongdo|debt|imperfect|prid|tort|vic|che|devy|stray|break|go back
 
 > topic spiritual includes global
 
