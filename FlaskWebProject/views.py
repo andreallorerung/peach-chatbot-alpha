@@ -16,6 +16,15 @@ def home():
         year=datetime.now().year,
     )
 
+@app.route('/chat_main')
+def home():
+    """Renders the chatbot page."""
+    return render_template(
+        'chat_main.html',
+        title='Chatbot Main Page',
+        year=datetime.now().year,
+    )
+
 @app.route('/contact')
 def contact():
     """Renders the contact page."""
