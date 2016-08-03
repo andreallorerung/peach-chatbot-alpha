@@ -17,7 +17,7 @@ def home():
     )
 
 @app.route('/chat_main')
-def home():
+def chat_main():
     """Renders the chatbot page."""
     return render_template(
         'chat_main.html',
