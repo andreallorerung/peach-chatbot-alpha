@@ -1,6 +1,6 @@
 '''Module defining the python objects to be called inside '.rive' files '''
-import topics_model
-from botcontroller import concerns as model
+import topics
+import concerns as model
 from operator import itemgetter
 
 def increase(num):
@@ -22,7 +22,7 @@ def get_all_issues(userid):
     descending order by level of distress (most distressful first)'''
     issue_list = []
 
-    for issue in topics_model.ALL_ISSUES:
+    for issue in topics.ALL_ISSUES:
         score = get_issue(userid, issue)
         if score is not None:
             issue_list.append( ( issue, score) )

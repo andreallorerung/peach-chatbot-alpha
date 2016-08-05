@@ -1,4 +1,3 @@
-import py.test
 from botcontroller import macros
 
 def test_format_issue_list():

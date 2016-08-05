@@ -17,10 +17,15 @@ class BotRivescript(bot_abstract.BotInterface):
         self.postprocessor  = postprocessor
 
     def createUserSession(self, userInfo):
-        username = userInfo # userinfo is expected to be just the userid
+        # userinfo is expected to be just the userid *by this implementation!*
+        userid = userInfo
+        self._registerUseridWithInterpreter(userid)
+
+    def _registerUseridWithInterpreter(self, userid):
+        # a dummy user variable with a dummy value must be set by the interpreter
         uservariableName = "dummy_variable"
         uservariableValue = "dummy_value"
-        self.interpreter.set_uservar(userInfo, uservariableName, uservariableValue)
+        self.interpreter.set_uservar(userid, uservariableName, uservariableValue)
 
     def reply(self, message):
         userid = message.getUserid()

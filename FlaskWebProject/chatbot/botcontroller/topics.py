@@ -1,6 +1,6 @@
 '''Module representing the issue topics recognized by the chatbot and their
 relationship to macro-categories of topics (physical, emotional issues etc)'''
-from botcontroller.equivalence import EquivalenceClasses
+import equivalence
 
 '''List representing all issues that can be selected'''
 ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indigestion",
@@ -28,4 +28,4 @@ CLASSES = {
     (tuple(ALL_ISSUES[40:])) : "spiritual"
 }
 
-micro_to_macro = EquivalenceClasses.from_dict(CLASSES)
+micro_to_macro = equivalence.EquivalenceClasses.from_dict(CLASSES)
