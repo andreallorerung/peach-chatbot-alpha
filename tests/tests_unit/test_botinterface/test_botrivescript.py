@@ -56,3 +56,18 @@ def test_reply():
     actual = bot.reply(Message("id", "message"))
 
     assert expected == actual
+
+def test_createusersession():
+    userid = "toby"
+    bot.createUserSession(userid)
+
+    expected = get_expected_uservar_value()
+    actual = bot.interpreter.get_uservar(userid, "the name of a variable that "
+                                            "does not exist")
+    assert expected == actual
+
+def get_expected_uservar_value():
+    # rivescript returns 'None' when the user does not exist. It returns
+    # "undefined" when the user exists but the variable has not been set,
+    # see: http://rivescript.readthedocs.io/en/latest/rivescript.html#rivescript.rivescript.RiveScript.get_uservar
+    return "undefined"

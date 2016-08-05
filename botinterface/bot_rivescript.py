@@ -16,6 +16,12 @@ class BotRivescript(bot_abstract.BotInterface):
         self.interpreter    = rivescript_loader.loadBrain(interpreter, brain)
         self.postprocessor  = postprocessor
 
+    def createUserSession(self, userInfo):
+        username = userInfo # userinfo is expected to be just the userid
+        uservariableName = "dummy_variable"
+        uservariableValue = "dummy_value"
+        self.interpreter.set_uservar(userInfo, uservariableName, uservariableValue)
+
     def reply(self, message):
         userid = message.getUserid()
         messagecontent = self._preprocess(message.getContent())

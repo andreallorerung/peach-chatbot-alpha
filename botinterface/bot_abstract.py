@@ -8,6 +8,10 @@ class BotInterface(object):
     def __init__(self):
         raise NotImplementedError("BotInterface is an interface")
 
+    def createUserSession(self, userInfo):
+        '''To create a user session'''
+        raise NotImplementedError("BotInterface is an interface")
+
     def reply(self, message):
         '''To return a reply given the message'''
         raise NotImplementedError("BotInterface is an interface")
