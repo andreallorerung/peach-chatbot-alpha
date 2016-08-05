@@ -1,5 +1,4 @@
 '''Module to write rivescript data to '''
-import rivescript_generation
 import store_synonyms
 
 
