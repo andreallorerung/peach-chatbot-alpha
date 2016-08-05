@@ -1,0 +1,103 @@
+ <!doctype html>   <!--declare this is a html document -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css')}}">
+<html lang="en">  <!--optional tag but good idea to let user know what lang -->
+  <head>
+      <meta charset="utf-8">  <!--character set encoding prior to any content -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css' />
+
+           <script type = "text/javascript" src ="static/js/jquery-3.1.0.js"></script>
+           <script type = "text/javascript" src="static/js/json2.js" ></script>
+           <script type = "text/javascript" var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};> </script>
+           <script type = "text/javascript" src ="static/js/myScript.js"></script>
+      <title>Peach - ChatBot</title>
+      <!--[if lt IE 9]><script src="http://html5.shim.googlecode.com/svn/trunk/html5.js"> //opening script tag pointing tells browser to create elements
+<![endif]-->  <!--only affects internet explorer old version so within conditional clause -->
+
+  </head>
+<body>
+
+
+<!--  <script type = "text/javascript">
+  function myFunction() {
+    var text = document.getElementById("type_here").value;
+    var prefix= "User: ";
+    document.getElementById("user_input").innerHTML =  prefix + text;
+    var json = {"user": text};
+    console.log(JSON.stringify(json));
+    document.getElementById("type_here").value = "";
+  }
+
+
+</script>-->
+
+
+<header><!--branding and navigation-->
+
+<!--navbar-->
+<nav class="navbar nav-peach-main">
+ <div class="container-fluid">
+    <div class="navbar-header">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+
+  <a href="#"><img class="peach_brand" src="https://peach-uclh.github.io/peach-design-guide/img/Logo_White.svg"></a>
+</div>
+
+    <div id="navbar3" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li style="float:right"><a href="#">ChatBot Help</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+ </nav>
+
+
+<!--sidenav first column-->
+<div class ="row">
+<div id="wrapper">
+  <div class="col-1 nav-peach-side">
+  <ul>
+         <li><class= "active"> <a href="chatBot">Your eHNA</a></li>
+         <li style="text-indent:12px"<class="active"> <a href="showConsent">Consent</a></li>
+          <li style="text-indent:12px"<class="active"> <a href="#">Results</a></li>
+         <li><class="active"> <a href="search">Search Engine</a></li>
+       </ul>
+     </div><!--/.nav-collapse -->
+</div>
+
+<!--end navbar and first column-->
+
+<!--column 2 and begin main section of page-->
+  <div class = "col-11 main"
+  <header>
+  <h1>ChatBot - Your Personal Health Advisor</h1>
+  <main>
+    <div class="w3-card">
+
+  <div class="w3-container">
+    <!--<script>document.getElementbyId("user").innerHTML = "User: "; </script>-->
+    <p id="user_input"></p>
+  </div>
+</div>
+
+<div class="w3-container">
+  <p>Icons go here</p>
+  <form action="textbox">
+    <label for="textbox">Type in the box below to talk to the ChatBot.</label><br>
+    <input type="text" id="type_here" class=textbox placeholder="Type here">
+      <input type="button" id ="submitbtn" value="Send" function onclick="myFunction()">
+  </form>
+<div>
+  </header>
+
+</main><!--this is main content of the page-->
+
+</body>
+</div>
+</html>
