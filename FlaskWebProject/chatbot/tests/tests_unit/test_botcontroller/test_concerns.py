@@ -1,5 +1,5 @@
 import pytest
-from botcontroller.concerns import Concerns
+from botcontroller.concerns import Concerns, ConcernsFactory
 import collections
 
 def test_init():
@@ -16,9 +16,3 @@ def test_setget():
 
     var["something"] = 99
     assert 99 == var["something"]
-
-# def test_setget_excpt():
-#     var = Concerns()
-#
-#     with pytest.raises(ValueError):
-#         var["userid"] = "id98"

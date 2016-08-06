@@ -13,8 +13,8 @@ import collections
 class Concerns(object):
     '''Data model for a user's concerns'''
 
-    def __init__(self, scores=collections.defaultdict()):
-        self._scores = scores
+    def __init__(self):
+        self._scores = dict()
 
     def __getitem__(self, item):
         return self._check_key(item)
@@ -35,7 +35,7 @@ class ConcernsFactory(object):
     Responsible for associating userids with concerns'''
 
     '''Collection of user sessions with the chatbot'''
-    _usersessions = collections.defaultdict()
+    _usersessions = dict()
 
     @staticmethod
     def _create_concerns():
