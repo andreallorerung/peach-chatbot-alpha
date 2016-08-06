@@ -1,6 +1,6 @@
 import os
 from botcontroller import topics_model
-from botcontroller import macros
+from botcontroller import rivescriptmacrosmacros
 from botinterface import bot_builder
 import nltk.stem
 
@@ -28,7 +28,7 @@ def main(args):
 
     bot = _create_bot(args)
     _set_highlighted_issues(HIGHLIGHTED)
-    issue_list = macros.get_all_issues(USERID)
+    issue_list = rivescriptmacrosmacros.get_all_issues(USERID)
 
     print _format_welcome_message(USERID, issue_list)
     micro_most_distressful = issue_list[0][0]
@@ -54,15 +54,15 @@ def main(args):
 
 def _set_highlighted_issues(highlighted):
     for issue in highlighted:
-        macros.set_issue("userid", *issue)
+        rivescriptmacrosmacros.set_issue("userid", *issue)
 
 def _format_welcome_message(userid, issue_list):
-    issue_list = macros.get_all_issues(USERID)
+    issue_list = rivescriptmacrosmacros.get_all_issues(USERID)
 
     output = "{}\n{}\n{}\n{}".format(WELCOME,
     CHECKLISTMSG,
     PREISSUES,
-    macros.format_issue_list(issue_list))
+    rivescriptmacrosmacros.format_issue_list(issue_list))
 
     return output
 

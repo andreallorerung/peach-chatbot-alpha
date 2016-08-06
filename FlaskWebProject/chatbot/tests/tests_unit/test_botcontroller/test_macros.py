@@ -1,25 +1,25 @@
-from botcontroller import macros
+from botcontroller import rivescriptmacros
 
 def test_format_issue_list():
-    macros.set_issue("userid", "respiratory", 5)
-    macros.set_issue("userid", "urinary", 8)
-    macros.set_issue("userid", "sleeping", 9)
-    macros.set_issue("userid", "chores", 4)
-    macros.set_issue("userid", "relative-friend", 10)
+    rivescriptmacros.set_issue("userid", "respiratory", 5)
+    rivescriptmacros.set_issue("userid", "urinary", 8)
+    rivescriptmacros.set_issue("userid", "sleeping", 9)
+    rivescriptmacros.set_issue("userid", "chores", 4)
+    rivescriptmacros.set_issue("userid", "relative-friend", 10)
 
-    issue_list = macros.get_all_issues("userid")
-    formatted_issue_list = macros.format_issue_list(issue_list)
+    issue_list = rivescriptmacros.get_all_issues("userid")
+    formatted_issue_list = rivescriptmacros.format_issue_list(issue_list)
 
     assert "relative-friend: 10\nsleeping: 9\nurinary: 8\nrespiratory: 5\nchores: 4\n" == (formatted_issue_list)
 
 def test_all_issues():
-    macros.set_issue("userid", "respiratory", 5)
-    macros.set_issue("userid", "urinary", 8)
-    macros.set_issue("userid", "sleeping", 9)
-    macros.set_issue("userid", "chores", 4)
-    macros.set_issue("userid", "relative-friend", 10)
+    rivescriptmacros.set_issue("userid", "respiratory", 5)
+    rivescriptmacros.set_issue("userid", "urinary", 8)
+    rivescriptmacros.set_issue("userid", "sleeping", 9)
+    rivescriptmacros.set_issue("userid", "chores", 4)
+    rivescriptmacros.set_issue("userid", "relative-friend", 10)
 
-    issue_list = macros.get_all_issues("userid")
+    issue_list = rivescriptmacros.get_all_issues("userid")
 
     assert ("relative-friend", 10) == issue_list[0]
     assert ("sleeping", 9)         == issue_list[1]
@@ -28,6 +28,6 @@ def test_all_issues():
     assert ("chores", 4)           == issue_list[4]
 
 def test_setget():
-    macros.set_issue("userid", "breathing", 7)
+    rivescriptmacros.set_issue("userid", "breathing", 7)
 
-    assert 7 == macros.get_issue("userid", "breathing")
+    assert 7 == rivescriptmacros.get_issue("userid", "breathing")
