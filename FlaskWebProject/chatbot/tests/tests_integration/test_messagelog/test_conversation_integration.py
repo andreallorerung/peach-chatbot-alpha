@@ -11,12 +11,3 @@ def test_appendmessage():
     conversation.append(message)
 
     assert message in conversation._messages
-
-def test_appendmessage_wronguserid():
-    wrongid = "frank"
-    content = "I am not well"
-
-    message = Message(wrongid, content)
-
-    with pytest.raises(KeyError):
-        conversation.append(message)
