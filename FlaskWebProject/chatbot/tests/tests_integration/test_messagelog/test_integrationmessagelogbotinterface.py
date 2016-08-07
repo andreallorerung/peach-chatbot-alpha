@@ -1,13 +1,13 @@
 import messagelog.conversation_logging
 import botinterface.bot_rivescript
-import botinterface.message
+import messagelog.message
 
 mockbrain = "tests/tests_integration/test_messagelog/mockbrain.rive"
 bot = botinterface.bot_rivescript.BotRivescript(brain=mockbrain)
 ConversationLogger = messagelog.conversation_logging.ConversationLogger
 
 userid = "bob"
-usermessage = botinterface.message.Message(userid, "Hello this is bob")
+usermessage = messagelog.message.Message(userid, "Hello this is bob")
 expectedreply = "Hello bob this is system"
 
 def sendUserMessage():
