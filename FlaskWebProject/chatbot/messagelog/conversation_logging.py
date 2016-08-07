@@ -1,14 +1,17 @@
 import conversation as conversation_module
+import botinterface.message
+
+MESSAGE_USERNAME_FOR_SYSTEM = "system"
 
 class ConversationLogger(object):
 
+    # userid -> conversation
     _conversations = dict()
 
     @classmethod
     def logUserMessage(cls, message):
         userid = message.getUserid()
         conversation = cls._retrieveConversationFor(userid)
-
         conversation.append(message)
 
     @classmethod
@@ -25,5 +28,9 @@ class ConversationLogger(object):
         return conversation
 
     @classmethod
-    def logSystemReply(cls, message):
-        pass
+    def logSystemReplyForUser(cls, replyContent, userid):
+        message = botinterface.message.Message(MESSAGE_USERNAME_FOR_SYSTEM,
+                                                replyContent)
+
+        conversation = cls._retrieveConversationFor(userid)
+        conversation.append(message)
