@@ -1,9 +1,9 @@
 import pytest
-from botcontroller.concerns import Concerns, ConcernsFactory
+from botcontroller.concerns import UserConcerns, UserConcernsFactory
 import collections
 
 def test_init():
-    var = Concerns()# var = Concerns("id0")
+    var = UserConcerns()# var = UserConcerns("id0")
 
     # assert "id0" == var["userid"]
     assert var is not None
@@ -12,7 +12,7 @@ def test_init():
     assert None is var["get_something_that_isn't_there"]
 
 def test_setget():
-    var = Concerns()
+    var = UserConcerns()
 
     var["something"] = 99
     assert 99 == var["something"]

@@ -3,7 +3,7 @@ relationship to macro-categories of topics (physical, emotional issues etc)'''
 import equivalence
 
 '''List representing all issues that can be selected'''
-ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indigestion",
+ALL_TOPICS = ["respiratory","urinary","constipation","diarrhoea","eating","indigestion",
 "mouth","nausea-vomit","sleeping","fatigue","swelling","fever",
 "walking","tingling","pain","hot-flushes","skin","wound-care",
 "weight","memory-concentration","sensory","speaking","appearance","sexuality",
@@ -16,16 +16,16 @@ ALL_ISSUES = ["respiratory","urinary","constipation","diarrhoea","eating","indig
 
 '''map of microtopics to macrotopics'''
 CLASSES = {
-    (tuple(ALL_ISSUES[0:5])) : "physical",
-    (tuple(ALL_ISSUES[6:11])) : "physical",
-    (tuple(ALL_ISSUES[12:17])) : "physical",
-    (tuple(ALL_ISSUES[18:23])) : "physical",
-    (tuple(ALL_ISSUES[24:29])) : "practical",
-    (tuple(ALL_ISSUES[25:27])) : "practical",
-    (tuple(ALL_ISSUES[28:30])) : "family",
-    (tuple(ALL_ISSUES[31:36])) : "emotional",
-    (tuple(ALL_ISSUES[37:39])) : "emotional",
-    (tuple(ALL_ISSUES[40:])) : "spiritual"
+    (tuple(ALL_TOPICS[0:5])) : "physical",
+    (tuple(ALL_TOPICS[6:11])) : "physical",
+    (tuple(ALL_TOPICS[12:17])) : "physical",
+    (tuple(ALL_TOPICS[18:23])) : "physical",
+    (tuple(ALL_TOPICS[24:29])) : "practical",
+    (tuple(ALL_TOPICS[25:27])) : "practical",
+    (tuple(ALL_TOPICS[28:30])) : "family",
+    (tuple(ALL_TOPICS[31:36])) : "emotional",
+    (tuple(ALL_TOPICS[37:39])) : "emotional",
+    (tuple(ALL_TOPICS[40:])) : "spiritual"
 }
 
 micro_to_macro = equivalence.EquivalenceClasses.from_dict(CLASSES)

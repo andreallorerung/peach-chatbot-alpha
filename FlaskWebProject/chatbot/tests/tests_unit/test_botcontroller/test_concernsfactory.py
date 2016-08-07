@@ -1,25 +1,25 @@
 import pytest
-from botcontroller.concerns import Concerns
-from botcontroller.concerns import ConcernsFactory
+from botcontroller.concerns import UserConcerns
+from botcontroller.concerns import UserConcernsFactory
 
 def test_getitem():
-    concern_for_id0 = ConcernsFactory.getConcerns("id0")
+    concern_for_id0 = UserConcernsFactory.getUserConcerns("id0")
 
-    assert concern_for_id0 is ConcernsFactory.getConcerns("id0")
+    assert concern_for_id0 is UserConcernsFactory.getUserConcerns("id0")
 
-def test_getConcerns():
-    someuserconcenrs = ConcernsFactory.getConcerns("someuserid")
-    someDIFFERENTconcerns = ConcernsFactory.getConcerns("someDIFFERENTuserid")
+def test_getUserConcerns():
+    someuserconcenrs = UserConcernsFactory.getUserConcerns("someuserid")
+    someDIFFERENTconcerns = UserConcernsFactory.getUserConcerns("someDIFFERENTuserid")
 
     assert someuserconcenrs is not someDIFFERENTconcerns
     assert someuserconcenrs != someDIFFERENTconcerns
 
-def test_setSomeConcernsForOneUserAndSomeForAnother():
-    useroneConcerns = ConcernsFactory.getConcerns("userone")
-    usertwoConcerns = ConcernsFactory.getConcerns("usertwo")
+def test_setSomeUserConcernsForOneUserAndSomeForAnother():
+    useroneUserConcerns = UserConcernsFactory.getUserConcerns("userone")
+    usertwoUserConcerns = UserConcernsFactory.getUserConcerns("usertwo")
 
-    useroneConcerns["respiratory"] = 5
-    usertwoConcerns["family"] = 10
+    useroneUserConcerns["respiratory"] = 5
+    usertwoUserConcerns["family"] = 10
 
-    assert useroneConcerns["family"] is None
-    assert usertwoConcerns["respiratory"] is None
+    assert useroneUserConcerns["family"] is None
+    assert usertwoUserConcerns["respiratory"] is None
