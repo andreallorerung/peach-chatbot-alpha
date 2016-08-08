@@ -8,6 +8,17 @@ from botinterface.message import Message
 currentuserid = "toby"
 conversationDriver = ConversationDriver(currentuserid)
 
+initialConcerns = [("respiratory", 5),
+        ("urinary",  8),
+        ("sleeping", 2),
+        ("chores", 1),
+        ("caring-responsibilities", 4),
+        ("relative-friend", 7),
+        ("faith", 9),
+        ("meaning", 11),
+        ("regret", 9),
+        ("partner", 3)]
+
 def test_hasuserid():
     attributeName = "userid"
     assert hasattr(conversationDriver, attributeName)
@@ -20,22 +31,9 @@ def test_hasuserid():
 #     assert replied is not None
 
 def test_setinitialconcerns():
-    concerns = [("respiratory", 5),
-            ("urinary",  8),
-            ("sleeping", 2),
-            ("chores", 1),
-            ("caring-responsibilities", 4),
-            ("relative-friend", 7),
-            ("faith", 9),
-            ("meaning", 11),
-            ("regret", 9),
-            ("partner", 3)]
+    conversationDriver.setInitialUserConcerns(initialConcerns)
 
-    currentuserid = "toby"
-
-    conversationDriver.setInitialUserConcerns(concerns)
-
-    assert theseUserConcernsHaveBeenStoredForTheUser(concerns, currentuserid)
+    assert theseUserConcernsHaveBeenStoredForTheUser(initialConcerns, currentuserid)
 
 def theseUserConcernsHaveBeenStoredForTheUser(concerns, currentuserid):
     for concern in concerns:
@@ -86,3 +84,36 @@ def test_concernhasbeenaddressed_noconcern():
 def test_not_concernhasbeenaddressedforuser():
     concernName = "respiratory"
     assert not conversationDriver.concernHasBeenAddressed(concernName)
+
+def test_getNextConcern_initial():
+    nextConcern = conversationDriver.getNextConcern()
+    expected = "meaning"
+
+    assert expected == nextConcern
+
+def test_getNextConcern_middle():
+    concernNames = ["meaning", "faith"]
+    markManyConcerns(concernNames)
+
+    nextConcern = conversationDriver.getNextConcern()
+    expected = "regret"
+    assert expected == nextConcern
+
+def markManyConcerns(concernNames):
+    for nextConcernName in concernNames:
+        conversationDriver._markAddressed(nextConcernName)
+
+def test_getNextConcern_noMoreConcerns():
+    concernNames = ["respiratory","urinary","sleeping","chores",
+    "caring-responsibilities","relative-friend","faith","meaning","regret",
+    "partner"]
+
+    markManyConcerns(concernNames)
+    nextConcern = conversationDriver.getNextConcern()
+    assert nextConcern is None
+
+def test_getNextConcern_concernsNamesListEmpty():
+    conversationDriver.sortedUserConcernNames = None
+
+    with pytest.raises(TypeError):
+        nextConcern = conversationDriver.getNextConcern()

@@ -63,8 +63,15 @@ class ConversationDriver(object):
         # when is discussion saved? discussion must be saved one level
         # above in order to have access to unprocessed user input
 
-    def moveToNextConcern(self):
-        pass
+    def getNextConcern(self):
+        userConcerns = concerns.UserConcernsFactory.getUserConcerns(self.userid)
+        
+        for concernName in self.sortedUserConcernNames:
+            concern = userConcerns[concernName]
+            if not concern.hasBeenAddressed():
+                return concernName
+
+        return None
 
     def concernHasBeenAddressed(self, concernName):
         userConcerns = concerns.UserConcernsFactory.getUserConcerns(self.userid)
