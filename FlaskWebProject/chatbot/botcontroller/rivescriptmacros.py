@@ -3,8 +3,11 @@ import topics
 import concerns as model
 from operator import itemgetter
 
-def increase(num):
+def increase(args):
     '''Increases the number parameter'''
+    validate_parameters_number(args)
+
+    num = args[0]
     return str(int(num) + 1)
 
 def format_issue_list(issue_list):
@@ -34,7 +37,7 @@ def get_issue(userid, issue):
     concerns = model.UserConcernsFactory.getUserConcerns(userid)
     return concerns[issue]
 
-def validate_parameters(args, num=1):
+def validate_parameters_number(args, num=1):
     '''Checks that there are enough arguments being passed into the macro'''
     if not args or len(args) < num:
         raise ValueError(" macro called without arguments. Needs "

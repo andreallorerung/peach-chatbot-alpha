@@ -44,28 +44,9 @@ class ConversationDriver(object):
     def _sortConcernsByDistressScore(self, unsortedUserConcerns):
         return sorted(unsortedUserConcerns, key=operator.itemgetter(1), reverse=True)
 
-    # def reply(self, message):
-    #     return "hello"
-        # initialized: concern set to most distressful
-        #
-        # if all concerns have been discussed, then finalize user session,
-        # by asking the user to terminate conversation, user can at
-        # this point only ask for a specific topic or agree to
-        # ending conversation
-        #
-        # loop body:
-        # set topic in interpreter
-        # forward preprocessed message to interpreter
-        # get reply and return reply
-        # interpreter can ask permission to change topic
-        # in which case mark current topic as discussed
-        #
-        # when is discussion saved? discussion must be saved one level
-        # above in order to have access to unprocessed user input
-
     def getNextConcern(self):
         userConcerns = concerns.UserConcernsFactory.getUserConcerns(self.userid)
-        
+
         for concernName in self.sortedUserConcernNames:
             concern = userConcerns[concernName]
             if not concern.hasBeenAddressed():

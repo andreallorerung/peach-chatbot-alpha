@@ -23,13 +23,6 @@ def test_hasuserid():
     attributeName = "userid"
     assert hasattr(conversationDriver, attributeName)
 
-# def test_reply():
-#     message = "Hello"
-#
-#     replied = conversationDriver.reply(message)
-#
-#     assert replied is not None
-
 def test_setinitialconcerns():
     conversationDriver.setInitialUserConcerns(initialConcerns)
 

@@ -1,6 +1,25 @@
+import pytest
 from botcontroller import rivescriptmacros
 
 someuserid = "macrosuserid"
+
+def test_increase():
+    args = ['11']
+    result = rivescriptmacros.increase(args)
+
+    assert '12' == result
+
+def test_increase_notanumber():
+    args = ['help']
+
+    with pytest.raises(ValueError):
+        result = rivescriptmacros.increase(args)
+
+def test_increase_none():
+    args = [None]
+
+    with pytest.raises(TypeError):
+        result = rivescriptmacros.increase(args)
 
 # def test_format_issue_list():
 #     rivescriptmacros.setIssue(someuserid, "respiratory", 5)
