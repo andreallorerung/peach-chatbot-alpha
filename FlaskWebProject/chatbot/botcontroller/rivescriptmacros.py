@@ -31,13 +31,8 @@ def get_all_issues(userid):
 
 def get_issue(userid, issue):
     '''Returns an issue score from the map of issues for the current user'''
-    concerns = model.ConcernsFactory.getConcerns(userid)
+    concerns = model.UserConcernsFactory.getUserConcerns(userid)
     return concerns[issue]
-
-def set_issue(userid, issue, score):
-    '''Sets an issue score for the current user'''
-    concerns = model.ConcernsFactory.getConcerns(userid)
-    concerns[issue] = score
 
 def validate_parameters(args, num=1):
     '''Checks that there are enough arguments being passed into the macro'''

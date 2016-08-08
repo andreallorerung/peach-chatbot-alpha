@@ -54,7 +54,7 @@ def main(args):
 
 def _set_highlighted_issues(highlighted):
     for issue in highlighted:
-        rivescriptmacrosmacros.set_issue("userid", *issue)
+        rivescriptmacrosmacros.setIssue("userid", *issue)
 
 def _format_welcome_message(userid, issue_list):
     issue_list = rivescriptmacrosmacros.get_all_issues(USERID)

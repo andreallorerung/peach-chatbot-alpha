@@ -39,13 +39,3 @@
 
     return format_issue_list(issues)
 < object
-
-> object set_issue python
-    from botcontroller import rivescriptmacros
-
-    rivescriptmacros.validate_parameters(args, 2)
-    issue, score = args[0], args[1]
-
-    rivescriptmacros.set_issue(rs.current_user(), issue, score)
-
-< object
