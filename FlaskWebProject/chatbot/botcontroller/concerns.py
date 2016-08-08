@@ -12,7 +12,7 @@ import collections
 
 class Concern(object):
     def __init__(self, distressScore):
-        self.distressScore
+        self.distressScore = distressScore
         self.addressed = False
 
     def getDistressScore(self):
