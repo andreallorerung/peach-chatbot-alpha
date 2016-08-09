@@ -23,9 +23,12 @@ def test_problem_questions():
     messages = ["my breathing problem ...", "It affects ...", "There's also ...",
     "Ok", "this test message should fail the test"]
 
-    for msg in messages[:]:
+    for msg in messages[:4]:
         reply = bot.reply(Message(USERID, msg))
         print reply
         # test:
         assert "problem" in reply
-    assert False
+
+    reply = bot.reply(Message(USERID, messages[4]))
+
+    assert "move on to the next topic" in reply

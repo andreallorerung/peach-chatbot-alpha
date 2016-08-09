@@ -5,9 +5,8 @@ from operator import itemgetter
 
 def increase(currentValue):
     '''Increases the number parameter'''
-
+    # values are passed in as strings by rivescritp python objects
     newValue = str(int(currentValue) + 1)
-    print newValue
     return newValue
 
 def format_issue_list(issue_list):
