@@ -1,5 +1,5 @@
 import py.test
-from botcontroller.equivalence import EquivalenceClasses
+from concerns.equivalence import EquivalenceClasses
 
 def test_init_and_getitem():
     d = EquivalenceClasses(a=1, b=2)

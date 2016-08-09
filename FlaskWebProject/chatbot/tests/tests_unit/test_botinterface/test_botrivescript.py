@@ -1,6 +1,6 @@
 import rivescript
 from botinterface.bot_rivescript import BotRivescript
-from botinterface.message import Message
+from messagelog.message import Message
 import mock_messageprocessor, mock_interpreter
 
 bot = BotRivescript()

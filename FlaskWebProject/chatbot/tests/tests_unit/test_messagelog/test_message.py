@@ -1,4 +1,4 @@
-from botinterface.message import Message
+from messagelog.message import Message
 
 message = Message("user01", "Hello")
 

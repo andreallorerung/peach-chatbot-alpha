@@ -1,6 +1,6 @@
 import pytest
 from messagelog.conversation import Conversation
-from botinterface.message import Message
+from messagelog.message import Message
 
 userid = "mac"
 conversation = Conversation(userid)

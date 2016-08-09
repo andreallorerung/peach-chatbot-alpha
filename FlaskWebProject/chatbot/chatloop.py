@@ -1,6 +1,6 @@
 import os
-from botcontroller import topics_model
-from botcontroller import rivescriptmacrosmacros
+from concerns import topics_model
+from concerns import rivescriptmacrosmacros
 from botinterface import bot_builder
 import nltk.stem
 

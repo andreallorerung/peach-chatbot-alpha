@@ -1,7 +1,8 @@
 '''Module to drive the chatbot brain through the highlighted topics'''
 import operator
 import topics
-import concerns
+import concerns.concern_factory
+import concerns.concern
 
 class ConversationDriver(object):
     '''Class to drive the conversation through the questionnaire topics'''
@@ -16,8 +17,8 @@ class ConversationDriver(object):
 
     def _setConcern(self, concernName, concernScore):
         '''Sets an concern score for the current user'''
-        userConcerns = concerns.UserConcernsFactory.getUserConcerns(self.userid)
-        userConcerns[concernName] = concerns.Concern(concernScore)
+        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns[concernName] = concerns.concern.Concern(concernScore)
 
     def _sortUserConcerns(self):
         unsortedUserConcerns = self._getUserConcernsAsCoupleOfNameAndScore(self.userid)
@@ -31,7 +32,8 @@ class ConversationDriver(object):
 
     @staticmethod
     def _getUserConcernsAsCoupleOfNameAndScore(userid):
-        userConcerns = concerns.UserConcernsFactory.getUserConcerns(userid)
+        userConcerns = \
+            concerns.concern_factory.UserConcernsFactory.getUserConcerns(userid)
         unsortedUserConcerns = []
 
         for concernName in topics.ALL_TOPICS:
@@ -45,7 +47,7 @@ class ConversationDriver(object):
         return sorted(unsortedUserConcerns, key=operator.itemgetter(1), reverse=True)
 
     def getNextConcern(self):
-        userConcerns = concerns.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
 
         for concernName in self.sortedUserConcernNames:
             concern = userConcerns[concernName]
@@ -55,7 +57,7 @@ class ConversationDriver(object):
         return None
 
     def concernHasBeenAddressed(self, concernName):
-        userConcerns = concerns.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
         concern = userConcerns[concernName]
 
         return (concern is not None) and concern.hasBeenAddressed()
@@ -65,7 +67,7 @@ class ConversationDriver(object):
         concern.setAddressed()
 
     def _getUserConcern(self, concernName):
-        userConcerns = concerns.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
         concern = userConcerns[concernName]
 
         if concern is None:

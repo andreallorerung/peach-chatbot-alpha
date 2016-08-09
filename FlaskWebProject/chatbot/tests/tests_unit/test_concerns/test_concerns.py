@@ -1,5 +1,6 @@
 import pytest
-from botcontroller.concerns import UserConcerns, UserConcernsFactory
+from concerns.user_concerns import UserConcerns
+from concerns.concern_factory import UserConcernsFactory
 import collections
 
 def test_init():

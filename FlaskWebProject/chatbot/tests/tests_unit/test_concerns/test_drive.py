@@ -1,9 +1,9 @@
 import pytest
 import collections
 from rivescript import RiveScript
-from botcontroller.drive_chat import ConversationDriver
-from botcontroller.concerns import UserConcernsFactory
-from botinterface.message import Message
+from concerns.drive_chat import ConversationDriver
+from concerns.concern_factory import UserConcernsFactory
+from messagelog.message import Message
 
 currentuserid = "toby"
 conversationDriver = ConversationDriver(currentuserid)

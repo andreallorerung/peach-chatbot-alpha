@@ -9,6 +9,14 @@ def increase(currentValue):
     newValue = str(int(currentValue) + 1)
     return newValue
 
+def validateParametersNumber(args, num=1):
+    '''Checks that there are enough arguments being passed into the macro'''
+    if not args or len(args) < num:
+        raise ValueError(" macro called without arguments. Needs "
+        "exactly {}.".format(num))
+    else:
+        return True
+
 def format_issue_list(issue_list):
     '''Formats a list of tuples for output through the chatbot interface'''
     output = ""
@@ -36,13 +44,6 @@ def get_issue(userid, issue):
     concerns = model.UserConcernsFactory.getUserConcerns(userid)
     return concerns[issue]
 
-def validateParametersNumber(args, num=1):
-    '''Checks that there are enough arguments being passed into the macro'''
-    if not args or len(args) < num:
-        raise ValueError(" macro called without arguments. Needs "
-                        "exactly {}.".format(num))
-    else:
-        return True
 
 def dummy_f():
     '''Dummy function used to test calling from rive file'''

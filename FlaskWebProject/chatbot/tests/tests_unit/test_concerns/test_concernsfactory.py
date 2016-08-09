@@ -1,6 +1,6 @@
 import pytest
-from botcontroller.concerns import UserConcerns
-from botcontroller.concerns import UserConcernsFactory
+from concerns.user_concerns import UserConcerns
+from concerns.concern_factory import UserConcernsFactory
 
 def test_getitem():
     concern_for_id0 = UserConcernsFactory.getUserConcerns("id0")

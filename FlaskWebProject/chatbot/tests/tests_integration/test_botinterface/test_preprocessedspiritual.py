@@ -1,6 +1,6 @@
 from botinterface.bot_rivescript import BotRivescript
 from botinterface.preprocessor import MessagePreprocessor
-from botinterface.message import Message
+from messagelog.message import Message
 
 # set_up
 bot = BotRivescript(preprocessor = MessagePreprocessor())

@@ -1,6 +1,6 @@
 import pytest
 import rivescript
-from botcontroller import rivescriptmacros
+from concerns import rivescriptmacros
 
 someuserid = "macrosuserid"
 
@@ -59,6 +59,9 @@ def test_increase_none():
 
     with pytest.raises(TypeError):
         result = rivescriptmacros.increase(value)
+
+def test_getNextConcern():
+    pass
 
 # def test_format_issue_list():
 #     rivescriptmacros.setIssue(someuserid, "respiratory", 5)

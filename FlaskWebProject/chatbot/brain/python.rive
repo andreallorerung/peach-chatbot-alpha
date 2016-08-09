@@ -7,7 +7,7 @@
 // following macros.
 
 > object increase python
-    from botcontroller import rivescriptmacros
+    from concerns import rivescriptmacros
     rivescriptInterpreter = rs
 
     rivescriptmacros.validateParametersNumber(args)
@@ -21,13 +21,13 @@
 < object
 
 > object dummy python
-    from botcontroller import rivescriptmacros
+    from concerns import rivescriptmacros
 
     return rivescriptmacros.dummy_f()
 < object
 
 > object get_issue python
-    from botcontroller import rivescriptmacros
+    from concerns import rivescriptmacros
 
     rivescriptmacros.validate_parameters(args)
     issue = args[0]
@@ -37,7 +37,7 @@
 < object
 
 > object get_all_issues python
-    from botcontroller import rivescriptmacros
+    from concerns import rivescriptmacros
 
     issues = rivescriptmacros.get_all_issues(rs.current_user())
 
