@@ -17,7 +17,8 @@ class ConversationDriver(object):
 
     def _setConcern(self, concernName, concernScore):
         '''Sets an concern score for the current user'''
-        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns = \
+            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
         userConcerns[concernName] = concerns.concern.Concern(concernScore)
 
     def _sortUserConcerns(self):
@@ -47,7 +48,8 @@ class ConversationDriver(object):
         return sorted(unsortedUserConcerns, key=operator.itemgetter(1), reverse=True)
 
     def getNextConcern(self):
-        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns = \
+            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
 
         for concernName in self.sortedUserConcernNames:
             concern = userConcerns[concernName]
@@ -57,7 +59,8 @@ class ConversationDriver(object):
         return None
 
     def concernHasBeenAddressed(self, concernName):
-        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns = \
+            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
         concern = userConcerns[concernName]
 
         return (concern is not None) and concern.hasBeenAddressed()
@@ -67,7 +70,8 @@ class ConversationDriver(object):
         concern.setAddressed()
 
     def _getUserConcern(self, concernName):
-        userConcerns = concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
+        userConcerns = \
+            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
         concern = userConcerns[concernName]
 
         if concern is None:
