@@ -1,12 +1,12 @@
 import pytest
 import collections
 from rivescript import RiveScript
-from concerns.drive_chat import ConversationDriver
+from concerns.drive_conversation import DistressConversationDriver
 from concerns.concern_factory import UserConcernsFactory
 from messagelog.message import Message
 
 currentuserid = "toby"
-conversationDriver = ConversationDriver(currentuserid)
+conversationDriver = DistressConversationDriver(currentuserid)
 
 initialConcerns = [("respiratory", 5),
         ("urinary",  8),
@@ -48,7 +48,7 @@ def test_concernsHaveBeenSorted():
     sortedConcernScores = getConcernScoresByNames(currentuserid, conversationDriver.sortedUserConcernNames)
 
     expectedOrderedList = sorted(sortedConcernScores, reverse=True)
-    assert expectedOrderedList == sortedConcernScores #asser that list is sorted in descending order
+    assert expectedOrderedList == sortedConcernScores #assert that list is sorted in descending order
 
 def getConcernScoresByNames(userid, namesOfConcerns):
     userConcerns = UserConcernsFactory.getUserConcerns(userid)

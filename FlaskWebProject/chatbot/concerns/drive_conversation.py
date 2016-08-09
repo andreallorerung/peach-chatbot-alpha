@@ -1,10 +1,11 @@
 '''Module to drive the chatbot brain through the highlighted topics'''
 import operator
-import topics
+import concerns.topics
+import concerns.drive_conversation_abstract
 import concerns.concern_factory
 import concerns.concern
 
-class ConversationDriver(object):
+class DistressConversationDriver(concerns.drive_conversation_abstract.ConversationDriver):
     '''Class to drive the conversation through the questionnaire topics'''
     def __init__(self, userid):
         self.userid = userid
@@ -37,7 +38,7 @@ class ConversationDriver(object):
             concerns.concern_factory.UserConcernsFactory.getUserConcerns(userid)
         unsortedUserConcerns = []
 
-        for concernName in topics.ALL_TOPICS:
+        for concernName in concerns.topics.ALL_TOPICS:
             concern = userConcerns[concernName]
             if concern is not None:
                 distressScore = concern.getDistressScore()

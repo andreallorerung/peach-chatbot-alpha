@@ -3,12 +3,6 @@ import topics
 import concerns as model
 from operator import itemgetter
 
-def increase(currentValue):
-    '''Increases the number parameter'''
-    # values must be passed out to the rivescript macro object as strings
-    newValue = str(int(currentValue) + 1)
-    return newValue
-
 def validateParametersNumber(args, num=1):
     '''Checks that there are enough arguments being passed into the macro'''
     if not args or len(args) < num:
@@ -16,6 +10,15 @@ def validateParametersNumber(args, num=1):
         "exactly {}.".format(num))
     else:
         return True
+
+def increase(currentValue):
+    '''Increases the number parameter'''
+    # values must be passed out to the rivescript macro object as strings
+    newValue = str(int(currentValue) + 1)
+    return newValue
+
+def getNextConcern():
+    pass
 
 def format_issue_list(issue_list):
     '''Formats a list of tuples for output through the chatbot interface'''
@@ -43,7 +46,6 @@ def get_issue(userid, issue):
     '''Returns an issue score from the map of issues for the current user'''
     concerns = model.UserConcernsFactory.getUserConcerns(userid)
     return concerns[issue]
-
 
 def dummy_f():
     '''Dummy function used to test calling from rive file'''
