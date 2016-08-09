@@ -3,12 +3,12 @@ import topics
 import concerns as model
 from operator import itemgetter
 
-def increase(args):
+def increase(currentValue):
     '''Increases the number parameter'''
-    validate_parameters_number(args)
 
-    num = args[0]
-    return str(int(num) + 1)
+    newValue = str(int(currentValue) + 1)
+    print newValue
+    return newValue
 
 def format_issue_list(issue_list):
     '''Formats a list of tuples for output through the chatbot interface'''
@@ -37,7 +37,7 @@ def get_issue(userid, issue):
     concerns = model.UserConcernsFactory.getUserConcerns(userid)
     return concerns[issue]
 
-def validate_parameters_number(args, num=1):
+def _validate_parameters_number(args, num=1):
     '''Checks that there are enough arguments being passed into the macro'''
     if not args or len(args) < num:
         raise ValueError(" macro called without arguments. Needs "

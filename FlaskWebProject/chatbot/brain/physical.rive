@@ -65,9 +65,9 @@
     //^ particular that is preventing you from sleeping well?
 
     + *
-    * <get counter> > 2 => I think that is enough information for the moment. {@ next topic}
+    * <get counter> > 2 => I think that is enough information for the moment. {@ next top}
     - How severe is your <get physicalissue> problem?<call>increase counter</call>
     - Have you often had similar problems in the past?<call>increase counter</call>
-    - Is your <get physicalissue> problem other areas of your life?<call>increase counter</call>
+    - Is your <get physicalissue> problem affecting other areas of your life?<call>increase counter</call>
 
 < topic
