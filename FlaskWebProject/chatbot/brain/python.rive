@@ -10,7 +10,7 @@
     from botcontroller import rivescriptmacros
     rivescriptInterpreter = rs
 
-    rivescriptmacros._validate_parameters_number(args)
+    rivescriptmacros.validateParametersNumber(args)
     uservarName = args[0]
 
     currentUser = rivescriptInterpreter.current_user()

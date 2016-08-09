@@ -5,7 +5,7 @@ from operator import itemgetter
 
 def increase(currentValue):
     '''Increases the number parameter'''
-    # values are passed in as strings by rivescritp python objects
+    # values must be passed out to the rivescript macro object as strings
     newValue = str(int(currentValue) + 1)
     return newValue
 
@@ -36,7 +36,7 @@ def get_issue(userid, issue):
     concerns = model.UserConcernsFactory.getUserConcerns(userid)
     return concerns[issue]
 
-def _validate_parameters_number(args, num=1):
+def validateParametersNumber(args, num=1):
     '''Checks that there are enough arguments being passed into the macro'''
     if not args or len(args) < num:
         raise ValueError(" macro called without arguments. Needs "

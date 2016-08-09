@@ -4,6 +4,40 @@ from botcontroller import rivescriptmacros
 
 someuserid = "macrosuserid"
 
+def test_validateparameternumber_true():
+    args = ["11", "twenty two"]
+
+    expected = True
+    actual = rivescriptmacros.validateParametersNumber(args, num=2)
+
+    assert expected is actual
+
+def test_validateparameternumber_false():
+    args = ["eleven"]
+
+    with pytest.raises(ValueError):
+        rivescriptmacros.validateParametersNumber(args, num=3)
+
+def test_validateparameternumber_nullargs():
+    args = None
+
+    with pytest.raises(ValueError):
+        rivescriptmacros.validateParametersNumber(args)
+
+def test_validateparameternumber_0num():
+    args = ["twelve", "12"]
+
+    expected = True
+    actual = rivescriptmacros.validateParametersNumber(args, num=-1)
+    assert expected is actual
+
+def test_validateparameternumber_nullnum():
+    args = ["Hello"]
+
+    expected = True
+    actual = rivescriptmacros.validateParametersNumber(args, num=None)
+    assert expected is actual
+
 def test_increase():
     args = ['11']
     value = args[0]
