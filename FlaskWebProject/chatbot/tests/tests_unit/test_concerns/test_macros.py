@@ -1,6 +1,7 @@
 import pytest
-import rivescript
+import mock_conversationdriver
 from concerns import rivescriptmacros
+from concerns import concern_factory
 
 someuserid = "macrosuserid"
 
@@ -61,7 +62,37 @@ def test_increase_none():
         result = rivescriptmacros.increase(value)
 
 def test_getNextConcern():
-    pass
+    expectedNextConcern = "meaning"
+    _addMockToFactory(someuserid, expectedNextConcern)
+
+    actualNextConcern = rivescriptmacros.getNextConcern(someuserid)
+    assert expectedNextConcern == actualNextConcern
+
+def test_getNextConcern_noconcerns():
+    expectedNextConcern = None
+    _addMockToFactory(someuserid, expectedNextConcern)
+
+    actualNextConcern = rivescriptmacros.getNextConcern(someuserid)
+    assert expectedNextConcern == actualNextConcern
+
+def test_getNextConcern_noneuserid():
+    noneUserid = None
+    expectedNextConcern = "cats"
+    _addMockToFactory(noneUserid, expectedNextConcern)
+
+    actualNextConcern = rivescriptmacros.getNextConcern(noneUserid)
+    assert expectedNextConcern == actualNextConcern
+
+def _addMockToFactory(userid, concern):
+    mockConversationDriver = \
+        mock_conversationdriver.mockForUserWithConcern(someuserid, concern)
+
+    expectedNextConcern = mockConversationDriver.getNextConcern()
+    assert concern == expectedNextConcern
+
+    # rivescript.getNextConcern will fetch actual concern from the UserConcernsFactory
+    concern_factory.UserConcernsFactory._usersessions[userid] = mockConversationDriver
+
 
 # def test_format_issue_list():
 #     rivescriptmacros.setIssue(someuserid, "respiratory", 5)
