@@ -3,21 +3,32 @@ import collections
 from rivescript import RiveScript
 from concerns.drive_conversation import DistressConversationDriver
 from concerns.concern_factory import UserConcernsFactory
+from concerns.concern import Concern
 from messagelog.message import Message
 
+
 currentuserid = "toby"
+initialConcerns = {"respiratory": 5,
+        "urinary":  8,
+        "sleeping": 2,
+        "chores": 1,
+        "caring-responsibilities": 4,
+        "relative-friend": 7,
+        "faith": 9,
+        "meaning": 11,
+        "regret": 9,
+        "partner": 3}
 conversationDriver = DistressConversationDriver(currentuserid)
 
-initialConcerns = [("respiratory", 5),
-        ("urinary",  8),
-        ("sleeping", 2),
-        ("chores", 1),
-        ("caring-responsibilities", 4),
-        ("relative-friend", 7),
-        ("faith", 9),
-        ("meaning", 11),
-        ("regret", 9),
-        ("partner", 3)]
+def test_createconcernobjects():
+    assert isdictofconcernobjects(conversationDriver._createConcernObjectsDict(initialConcerns))
+
+def isdictofconcernobjects(candidate):
+    assert type(candidate) is dict
+    for key, value in candidate.iteritems():
+        assert type(value) is Concern
+
+        return True
 
 def test_hasuserid():
     attributeName = "userid"
@@ -25,24 +36,26 @@ def test_hasuserid():
 
 def test_setinitialconcerns():
     conversationDriver.setInitialUserConcerns(initialConcerns)
-
     assert theseUserConcernsHaveBeenStoredForTheUser(initialConcerns, currentuserid)
 
-def theseUserConcernsHaveBeenStoredForTheUser(concerns, currentuserid):
-    for concern in concerns:
-        if not concernScoreHasBeenStoredForUser(concern, currentuserid):
+def theseUserConcernsHaveBeenStoredForTheUser(concernsDict, currentuserid):
+    for concernName, concernValue in concernsDict.iteritems():
+        if not concernScoreHasBeenStoredForUser(concernName, concernValue, currentuserid):
             return False
 
     return True
 
-def concernScoreHasBeenStoredForUser(concern, currentuserid):
-        userConcers = UserConcernsFactory.getUserConcerns(currentuserid)
-        concernName = concern[0]
-        expectedConcernScore = concern[1]
+def concernScoreHasBeenStoredForUser(concernName, expectedValue, currentuserid):
+    storedConcern = conversationDriver.userConcerns[concernName]
 
-        concern = userConcers[concernName]
-        actualConcernScore = concern.getDistressScore()
-        return ( expectedConcernScore == actualConcernScore )
+    return expectedValue == storedConcern.getDistressScore()
+        # userConcers = UserConcernsFactory.getUserConcerns(currentuserid)
+        # concernName = concern[0]
+        # expectedConcernScore = concern[1]
+        #
+        # concern = userConcers[concernName]
+        # actualConcernScore = concern.getDistressScore()
+        # return ( expectedConcernScore == actualConcernScore )
 
 def test_concernsHaveBeenSorted():
     sortedConcernScores = getConcernScoresByNames(currentuserid, conversationDriver.sortedUserConcernNames)
@@ -51,18 +64,19 @@ def test_concernsHaveBeenSorted():
     assert expectedOrderedList == sortedConcernScores #assert that list is sorted in descending order
 
 def getConcernScoresByNames(userid, namesOfConcerns):
-    userConcerns = UserConcernsFactory.getUserConcerns(userid)
     concernScores = []
 
     for concernName in namesOfConcerns:
-        concern = userConcerns[concernName]
-        distressScore = concern.getDistressScore()
+        distressScore = initialConcerns[concernName]
 
         concernScores.append(distressScore)
 
     return concernScores
 
 def test_concernhasbeenaddressed():
+    if len(conversationDriver.userConcerns) == 0:
+        conversationDriver.setInitialUserConcerns(initialConcerns)
+
     concernName = "sleeping"
     conversationDriver._markAddressed(concernName)
 

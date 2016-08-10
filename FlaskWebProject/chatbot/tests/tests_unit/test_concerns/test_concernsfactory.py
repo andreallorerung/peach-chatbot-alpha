@@ -1,25 +1,22 @@
 import pytest
-from concerns.user_concerns import UserConcerns
+from concerns.drive_conversation import DistressConversationDriver
 from concerns.concern_factory import UserConcernsFactory
 
-def test_getitem():
-    concern_for_id0 = UserConcernsFactory.getUserConcerns("id0")
-
-    assert concern_for_id0 is UserConcernsFactory.getUserConcerns("id0")
-
 def test_getUserConcerns():
-    someuserconcenrs = UserConcernsFactory.getUserConcerns("someuserid")
+    someuserconcerns = UserConcernsFactory.getUserConcerns("someuserid")
     someDIFFERENTconcerns = UserConcernsFactory.getUserConcerns("someDIFFERENTuserid")
 
-    assert someuserconcenrs is not someDIFFERENTconcerns
-    assert someuserconcenrs != someDIFFERENTconcerns
+    assert someuserconcerns is not someDIFFERENTconcerns
+    assert someuserconcerns != someDIFFERENTconcerns
 
 def test_setSomeUserConcernsForOneUserAndSomeForAnother():
     useroneUserConcerns = UserConcernsFactory.getUserConcerns("userone")
     usertwoUserConcerns = UserConcernsFactory.getUserConcerns("usertwo")
 
-    useroneUserConcerns["respiratory"] = 5
-    usertwoUserConcerns["family"] = 10
+    useroneUserConcerns.setInitialUserConcerns({"respiratory": 5})
+    usertwoUserConcerns.setInitialUserConcerns({"family": 10})
 
-    assert useroneUserConcerns["family"] is None
-    assert usertwoUserConcerns["respiratory"] is None
+    with pytest.raises(KeyError):
+        useroneUserConcerns.userConcerns["family"]
+    with pytest.raises(KeyError):
+        usertwoUserConcerns.userConcerns["respiratory"]

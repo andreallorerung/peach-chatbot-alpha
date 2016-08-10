@@ -2,28 +2,29 @@
 import operator
 import concerns.topics
 import concerns.drive_conversation_abstract
-import concerns.concern_factory
 import concerns.concern
 
 class DistressConversationDriver(concerns.drive_conversation_abstract.ConversationDriver):
     '''Class to drive the conversation through the questionnaire topics'''
     def __init__(self, userid):
         self.userid = userid
-        self.sortedUserConcernsNames = self._sortUserConcerns()
+        self.userConcerns = dict()
+        self.sortedUserConcernNames = []
 
     def setInitialUserConcerns(self, concerns):
-        for concern in concerns:
-            self._setConcern(*concern) #each concern is a pair
+        self.userConcerns = self._createConcernObjectsDict(concerns)
         self.sortedUserConcernNames = self._sortUserConcerns()
 
-    def _setConcern(self, concernName, concernScore):
-        '''Sets an concern score for the current user'''
-        userConcerns = \
-            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
-        userConcerns[concernName] = concerns.concern.Concern(concernScore)
+    @staticmethod
+    def _createConcernObjectsDict(initialConcerns):
+        concernsDict = dict()
+        for key, value in initialConcerns.iteritems():
+            concernsDict[key] = concerns.concern.Concern(value)
+
+        return concernsDict
 
     def _sortUserConcerns(self):
-        unsortedUserConcerns = self._getUserConcernsAsCoupleOfNameAndScore(self.userid)
+        unsortedUserConcerns = self._getUserConcernsAsCoupleOfNameAndScore()
         sortedUserConcerns = self._sortConcernsByDistressScore(unsortedUserConcerns)
 
         sortedUserConcernNames = []
@@ -32,42 +33,36 @@ class DistressConversationDriver(concerns.drive_conversation_abstract.Conversati
 
         return sortedUserConcernNames
 
-    @staticmethod
-    def _getUserConcernsAsCoupleOfNameAndScore(userid):
-        userConcerns = \
-            concerns.concern_factory.UserConcernsFactory.getUserConcerns(userid)
+    def _getUserConcernsAsCoupleOfNameAndScore(self):
         unsortedUserConcerns = []
 
         for concernName in concerns.topics.ALL_TOPICS:
-            concern = userConcerns[concernName]
-            if concern is not None:
+            try:
+                concern = self.userConcerns[concernName]
                 distressScore = concern.getDistressScore()
                 unsortedUserConcerns.append( (concernName, distressScore) )
+            except KeyError: #key error occurs when the topic is not in the map
+                continue
         return unsortedUserConcerns
 
     def _sortConcernsByDistressScore(self, unsortedUserConcerns):
         return sorted(unsortedUserConcerns, key=operator.itemgetter(1), reverse=True)
 
     def getNextConcern(self):
-        userConcerns = \
-            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
-
         for concernName in self.sortedUserConcernNames:
-            concern = userConcerns[concernName]
+            concern = self.userConcerns[concernName]
             if not concern.hasBeenAddressed():
                 return concernName
 
         return None
 
     def concernHasBeenAddressed(self, concernName):
-        userConcerns = \
-            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
-        concern = userConcerns[concernName]
+        concern = self.userConcerns[concernName]
 
         return (concern is not None) and concern.hasBeenAddressed()
 
     def _markAddressed(self, concernName):
-        concern = self._getUserConcern(concernName)
+        concern = self.userConcerns[concernName]
         concern.setAddressed()
 
     def _getUserConcern(self, concernName):
