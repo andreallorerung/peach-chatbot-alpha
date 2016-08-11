@@ -87,7 +87,7 @@ def _addMockToFactory(userid, concern):
     mockConversationDriver = \
         mock_conversationdriver.mockForUserWithConcern(someuserid, concern)
 
-    expectedNextConcern = mockConversationDriver.getNextConcern()
+    expectedNextConcern = mockConversationDriver.getNextConcernName()
     assert concern == expectedNextConcern
 
     # rivescript.getNextConcern will fetch actual concern from the UserConcernsFactory

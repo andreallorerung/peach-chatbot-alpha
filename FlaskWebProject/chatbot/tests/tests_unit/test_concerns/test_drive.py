@@ -93,7 +93,7 @@ def test_not_concernhasbeenaddressedforuser():
     assert not conversationDriver.concernHasBeenAddressed(concernName)
 
 def test_getNextConcern_initial():
-    nextConcern = conversationDriver.getNextConcern()
+    nextConcern = conversationDriver.getNextConcernName()
     expected = "meaning"
 
     assert expected == nextConcern
@@ -102,7 +102,7 @@ def test_getNextConcern_middle():
     concernNames = ["meaning", "faith"]
     markManyConcerns(concernNames)
 
-    nextConcern = conversationDriver.getNextConcern()
+    nextConcern = conversationDriver.getNextConcernName()
     expected = "regret"
     assert expected == nextConcern
 
@@ -116,11 +116,11 @@ def test_getNextConcern_noMoreConcerns():
     "partner"]
 
     markManyConcerns(concernNames)
-    nextConcern = conversationDriver.getNextConcern()
+    nextConcern = conversationDriver.getNextConcernName()
     assert nextConcern is None
 
 def test_getNextConcern_concernsNamesListEmpty():
     conversationDriver.sortedUserConcernNames = None
 
     with pytest.raises(TypeError):
-        nextConcern = conversationDriver.getNextConcern()
+        nextConcern = conversationDriver.getNextConcernName()

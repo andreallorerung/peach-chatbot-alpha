@@ -48,7 +48,7 @@ class DistressConversationDriver(concerns.drive_conversation_abstract.Conversati
     def _sortConcernsByDistressScore(self, unsortedUserConcerns):
         return sorted(unsortedUserConcerns, key=operator.itemgetter(1), reverse=True)
 
-    def getNextConcern(self):
+    def getNextConcernName(self):
         for concernName in self.sortedUserConcernNames:
             concern = self.userConcerns[concernName]
             if not concern.hasBeenAddressed():

@@ -9,7 +9,7 @@ class ConversationDriver(object):
     def setInitialUserConcerns(self, concerns):
         raise NotImplementedError("ConversationDriver is an interface")
 
-    def getNextConcern(self):
+    def getNextConcernName(self):
         raise NotImplementedError("ConversationDriver is an interface")
 
     def concernHasBeenAddressed(self, concern):

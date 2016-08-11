@@ -10,5 +10,5 @@ class MockConversationDriver(concerns.drive_conversation_abstract.ConversationDr
     def __init__(self, userid):
         self.concern = None
 
-    def getNextConcern(self):
+    def getNextConcernName(self):
         return self.concern
