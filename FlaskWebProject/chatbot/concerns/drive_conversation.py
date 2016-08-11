@@ -1,10 +1,10 @@
 '''Module to drive the chatbot brain through the highlighted topics'''
 import operator
-import concerns.topics
-import concerns.drive_conversation_abstract
-import concerns.concern
+import topics
+import drive_conversation_abstract
+import concern
 
-class DistressConversationDriver(concerns.drive_conversation_abstract.ConversationDriver):
+class DistressConversationDriver(drive_conversation_abstract.ConversationDriver):
     '''Class to drive the conversation through the questionnaire topics'''
     def __init__(self, userid):
         self.userid = userid
@@ -12,18 +12,23 @@ class DistressConversationDriver(concerns.drive_conversation_abstract.Conversati
         self.sortedUserConcernNames = []
 
     def setInitialUserConcerns(self, concerns):
+        '''To set the initial user concerns extracted independently of the
+        chatbot system'''
         self.userConcerns = self._createConcernObjectsDict(concerns)
         self.sortedUserConcernNames = self._sortUserConcerns()
 
     @staticmethod
     def _createConcernObjectsDict(initialConcerns):
+        '''To extract a dictionary of Concern objects from a dictionary of
+        concernName -> concernDistressScore'''
         concernsDict = dict()
         for key, value in initialConcerns.iteritems():
-            concernsDict[key] = concerns.concern.Concern(value)
+            concernsDict[key] = concern.Concern(value)
 
         return concernsDict
 
     def _sortUserConcerns(self):
+        '''To return a linear data structure of sorted concerns'''
         unsortedUserConcerns = self._getUserConcernsAsCoupleOfNameAndScore()
         sortedUserConcerns = self._sortConcernsByDistressScore(unsortedUserConcerns)
 
@@ -34,9 +39,10 @@ class DistressConversationDriver(concerns.drive_conversation_abstract.Conversati
         return sortedUserConcernNames
 
     def _getUserConcernsAsCoupleOfNameAndScore(self):
+        '''To return a list of couples of concern name and score'''
         unsortedUserConcerns = []
 
-        for concernName in concerns.topics.ALL_TOPICS:
+        for concernName in topics.ALL_TOPICS:
             try:
                 concern = self.userConcerns[concernName]
                 distressScore = concern.getDistressScore()
@@ -46,9 +52,13 @@ class DistressConversationDriver(concerns.drive_conversation_abstract.Conversati
         return unsortedUserConcerns
 
     def _sortConcernsByDistressScore(self, unsortedUserConcerns):
+        '''To sort a list of couples of concern name and score in descending
+        order'''
         return sorted(unsortedUserConcerns, key=operator.itemgetter(1), reverse=True)
 
     def getNextConcernName(self):
+        '''To retur the name of the next unaddressed user concern on the list,
+        or None when there are no concerns, or no unaddressed concerns'''
         for concernName in self.sortedUserConcernNames:
             concern = self.userConcerns[concernName]
             if not concern.hasBeenAddressed():
@@ -57,20 +67,12 @@ class DistressConversationDriver(concerns.drive_conversation_abstract.Conversati
         return None
 
     def concernHasBeenAddressed(self, concernName):
+        '''To decide whether a concern has been addressed'''
         concern = self.userConcerns[concernName]
 
         return (concern is not None) and concern.hasBeenAddressed()
 
     def _markAddressed(self, concernName):
+        '''To mark a concern as addressed'''
         concern = self.userConcerns[concernName]
         concern.setAddressed()
-
-    def _getUserConcern(self, concernName):
-        userConcerns = \
-            concerns.concern_factory.UserConcernsFactory.getUserConcerns(self.userid)
-        concern = userConcerns[concernName]
-
-        if concern is None:
-            raise KeyError("No concern about '{}' for userid '{}'"\
-                            .format(concernName, self.userid))
-        else: return concern

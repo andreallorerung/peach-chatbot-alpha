@@ -12,12 +12,13 @@ def validateParametersNumber(args, num=1):
         return True
 
 def increase(currentValue):
-    '''Increases the number parameter'''
+    '''To increase the value of the argument by 1'''
     # values must be passed out to the rivescript macro object as strings
     newValue = str(int(currentValue) + 1)
     return newValue
 
 def getNextConcern(userid):
+    '''To return the next concern for the user'''
     conversationDriver = \
         concerns.concern_factory.UserConcernsFactory.getUserConcerns(userid)
 

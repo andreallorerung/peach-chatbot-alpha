@@ -7,10 +7,15 @@ class ConversationDriver(object):
         raise NotImplementedError("ConversationDriver is an interface")
 
     def setInitialUserConcerns(self, concerns):
+        '''To set the initial user concerns extracted independently of the
+        chatbot system'''
         raise NotImplementedError("ConversationDriver is an interface")
 
     def getNextConcernName(self):
+        '''To retur the name of the next unaddressed user concern on the list,
+        or None when there are no concerns, or no unaddressed concerns'''
         raise NotImplementedError("ConversationDriver is an interface")
 
     def concernHasBeenAddressed(self, concern):
+        '''To decide whether a concern has been addressed'''
         raise NotImplementedError("ConversationDriver is an interface")
