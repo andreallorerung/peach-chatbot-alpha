@@ -15,22 +15,22 @@ def test_hasreply():
 
 def test_hasbot():
 
-    assert hasattr(bot, "interpreter")
+    assert hasattr(bot, "_interpreter")
     # assert type(bot.interpreter) is rivescript.RiveScript
 
 def test_haspreprocessor():
 
-    assert hasattr(bot, "preprocessor")
+    assert hasattr(bot, "_preprocessor")
 
 def test_haspostprocessor():
 
-    assert hasattr(bot, "postprocessor")
+    assert hasattr(bot, "_postprocessor")
 
 def test_init_customparameters():
     bot = BotRivescript(preprocessor="magic",postprocessor="super")
 
-    assert bot.preprocessor == "magic"
-    assert bot.postprocessor == "super"
+    assert bot._preprocessor == "magic"
+    assert bot._postprocessor == "super"
 
 def test_preandpostprocess_unchanged():
 
@@ -50,7 +50,7 @@ def test_process():
 
 def test_reply():
     bot = BotRivescript()
-    bot.interpreter = mock_interpreter.getMock()
+    bot._interpreter = mock_interpreter.getMock()
 
     expected = "Hello"
     actual = bot.reply(Message("id", "message"))
@@ -71,7 +71,7 @@ def get_expected_uservar_value():
 
 def bot_recognizes_user(userid):
     expected = get_expected_uservar_value()
-    actual = bot.interpreter.get_uservar(userid, "the name of a variable that "
+    actual = bot._interpreter.get_uservar(userid, "the name of a variable that "
                                             "does not exist")
 
     return expected == actual
