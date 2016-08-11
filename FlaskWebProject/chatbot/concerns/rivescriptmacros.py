@@ -18,10 +18,10 @@ def increase(currentValue):
     return newValue
 
 def getNextConcern(userid):
-    userConversationDriver = \
+    conversationDriver = \
         concerns.concern_factory.UserConcernsFactory.getUserConcerns(userid)
 
-    return userConversationDriver.getNextConcern()
+    return conversationDriver.getNextConcernName()
 #
 # def format_issue_list(issue_list):
 #     '''Formats a list of tuples for output through the chatbot interface'''
