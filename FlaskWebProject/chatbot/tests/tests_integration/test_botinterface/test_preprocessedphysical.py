@@ -16,6 +16,18 @@ def resetphysical():
     reply = bot.reply(msg)
     assert "physical" in reply
 
+def test_intro_reply():
+    resetphysical()
+    print "SEPARATE"
+    message = "my breathing problem ..."
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+
+    print "User message:'{}'".format(message)
+    print "Bot reply:'{}'".format(reply)
+
+    assert "Does the problem present itself in particular conditions?" == reply
+
 def test_problem_questions():
     resetphysical()
 
@@ -23,12 +35,19 @@ def test_problem_questions():
     messages = ["my breathing problem ...", "It affects ...", "There's also ...",
     "Ok", "this test message should fail the test"]
 
-    for msg in messages[:4]:
-        reply = bot.reply(Message(USERID, msg))
-        print reply
+    for message in messages[:3]:
+        msg = Message(USERID, message)
+        reply = bot.reply(msg)
+        print "User message:'{}'".format(message)
+        print "Bot reply:'{}'".format(reply)
+        print "counter variable value:{}".format(bot._interpreter.get_uservar(USERID, "counter"))
         # test:
-        assert "problem" in reply
+        assert "severe" in reply or "often" in reply or "affecting" in reply
 
-    reply = bot.reply(Message(USERID, messages[4]))
-
+    msg = Message(USERID, messages[3])
+    reply = bot.reply(msg)
+    print "User message:'{}'".format(message)
+    print "Bot reply:'{}'".format(reply)
     assert "move on to the next topic" in reply
+    # print reply
+    assert False

@@ -1,6 +1,6 @@
 '''Module defining the python objects to be called inside '.rive' files '''
 import topics
-import concerns
+import concern_factory
 from operator import itemgetter
 
 def validateParametersNumber(args, num=1):
@@ -20,7 +20,7 @@ def increase(currentValue):
 def getNextConcern(userid):
     '''To return the next concern for the user'''
     conversationDriver = \
-        concerns.concern_factory.UserConcernsFactory.getUserConcerns(userid)
+        concern_factory.UserConcernsFactory.getUserConcerns(userid)
 
     return conversationDriver.getNextConcernName()
 #
