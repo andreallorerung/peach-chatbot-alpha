@@ -20,6 +20,50 @@
     rivescriptInterpreter.set_uservar(currentUser, uservarName, newValue)
 < object
 
+> object getNextConcern python
+    from concerns import rivescriptmacros
+    rivescriptInterpreter = rs
+    currentUserid = rivescriptInterpreter.current_user()
+    return rivescriptmacros.getNextConcern(currentUserid)
+< object
+
+> object getNextConcernMacroTopic python
+    from concerns import rivescriptmacros
+    from concerns import topics
+    rivescriptInterpreter = rs
+    currentUserid = rivescriptInterpreter.current_user()
+
+    nextConcern = rivescriptmacros.getNextConcern(currentUserid)
+    if nextConcern is None:
+        return None
+    else:
+        macrotopic = topics.macrotopicFor[nextConcern]
+        return macrotopic
+< object
+
+> object setNextTopic python
+    from concerns import rivescriptmacros
+    from concerns import topics
+    rivescriptInterpreter = rs
+    currentUserid = rivescriptInterpreter.current_user()
+
+    nextConcern = rivescriptmacros.getNextConcern(currentUserid)
+    if nextConcern is None:
+        macrotopic = None
+        rivescriptInterpreter.set_uservar(currentUserid, "macrotopic", macrotopic)
+    else:
+        macrotopic = topics.macrotopicFor[nextConcern]
+        rivescriptInterpreter.set_uservar(currentUserid, "macrotopic", macrotopic)
+
+< object
+
+> object resetUservars python
+    rivescriptInterpreter = rs
+    currentUserid = rivescriptInterpreter.current_user()
+
+    rivescriptInterpreter.clear_uservars(currentUserid)
+< object
+
 > object dummy python
     from concerns import rivescriptmacros
 

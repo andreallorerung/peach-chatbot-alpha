@@ -52,8 +52,8 @@
 
 > topic physical includes global
 
-    // [discuss] relative-friend
-    + [*]
+    // [discuss] (some physical problem)
+    + {weight=1000}[*]
     ^ (@respiratory|@urinary|@constipation|@eating|@indigestion|@mouth|@nausea|
     ^ @sleeping|@fatigue|@swelling|@fever|@walking|@concentration|@sensory|
     ^ @speaking|@appearance|@sexuality) [*]
@@ -65,7 +65,7 @@
     //^ particular that is preventing you from sleeping well?
 
     + *
-    * <get counter> > 2 => I think that is enough information for the moment. {@ next top}
+    * <get counter> > 2 => I think that is enough information for the moment. <set counter=0><call>resetUservars</call>{@ next top}
     - How severe is your <get physicalissue> problem?<call>increase counter</call>
     - Have you often had similar problems in the past?<call>increase counter</call>
     - Is your <get physicalissue> problem affecting other areas of your life?<call>increase counter</call>

@@ -45,13 +45,19 @@
 
     // next topic
     + next (@topic)
-    - Ok, let's move on to the next topic ...
+    * <get macrotopic> eq undefined => I believe we have covered all the concerns that had been highlighted.
+    - Ok, let's move on to the next topic: <call>getNextConcern</call>, which\s
+    ^ is in the category of <call>getNextConcernMacroTopic</call> problems
+    ^ <call>setNextTopic</call>
+    ^ {topic=<get macrotopic>}
+    //^ {@ set <call>getNextConcernMacroTopic</call> }
+    //... getNextConcern, but really want the macrotopic, and to store the microtopic as a var so it can be referred to as the nature of the problem!
 
     + set glob
     - Topic set to global{topic=global}
 
     + set (@topicmacro)
-    - Topic set to <star>{topic=<star>}{@ highlighted}
+    - Topic set to <star>{topic=<star>}
 
 
 < topic
