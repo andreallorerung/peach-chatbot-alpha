@@ -15,6 +15,6 @@ def _loadDirOrFile(interpreter, brain):
         new_interpreter.load_file(brain)
     else:
         raise ValueError("no directory or file found at specified filepath "
-                        "for chatbot brain.")
+                        "for chatbot brain:'{}'".format(brain))
 
     return new_interpreter
