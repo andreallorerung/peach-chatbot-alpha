@@ -1,8 +1,7 @@
 import os
-from concerns import topics_model
-from concerns import rivescriptmacrosmacros
-from botinterface import bot_builder
-import nltk.stem
+from concerns import topics
+from concerns import rivescriptmacros
+import rivescript
 
 USERID = "localuser"
 USERNAME = "Nic"
@@ -25,29 +24,14 @@ HIGHLIGHTED = [("respiratory", 5),
                 ("partner", 3)]
 
 def main(args):
-
-    bot = _create_bot(args)
-    _set_highlighted_issues(HIGHLIGHTED)
-    issue_list = rivescriptmacrosmacros.get_all_issues(USERID)
-
-    print _format_welcome_message(USERID, issue_list)
-    micro_most_distressful = issue_list[0][0]
-    macrotopic_for_most_distressful = topics_model.micro_to_macro[micro_most_distressful]
-    print "micro most distressful: {}".format(micro_most_distressful)
-    print "macro most distressful: {}".format(macrotopic_for_most_distressful)
-    print "Bot>", bot.reply(USERID, "set global")
-    print "Bot>", bot.reply(USERID, "discuss {}".format(macrotopic_for_most_distressful))
-    print "Bot>", bot.reply(USERID, "discuss {}".format(micro_most_distressful)) #refactor issue_list to key-value pairs rather than couples
-
-    stemmer = nltk.stem.snowball.SnowballStemmer('english')
-
+    bot = rivescript.RiveScript()
+    bot.load_directory("./brain")
+    bot.sort_replies()
     # chatloop:
     while True:
         msg = raw_input("You> ")
         if msg == "/q":
             quit()
-
-        msg = stemmer.stem(msg)
 
         reply = bot.reply(USERID, msg)
         print "Bot>", reply
@@ -69,7 +53,7 @@ def _format_welcome_message(userid, issue_list):
 def _create_bot(args):
     brain = _select_brain(args)
 
-    bot = RiveScript()
+    bot = bot_builder.build()
     bot = _load_brain(bot, brain)
     bot.sort_replies()
 
