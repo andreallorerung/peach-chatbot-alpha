@@ -1,10 +1,10 @@
 '''Module to provide an implementation of a preprocessor'''
 import nltk.tokenize.simple
-import preprocessor_abstract
+import message_processor
 from preprocess import stemming_lancaster, stopwords_remover_lenient
 
 
-class MessagePreprocessor(preprocessor_abstract.MessagePreprocessorInterface):
+class MessagePreprocessor(message_processor.MessageProcessor):
     '''Class to implement the interface of a message processor'''
     def __init__(self):
         '''To set appropriate objects to the properties of the preprocessor'''
