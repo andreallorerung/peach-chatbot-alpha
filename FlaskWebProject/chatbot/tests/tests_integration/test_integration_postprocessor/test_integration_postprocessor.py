@@ -75,9 +75,14 @@ def test_process_notemplates():
 def test_process_nokeywords():
     systemReply = NOKEYWORDS
     processedReply = postprocessor.process(systemReply)
-    expected = "Here is an empty template: {{ }}"
+    expected = "Here is an empty template: None"
 
     assert expected == processedReply
+
+def test_search_empty():
+    searchResult = postprocessor._search("")
+
+    assert searchResult is None
 
 def test_process_null():
     systemReply = None
