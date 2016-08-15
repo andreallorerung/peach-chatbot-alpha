@@ -16,6 +16,11 @@ class ConversationDriver(object):
         or None when there are no concerns, or no unaddressed concerns'''
         raise NotImplementedError("ConversationDriver is an interface")
 
+    def getConcernScore(self, concern):
+        '''To return the concern distress score'''
+        raise NotImplementedError("ConversationDriver is an interface")
+
+
     def concernHasBeenAddressed(self, concern):
         '''To decide whether a concern has been addressed'''
         raise NotImplementedError("ConversationDriver is an interface")

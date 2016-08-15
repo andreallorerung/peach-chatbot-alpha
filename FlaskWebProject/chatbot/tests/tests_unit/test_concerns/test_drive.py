@@ -124,3 +124,34 @@ def test_getNextConcern_concernsNamesListEmpty():
 
     with pytest.raises(TypeError):
         nextConcern = conversationDriver.getNextConcernName()
+
+def test_getConcernScore():
+    concernName = "respiratory"
+
+    concernScore = conversationDriver.getConcernScore(concernName)
+    expectedScore = 5
+
+    assert concernScore is not None
+    assert expectedScore == concernScore
+
+def test_getConcernScore_other():
+    concernName = "faith"
+
+    concernScore = conversationDriver.getConcernScore(concernName)
+    expectedScore = 9
+
+    assert concernScore is not None
+    assert expectedScore == concernScore
+
+
+def test_getConcernScore_no_such_concern():
+    concernName = "gulliver-hurts"
+
+    with pytest.raises(KeyError):
+        concernScore = conversationDriver.getConcernScore(concernName)
+
+def test_getConcernScore_null():
+    concernName = None
+
+    with pytest.raises(KeyError):
+        concernScore = conversationDriver.getConcernScore(concernName)

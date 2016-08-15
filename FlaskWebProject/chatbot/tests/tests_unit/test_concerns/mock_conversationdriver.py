@@ -12,3 +12,13 @@ class MockConversationDriver(concerns.drive_conversation_abstract.ConversationDr
 
     def getNextConcernName(self):
         return self.concern
+
+    def getConcernScore(self, concernName):
+        if concernName == "some distressful concern":
+            return 10
+
+        elif concernName == "not a distressful concern":
+            return 1
+
+        else:
+            return 5

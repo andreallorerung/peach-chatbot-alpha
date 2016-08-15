@@ -57,7 +57,7 @@ class DistressConversationDriver(drive_conversation_abstract.ConversationDriver)
         return sorted(unsortedUserConcerns, key=operator.itemgetter(1), reverse=True)
 
     def getNextConcernName(self):
-        '''To retur the name of the next unaddressed user concern on the list,
+        '''To return the name of the next unaddressed user concern on the list,
         or None when there are no concerns, or no unaddressed concerns'''
         for concernName in self.sortedUserConcernNames:
             concern = self.userConcerns[concernName]
@@ -71,6 +71,14 @@ class DistressConversationDriver(drive_conversation_abstract.ConversationDriver)
         concern = self.userConcerns[concernName]
 
         return (concern is not None) and concern.hasBeenAddressed()
+
+    def getConcernScore(self, concernName):
+        try:
+            concern = self.userConcerns[concernName]
+        except KeyError:
+            raise KeyError("No concern '{}' stored for user {}".format(concernName, self.userid))
+
+        return concern.getDistressScore()
 
     def _markAddressed(self, concernName):
         '''To mark a concern as addressed'''

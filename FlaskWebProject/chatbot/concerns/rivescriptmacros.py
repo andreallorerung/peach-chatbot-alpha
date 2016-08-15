@@ -30,13 +30,15 @@ def getNextConcern(userid):
 
     return conversationDriver.getNextConcernName()
 
-def isDistressSignificantFor(microtopic):
+def isDistressSignificantFor(userid, microtopic):
     conversationDriver = \
         concern_factory.UserConcernsFactory.getUserConcerns(userid)
+    distressScore = conversationDriver.getConcernScore(microtopic)
 
-    # get the concern score
-
-    # if this is >= 9 then True else False
+    if distressScore >= 9:
+        return True
+    else:
+        return False
 
 def dummy_f():
     '''Dummy function used to test calling from rive file'''
