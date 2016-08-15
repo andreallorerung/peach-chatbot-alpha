@@ -1,3 +1,4 @@
+import pytest
 import botinterface.postprocessor
 import mock_keywordextractor
 import mock_search
@@ -32,9 +33,8 @@ def test_parseSearchParameters():
 
 def test_process_null():
     systemReply = None
-    processedReply = postprocessor.process(systemReply)
-
-    assert processedReply is None
+    with pytest.raises(TypeError):
+        processedReply = postprocessor.process(systemReply)
 
 def test_process_empty():
     systemReply = ""
