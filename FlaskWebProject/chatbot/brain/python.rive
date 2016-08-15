@@ -7,6 +7,7 @@
 // following macros.
 
 > object increase python
+    '''To increase the value of a uservariable passed in as an argument'''
     from concerns import rivescriptmacros
     rivescriptInterpreter = rs
 
@@ -20,7 +21,23 @@
     rivescriptInterpreter.set_uservar(currentUser, uservarName, newValue)
 < object
 
+> object decrease python
+    '''To descrease the value of a uservariable passed in as an argument'''
+    from concerns import rivescriptmacros
+    rivescriptInterpreter = rs
+
+    rivescriptmacros.validateParametersNumber(args)
+    uservarName = args[0]
+
+    currentUser = rivescriptInterpreter.current_user()
+    currentValue = rivescriptInterpreter.get_uservar(currentUser, uservarName)
+    newValue = rivescriptmacros.decrease(currentValue)
+
+    rivescriptInterpreter.set_uservar(currentUser, uservarName, newValue)
+< object
+
 > object getNextConcern python
+    '''To echo into the reply what the next concern is'''
     from concerns import rivescriptmacros
     rivescriptInterpreter = rs
     currentUserid = rivescriptInterpreter.current_user()
@@ -28,6 +45,8 @@
 < object
 
 > object getNextConcernMacroTopic python
+    '''To echo into the rivescript the macrotopic for the next concern, or None
+    if none are left'''
     from concerns import rivescriptmacros
     from concerns import topics
     rivescriptInterpreter = rs
@@ -35,29 +54,78 @@
 
     nextConcern = rivescriptmacros.getNextConcern(currentUserid)
     if nextConcern is None:
-        return None
+        return "None"
     else:
         macrotopic = topics.macrotopicFor[nextConcern]
         return macrotopic
 < object
 
+> object setAnotherUserVar python
+    '''To set another uservar for the purpose of demonstrating the inconsistent
+    internal state caused by setting uservariables through python macros while
+    also using the <get> rivescript tag during the processing of the same reply'''
+    currentUserid = rs.current_user()
+    rs.set_uservar(currentUserid, "anotherUserVar", "anotherValue")
+< object
+
+> object setAnotherNumericalVar python
+    '''To set another numerical uservar for the purpose of demonstrating the
+    inconsistent internal state caused by setting uservariables through python
+    macros while also using the <get> rivescript tag during the processing of
+    the same reply'''
+    currentUserid = rs.current_user()
+    currentValue = rs.get_uservar(currentUserid, "anotherNumericalVar")
+    newValue = int(currentValue) - 1
+    rs.set_uservar(currentUserid, "anotherNumericalVar", str(newValue))
+< object
+
+> object moveToNextTopic python
+    '''To send a message to the rivescript to match against an internal trigger
+    and trigger a topic change'''
+    rivescriptInterpreter = rs
+
+    currentUserid = rivescriptInterpreter.current_user()
+    rivescriptInterpreter.reply(currentUserid, "internal matcher to move to the next topic")
+    return rivescriptInterpreter.reply(currentUserid, "next top")
+< object
+
 > object setNextTopic python
+    '''To set the next topic within the parameter uservariable passed in as an
+    argument for the userid for which the reply containing the macro call is
+    being executed. Will set this variable to None when there are no topics left'''
     from concerns import rivescriptmacros
     from concerns import topics
     rivescriptInterpreter = rs
+
+    rivescriptmacros.validateParametersNumber(args)
+    uservarName = args[0]
+
     currentUserid = rivescriptInterpreter.current_user()
 
     nextConcern = rivescriptmacros.getNextConcern(currentUserid)
     if nextConcern is None:
-        macrotopic = None
-        rivescriptInterpreter.set_uservar(currentUserid, "macrotopic", macrotopic)
+        rivescriptInterpreter.set_uservar(currentUserid, "anotherUserVar", "yetAnotherValue")#it is not the fact this is inside an if statement, because this variable has been set to the new value
+        macrotopic = "None"
+        rivescriptInterpreter.set_uservar(currentUserid, uservarName, macrotopic)
     else:
         macrotopic = topics.macrotopicFor[nextConcern]
-        rivescriptInterpreter.set_uservar(currentUserid, "macrotopic", macrotopic)
+        rivescriptInterpreter.set_uservar(currentUserid, uservarName, macrotopic)
+< object
 
+> object showUservars python
+    '''To echo in the rivescript the content of the internal uservars lookup
+    table for the current user; for the purpose of demonstrating the
+    inconsistent internal state caused by setting uservariables through python
+    macros while also using the <get> rivescript tag during the processing of
+    the same reply'''
+    rivescriptInterpreter = rs
+    currentUserid = rivescriptInterpreter.current_user()
+    topic = rivescriptInterpreter.get_uservars(currentUserid)
+    return topic
 < object
 
 > object resetUservars python
+    '''Resets all uservariables for the current user'''
     rivescriptInterpreter = rs
     currentUserid = rivescriptInterpreter.current_user()
 

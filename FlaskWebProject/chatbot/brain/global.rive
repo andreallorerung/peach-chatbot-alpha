@@ -8,7 +8,8 @@
 ! array topic = top|concern|issu|problem
 
 + set glob
-- Topic set to global{topic=global}
+- Topic set to global
+^ {topic=global}
 
 + set (@topicmacro)
 - Topic set to <star>{topic=<star>}{@ highlighted}
@@ -40,18 +41,34 @@
 
     // discuss topicmacro
     + [*] (@discuss) [*] (@topicmacro) [concern] [*]
-    - Ok, let's talk about <star2> concerns.{topic=<star2>}
+    - Ok, let's talk about <star2> concerns.
+    ^ <set physicalissue=None>
+    ^ <set macrotopic=invalid>
+    ^ <set microtopic=invalid>
+    ^ {topic=<star2>}
+
+    // the following variables where used to experiment and solve the issue
+    // with inconsistent internal uservariable state when setting uservars
+    // values from inside python macros.
+    //^ <set anotherUserVar=notTheValueISet>
+    //^ <set anotherNumericalVar=1>
     //- Let's talk about <star2> then.{topic=<star2>}
 
     // next topic
     + next (@topic)
-    * <get macrotopic> eq undefined => I believe we have covered all the concerns that had been highlighted.
+    * <call>getNextConcernMacroTopic</call> eq None => \sI believe we have\s
+    ^ covered all the concerns that had been highlighted.
     - Ok, let's move on to the next topic: <call>getNextConcern</call>, which\s
-    ^ is in the category of <call>getNextConcernMacroTopic</call> problems
-    ^ <call>setNextTopic</call>
-    ^ {topic=<get macrotopic>}
-    //^ {@ set <call>getNextConcernMacroTopic</call> }
-    //... getNextConcern, but really want the macrotopic, and to store the microtopic as a var so it can be referred to as the nature of the problem!
+    ^ is in the category of <call>getNextConcernMacroTopic</call> problems.
+    ^ {@ set <get macrotopic>}
+
+    //^ \nValue of "anotherUserVar" according to "get" called from the rivescript
+    //^ file: <get anotherUserVar>
+    //^ \nValue of "anotherNumericalVar" according to "get" called from the rivescript
+    //^ file: <get anotherNumericalVar>
+    //^ \nValue of "macrotopic" according to "get" called from the rivescript
+    //^ file: <get macrotopic>\n
+    //^ Values of all uservars (for the current user) retrieved from python macro: <call>showUservars</call>
 
     + set glob
     - Topic set to global{topic=global}
@@ -59,5 +76,23 @@
     + set (@topicmacro)
     - Topic set to <star>{topic=<star>}
 
+    + internal matcher to move to the next topic
+    //* <call>shouldMakeQuery</call> eq True => Before we move on, since you were\s
+    //^ very distressed about the issue, would you like to have information about\s
+    //^ how to confront it?
+    - <call>setNextTopic macrotopic</call>
 
+    //^ <call>setAnotherUserVar</call>
+    //^ <call>setAnotherNumericalVar</call>
+    // the above show that modifying uservars through macros is not reflected in
+    // their value as evaluated from the same reply. This causes temporary
+    // inconsitencies that took days worth of work to debug.
+
+    //+ (@yes)
+    //% before we move on, since you were very distressed about the issue, would you like to have information about how to confront it?
+    //- You can find more information here: {{ '<get microtopic>' }}<call>setNextTopic macrotopic</call>
+
+    //+ (@no)
+    //% before we move on, since you were very distressed about the issue, would you like to have information about how to confront it?
+    //- <call>setNextTopic macrotopic</call>
 < topic

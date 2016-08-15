@@ -18,7 +18,7 @@ def resetphysical():
 
 def test_intro_reply():
     resetphysical()
-    print "SEPARATE"
+
     message = "my breathing problem ..."
     msg = Message(USERID, message)
     reply = bot.reply(msg)
@@ -31,8 +31,15 @@ def test_intro_reply():
 def test_problem_questions():
     resetphysical()
 
+    message = "my breathing problem ..."
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+
+    print "User message:'{}'".format(message)
+    print "Bot reply:'{}'".format(reply)
+
     # perform:
-    messages = ["my breathing problem ...", "It affects ...", "There's also ...",
+    messages = ["It affects ...", "There's also ...",
     "Ok", "this test message should fail the test"]
 
     for message in messages[:3]:
@@ -48,6 +55,10 @@ def test_problem_questions():
     reply = bot.reply(msg)
     print "User message:'{}'".format(message)
     print "Bot reply:'{}'".format(reply)
-    assert "move on to the next topic" in reply
-    # print reply
-    assert False
+    assert "I believe we have covered all the concerns" in reply
+    # should now be in family (if the macros are "rigged" to return "family" instead of "None" while we iron out the issues), test this later
+    # msg = Message(USERID, "discuss partner")
+    # reply = bot.reply(msg)
+    # print "User message:'{}'".format(message)
+    # print "Bot reply:'{}'".format(reply)
+    # assert False #used to force stdout capture with py.test for debugging

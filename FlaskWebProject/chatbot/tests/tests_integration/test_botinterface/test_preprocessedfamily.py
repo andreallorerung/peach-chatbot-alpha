@@ -137,4 +137,4 @@ def test_yes_and():
         # "would you like to tell me anything else about this?"
         reply = bot.reply(Message(USERID, msg))
         # test:
-        assert "next topic" in reply
+        assert "I believe we have covered all the concerns" in reply
