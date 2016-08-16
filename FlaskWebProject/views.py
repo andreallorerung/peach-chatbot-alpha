@@ -9,7 +9,7 @@ import simplejson as json
 from flask.ext.sqlalchemy import SQLAlchemy
 import pyodbc
 import urlparse
-from app import flask_app
+from app import app
 import os
 import ctypes
 import uuid
