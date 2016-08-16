@@ -3,15 +3,15 @@ Routes and views for the flask application.
 """
 
 
-#from datetime import datetime, timedelta
-from flask import Flask, request, render_template, jsonify, json, abort, session,g, redirect, url_for
+from datetime import datetime, timedelta
+from flask import Flask, request, render_template, jsonify, json
 #import simplejson as json
 #from flask.ext.sqlalchemy import SQLAlchemy
 #import pyodbc
 #import urlparse
 from FlaskWebProject import app
-#import os
-#import ctypes
+import os
+import ctypes
 #import uuid
 
 #import subprocess
