@@ -47,7 +47,7 @@ while row:
 #    )
 
 
-@flask_app.route('/chat_main')
+@app.route('/chat_main')
 def chat_main():
     return render_template(
         'chat_main.html',
@@ -60,27 +60,27 @@ def chat_main():
 #def showConsent():
 #    return render_template("consent.html")
 
-@flask_app.route("/chatBot")
+@app.route("/chatBot")
 def chatBot():
         return render_template("chatBot.html")
 
-@flask_app.route("/search")
+@app.route("/search")
 def search():
         return render_template("search.html")
 
 #@login_required #require users to be logged in to access
-@flask_app.route("/chatBrain")
+@app.route("/chatBrain")
 def chatBrain():
         return render_template("chatBrain.html")
 
-@flask_app.route("/ehna")
+@app.route("/ehna")
 def ehna():
     if g.user:
         return render_template("ehna.html")
 
     return render_template("chatBot.html")
 
-@flask_app.route("/api/chatBot", methods=['POST'])
+@app.route("/api/chatBot", methods=['POST'])
 def sendConcerns():
     return NLP(request.get_data())
     #return json.loads('[{"name":"respiratory", "value":"3"},{"name":"mouth","value":"3"}]')
@@ -93,7 +93,7 @@ def sendConcerns():
 
 
 
-@flask_app.route("/api/chatBot/chat", methods=['POST'])
+@app.route("/api/chatBot/chat", methods=['POST'])
 def postChat():
     return NLP (request.get_data())
 
@@ -116,7 +116,7 @@ def check_credentials(pin, dob):
         return row
 
 #sign in route and create user session
-@flask_app.route("/signIn", methods =['POST'])
+@app.route("/signIn", methods =['POST'])
 def signIn():
     login_data = urlparse.parse_qs(request.get_data())
     dob = build_date_string(login_data)
@@ -128,7 +128,7 @@ def signIn():
     print userid
     return redirect(url_for('ehna'))
 
-@flask_app.before_request
+@app.before_request
 def before_request():
     g.user = None
     if 'user' in session:
@@ -141,7 +141,7 @@ def before_request():
 
     #return 'not timed out yet'
 
-@flask_app.route('/logout')
+@app.route('/logout')
 def logout():
     return redirect(url_for('chat_main'))
     session.pop('user', None)
@@ -149,7 +149,7 @@ def logout():
 
 
 
-@flask_app.route('/contact')
+@app.route('/contact')
 def contact():
     #"""Renders the contact page."""
     return render_template(
@@ -159,7 +159,7 @@ def contact():
         message='Your contact page.'
     )
 
-@flask_app.route('/about')
+@app.route('/about')
 def about():
 #    """Renders the about page."""
     return render_template(
