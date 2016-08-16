@@ -1,132 +1,108 @@
-<!doctype html>   <!--declare this is a html document -->
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css')}}">
-<html lang="en">  <!--optional tag but good idea to let user know what lang -->
-<head>
-     <meta charset="utf-8">  <!--character set encoding prior to any content -->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="static/simple-sidebar.css" rel="stylesheet">
-      <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css' />
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-          <script type = "text/javascript" src ="static/js/jquery-3.1.0.js"></script>
-          <script type = "text/javascript" src="static/js/json2.js" ></script>
-          <script type = "text/javascript" var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};> </script>
-          <script type = "text/javascript" src ="static/js/myScript.js"></script>
-     <title>{% block title %}Peach - ChatBot{% endblock %}</title>
-     <!--[if lt IE 9]><script src="http://html5.shim.googlecode.com/svn/trunk/html5.js"> //opening script tag pointing tells browser to create elements
-<![endif]-->  <!--only affects internet explorer old version so within conditional clause -->
- </head>
-<body>
-  <!--navbar-->
-    {%block navbar%}
-    <div id = "navbar wrapper"
-      <nav class="navbar nav-peach-main">
-      <div class="container-fluid">
-      <div class="navbar-header">
-        <a href="#"><img class="peach_brand" src="https://peach-uclh.github.io/peach-design-guide/img/Logo_White.svg"></a>
-      <button type ="button"  class="navbar-toggle collapsed"
-        data-toggle="collapse" data-target="#navbar1" aria-expanded="false" aria-controls="navbar"
-        input type="image" src="[/static/images/glyphicons-115-list.png]"> </button>
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-          </div>
-          <div id="navbar1" class="navbar-collapse collapse in" aria-expanded="true">
-          <ul class="nav navbar-nav">
-            <li><class="active"><a href="chat_main">Home</a></li>
-            <li><class ="active"><a href="about">About</a></li>
-            <li><class ="active"><a href="contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-          </div><!--/.container-fluid -->
-        </nav>
-        {%endblock%}
-      </div>
-
-      <div id ="wrapper">
-  {%block sidebar%}
-<div id="sidebar-wrapper">
-<ul class ="sidebar-nav">
-  <li><class= "active"> <a href="chatBot" id="side-nav-bar">Your eHNA</a></li>
-  <!--<li><class="active"> <a href="showConsent" id="side-nav-bar">Consent</a></li>
-   <li><class="active"> <a href="#" id="side-nav-bar">Results</a></li>-->
-  <li><class="active"> <a href="search" id="side-nav-bar">Search Engine</a></li>
-  <li><class="active"><a href="#">ChatBot Help</a></li>
-</ul>
+{%extends "/chat_main.html" %}
+{%block chatBoxcontent%}
+<br>
+<h3> Terms and Conditions etc</h3>
 {%endblock%}
+{%block textbox%}
+<div class="container-fluid">
+<form id="myform">
+  <legend><h4>Please enter your Login information below to continue with your eHNA</h4></legend>
+    <div class="column">
+  PIN Number:<br>
+  <input type "submit" text="pinNumber" name="pinNumber" id="pinNumber" required><br>
+</div>
+<div class="column">
+  Date of Birth:<br>
+  <select name="day" class="1-31" id="day"  required></select>
+  <select name="month" id="month"  required>
+    <option value="01">January</option>
+    <option value="02">February</option>
+    <option value="03">March</option>
+    <option value="04">April</option>
+    <option value="05">May</option>
+    <option value="06">June</option>
+    <option value="07">July</option>
+    <option value="08">August</option>
+    <option value="09">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+  </select>
+  <select name="year" class="2000-1920" id ="year" required></select>
+</div>
+</form>
+<div class ="column">
+  <br>
+
+    <input type="submit" id=consentbtn value="I consent to the Terms and Conditions above and wish to continue with my eHNA."/></a>
+  </div>
 </div>
 
-    <!--sidebar-wrapper-->
+<!--validate pin and dob against azure sql db-->
+<script>
+$(function() {
+    $('#consentbtn').click(function() {
+      d = document.forms[0].day.value;
+      m = document.forms[0].month.value;
+      y = document.forms[0].year.value;
+      //console.log(dob);
+      var dob =  (y + - + m + - + d);
+      var pin = document.getElementById('pinNumber').value;
+      if(isNaN(pin) || pin.length < 6 || pin.length > 6){
+        alert("You must enter a valid pin in order to proceed with the eHNA.");
+ }else{
 
-    <div id = "page-content-wrapper">
-    <div class = "container fluid">
-      <div class = "row">
-<!--column 2 and begin main section of page-->
+        $.ajax({
+            url: '/signIn',
+            data: $('#myform').serialize(),
+            //datatype: 'json',
+            type: 'POST',
+           success: function(response) {
+             if(response == 'None'){
+               alert("Error. Your login details have not been found.")
+             }else{
+                //<a href="/ehna">
+                window.location.replace("/ehna");}
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+      }
+    });
+});
+</script>
 
-<div class = "col-lg 12 main"
-<header>
-<h1>{%block header%}ChatBot - Your Personal Health Advisor{%endblock%}</h1>
-</header>
-{%block searchGrid%}
+<script>
+//extract elements for dob from individual drop-down boxes
+var d;
+var m;
+var y;
+
+function getDate(){
+  d = document.forms[0].day.value;
+  m = document.forms[0].month.value;
+  y = document.forms[0].year.value;
+  var dob =  (y + - + m + - + d);
+    console.log(dob);
+
+}
+
+</script>
+
+<script>$(function(){
+    var $select = $(".1-31");
+    for (i=1;i<=31;i++){
+        $select.append($('<option></option>').val(i).html(i))
+    }
+}); </script>
+
+<script>$(function(){
+    var $select = $(".2000-1920");
+    for (i=2000;i>=1920;i--){
+        $select.append($('<option></option>').val(i).html(i))
+    }
+}); </script>
+
 {%endblock%}
-  <div class="w3-card">
-
-    <div class="w3-container">
-        {%block chatBoxcontent%}
-        <script>$("w3-card").animate({ scrollTop: 5000 }, 2000)</script>
-
-      <h4>Welcome to ChatBot!</h4>
-      <p> ChatBot will guide you through your Holistic Needs Assessment using a conversational format, so you can easily pinpoint
-        any concerns that you later wish to discuss face-to-face with your nurse or GP.</p>
-        <ul>
-          <li>Complete our <a href="chatBot">eHNA</a></li>
-          <li>Or <a href="search">search</a> for resources</li>
-          </ul>
-
-      <!--<script>document.getElementbyId("user").innerHTML = "User: "; </script>-->
-
-      {% endblock %}
-      {%block ehnacontent%}
-      {%endblock%}
-      <p id="user_input"></p>
-    </div>
-  </div>
-
-  {%block textbox%}
-  <div class = "glyph row">
-    <div class = "container">
-      <div class = "glyph">
-        <div class = "show-glyph">
-          <button type="submit" id=boldbtn><img src="/static/images/glyphicons-103-bold.png" img id=boldtrigger></button>
-          <button type = "submit" id=ibtn><img src="/static/images/glyphicons-102-italic.png" img id =italictrigger></button>
-          <label>Font Size:</label><select name="font-size">
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </select>
-          <!--<div data-prefix="glyphicons" data-type="" data-name="bold" data-utf="E103" data-position="11 - c">
-            <span class="glyphicons glyphicons-bold" aria-hidden="true"></span></div>
-          <span class="glyphicon glyphicon-bold" aria-hidden="true"></span>-->
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="w3-container">
-
-    <form action="textbox">
-      <label for="textbox">Type in the box below to talk to the ChatBot.</label><br>
-      <input type="text" id="type_here" class=textbox placeholder="Type here">
-        <input type="button" id ="submitbtn" value="Send" function onclick="myFunction()">
-    </form>
-    {% endblock %}
-    {%block logout%}
-    {%endblock%}
-  </div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
