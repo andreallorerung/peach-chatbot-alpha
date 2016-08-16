@@ -13,11 +13,10 @@ from FlaskWebProject import app
 import os
 import ctypes
 import uuid
-import chatbot.botinterface.bot_rivescript
+
 #import subprocess
 
-#initialise chatbot
-bot = chatbot.botinterface.bot_rivescript.BotRivescript(brain='app/chatbot/brain')
+
 
 #connecting to database
 conn = pyodbc.connect('Driver={SQL Server};''Server=tcp:peach-chatbot.database.windows.net,1433;''Database=peach-chatbot;''Uid=chatbot@peach-chatbot;Pwd=Peach-2016;')
