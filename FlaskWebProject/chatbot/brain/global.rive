@@ -77,9 +77,9 @@
     - Topic set to <star>{topic=<star>}
 
     + internal matcher to move to the next topic
-    //* <call>shouldMakeQuery</call> eq True => Before we move on, since you were\s
-    //^ very distressed about the issue, would you like to have information about\s
-    //^ how to confront it?
+    * <call>shouldMakeQuery</call> eq True => Before we move on, since you were\s
+    ^ very distressed about the issue, would you like to have information about\s
+    ^ how to confront it?
     - <call>setNextTopic macrotopic</call>
 
     //^ <call>setAnotherUserVar</call>
@@ -88,11 +88,11 @@
     // their value as evaluated from the same reply. This causes temporary
     // inconsitencies that took days worth of work to debug.
 
-    //+ (@yes)
-    //% before we move on, since you were very distressed about the issue, would you like to have information about how to confront it?
-    //- You can find more information here: {{ '<get microtopic>' }}<call>setNextTopic macrotopic</call>
+    + (@yes)
+    % before we move on, since you were very distressed about the issue, would you like to have information about how to confront it?
+    - You can find more information here: {{ '<call>getNextConcern</call>' }}<call>setNextTopic macrotopic</call>
 
-    //+ (@no)
-    //% before we move on, since you were very distressed about the issue, would you like to have information about how to confront it?
-    //- <call>setNextTopic macrotopic</call>
+    + (@no)
+    % before we move on, since you were very distressed about the issue, would you like to have information about how to confront it?
+    - <call>setNextTopic macrotopic</call>
 < topic

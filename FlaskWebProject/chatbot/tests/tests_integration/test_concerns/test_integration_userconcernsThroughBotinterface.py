@@ -36,14 +36,17 @@ def movedIntoPhysical():
 
     return "Does the problem present itself in particular conditions?" == reply
 
-def test_moveToNextTopic():
-    resetphysical()
-    initializeConcerns()
+def skipTopicDiscussion():
     internalVariableNameForCountingMessagesReceivedOnTopic = "counter"
     numberOfMessagesReceivedOnTopic = 3 # pretending this has actually happened
     bot._interpreter.set_uservar(USERID,
                         internalVariableNameForCountingMessagesReceivedOnTopic,
                         str(numberOfMessagesReceivedOnTopic))
+
+def test_moveToNextTopic():
+    resetphysical()
+    initializeConcerns()
+    skipTopicDiscussion()
 
     # perform:
     message = "bla bla bla"
@@ -57,3 +60,8 @@ def test_moveToNextTopic():
     assert movedIntoPhysical()
     # print reply
     # assert False
+
+def test_make_query():
+    resetphysical()
+    initializeConcerns()
+    skipTopicDiscussion()

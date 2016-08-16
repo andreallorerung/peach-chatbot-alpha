@@ -104,12 +104,24 @@
 
     nextConcern = rivescriptmacros.getNextConcern(currentUserid)
     if nextConcern is None:
-        rivescriptInterpreter.set_uservar(currentUserid, "anotherUserVar", "yetAnotherValue")#it is not the fact this is inside an if statement, because this variable has been set to the new value
         macrotopic = "None"
         rivescriptInterpreter.set_uservar(currentUserid, uservarName, macrotopic)
+        rivescriptInterpreter.set_uservar(currentUserid, "microtopic", macrotopic)
     else:
         macrotopic = topics.macrotopicFor[nextConcern]
         rivescriptInterpreter.set_uservar(currentUserid, uservarName, macrotopic)
+        rivescriptInterpreter.set_uservar(currentUserid, "microtopic", nextConcern)
+        # assert ??rivescriptInterpreter.get_uservar(currentUserid, "microtopic")
+< object
+
+> object shouldMakeQuery python
+    from concerns import rivescriptmacros
+    rivescriptInterpreter = rs
+    currentUserid = rivescriptInterpreter.current_user()
+    currentConcern = rivescriptInterpreter.get_uservar(currentUserid, microtopic)
+    decision = rivescriptmacros.isDistressSignificantFor(currentUserid, currentConcern)
+
+    return decision
 < object
 
 > object showUservars python
@@ -136,22 +148,4 @@
     from concerns import rivescriptmacros
 
     return rivescriptmacros.dummy_f()
-< object
-
-> object get_issue python
-    from concerns import rivescriptmacros
-
-    rivescriptmacros.validate_parameters(args)
-    issue = args[0]
-
-    score = rivescriptmacros.get_issue(rs.current_user(), issue)
-    return "{}: {}".format(issue, score)
-< object
-
-> object get_all_issues python
-    from concerns import rivescriptmacros
-
-    issues = rivescriptmacros.get_all_issues(rs.current_user())
-
-    return format_issue_list(issues)
 < object

@@ -91,7 +91,11 @@ def _addMockToFactory(userid, concern):
     assert concern == expectedNextConcern
 
     # rivescript.getNextConcern will fetch actual concern from the UserConcernsFactory
+    _clearFactory()
     concern_factory.UserConcernsFactory._usersessions[userid] = mockConversationDriver
+
+def _clearFactory():
+    concern_factory.UserConcernsFactory._usersessions = dict()
 
 def test_isDistressSignificantFor_yes():
     concern = "some distressful concern"
@@ -111,9 +115,13 @@ def test_isDistressSignificantFor_not():
 
 def test_isDistressSignificantFor_null_userid():
     concern = "doesn't matter"
-    _addMockToFactory(None, concern)
 
-    # with pytest.raises()
-    actualDecision = rivescriptmacros.isDistressSignificantFor(someuserid, concern)
+    with pytest.raises(KeyError):
+        actualDecision = rivescriptmacros.isDistressSignificantFor(None, concern)
 
-    assert actualDecision
+def test_isDistressSignificantFor_null_concern():
+    concern = "some concern"
+    _addMockToFactory(someuserid, concern)
+
+    with pytest.raises(KeyError):
+        actualDecision = rivescriptmacros.isDistressSignificantFor(someuserid, None)

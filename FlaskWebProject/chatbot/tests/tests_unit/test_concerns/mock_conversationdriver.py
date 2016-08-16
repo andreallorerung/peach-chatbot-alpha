@@ -21,4 +21,4 @@ class MockConversationDriver(concerns.drive_conversation_abstract.ConversationDr
             return 1
 
         else:
-            return 5
+            raise KeyError
