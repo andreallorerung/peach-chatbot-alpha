@@ -1,4 +1,3 @@
-
 function myFunction() {
   var typeHereText = document.getElementById('type_here').value;
   var prefix= "User: ";
@@ -7,7 +6,7 @@ function myFunction() {
   //console.log(JSON.stringify(json));
   document.getElementById("type_here").value = "";
     $.ajax({
-      url:'/api/chatBot',
+      url:'/api/chatBot/chat',
       data: typeHereText, //JSON.stringify(json),
       type:'POST',
       //dataType: 'application/json',
@@ -22,3 +21,29 @@ function myFunction() {
     }
 });
 }
+
+
+
+
+
+
+
+
+
+function addSelect(){
+$('#checkbox').change(function() {
+  if ($(this).is(':checked')) {
+    alert('Checked');
+  } else {
+    console.log('Unchecked');
+  }
+});
+}
+
+//function addSelect(){
+  //if(document.getElementById('breathing').checked) {
+    //  alert("checked");
+//  } else {
+  //    alert("not checked");
+//  }
+//}

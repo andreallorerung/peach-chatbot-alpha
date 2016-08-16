@@ -1,20 +1,20 @@
-<!doctype html>   <!--declare this is a html document -->
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css')}}">
-<html lang="en">  <!--optional tag but good idea to let user know what lang -->
- <head>
-     <meta charset="utf-8">  <!--character set encoding prior to any content -->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
-     <title>ChatBot Recommendation Engine</title>
-     <!--[if lt IE 9]><script src="http://html5.shim.googlecode.com/svn/trunk/html5.js"> //opening script tag pointing tells browser to create elements
-</script><![endif]-->  <!--only affects internet explorer old version so within conditional clause -->
- </head>
-<body>
-
-<!--add list of content in order of how you want them-->
-
-<header>
-  <h1> This will be the search page</h1>
-</header>
-</body>
-</html>
+{%extends "/chat_main.html" %}
+{%block searchGrid%}
+<div id="searchGrid">
+<h3>Use this page to search for resources.</h3>
+<p>For example try searching for keywords like 'smoking','support groups', 'finance' etc <br>
+  Your results will appear in the results box below.</p>
+ <form>
+   <form action="textbox">
+     <input type="text" id="searchBox" class=textbox placeholder="Search Here">
+     <input type="button" id ="submitbtn" value="Search">
+   </form>
+ </form>
+</div>
+<br>
+<br>
+{%endblock%}
+{%block chatBoxcontent%}
+{%endblock%}
+{%block textbox%}
+{%endblock%}
