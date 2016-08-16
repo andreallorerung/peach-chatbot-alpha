@@ -36,15 +36,15 @@ while row:
 #data = cursor.fetchall()
 
 
-#@app.route('/')
-#@app.route('/home')
-#def home():
-#    """Renders the home page."""
-#    return render_template(
-#        'chat_main.html',
-#        title='Welcome to PEACH Chatbot!',
-#        year=datetime.now().year,
-#    )
+@app.route('/')
+@app.route('/home')
+def home():
+    """Renders the home page."""
+    return render_template(
+        'chat_main.html',
+        title='Welcome to PEACH Chatbot!',
+        year=datetime.now().year,
+    )
 
 
 @app.route('/chat_main')
