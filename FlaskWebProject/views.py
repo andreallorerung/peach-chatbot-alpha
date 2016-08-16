@@ -19,7 +19,7 @@ import uuid
 
 
 #connecting to database
-conn = pyodbc.connect('Driver={SQL Server};''Server=tcp:peach-chatbot.database.windows.net,1433;''Database=peach-chatbot;''Uid=chatbot@peach-chatbot;Pwd=Peach-2016;')
+conn = pyodbc.connect('Driver={SQL Server Native Client 11.0};''Server=tcp:peach-chatbot.database.windows.net,1433;''Database=peach-chatbot;''Uid=chatbot@peach-chatbot;Pwd=Peach-2016;')
 
 #opening a cursor and query to check data in registration table
 cursor = conn.cursor()
