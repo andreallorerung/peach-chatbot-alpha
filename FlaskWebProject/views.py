@@ -68,9 +68,9 @@ def search():
         return render_template("search.html")
 
 #@login_required #require users to be logged in to access
-@app.route("/chatBrain")
-def chatBrain():
-        return render_template("chatBrain.html")
+@app.route("/msgChat")
+def msgChat():
+        return render_template("msgChat.html")
 
 @app.route("/ehna")
 def ehna():

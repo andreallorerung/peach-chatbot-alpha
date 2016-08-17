@@ -684,7 +684,7 @@
 </table>
 </div>
 <br>
-<input onClick="window.location.href='/chatBrain'" type="button" id="submit"  value="Submit">
+<input onClick="window.location.href='/msgChat'" type="button" id="submit"  value="Submit">
 
 
 <!--makes array of concern and rating-->
@@ -730,25 +730,7 @@ $(document).ready(function () {
 });
 </script>
 
-<!--<script language="javascript">
-function addSelect(checkboxName)
-    {
-      var checkboxes = document.querySelectorAll('input[name="' + checkboxName + '"]:checked'), values = [];
-    Array.prototype.forEach.call(checkboxes, function(el) {
-        values.push(el.value);
-    });
-    return values;
-}
-</script>-->
 
-<!--drop-down list large range-->
-<!--<script>$(function(){
-    var $select = $(".0-10");
-    for (i=0;i<=10;i++){
-        $select.append($('<option></option>').val(i).html(i))
-    }
-});
-</script>-->
 
 {%endblock%}
 {%block textbox%}
