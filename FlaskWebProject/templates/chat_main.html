@@ -113,8 +113,16 @@
     </div>
 
   </div>
-  {%block textBox%}
-  {%endblock%}
+  <div class="w3-container">
+
+    <form action="textbox">
+      <label for="textbox">Type in the box below to talk to the ChatBot.</label><br>
+      <input type="text" id="type_here" class=textbox placeholder="Type here">
+        <input type="button" id ="submitbtn" value="Send" function onclick="myFunction()">
+    </form>
+    {% endblock %}
+    {%block logout%}
+    {%endblock%}
   </div>
 </div>
 </div>
