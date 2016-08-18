@@ -11,8 +11,8 @@ function myFunction() {
       type:'POST',
       //dataType: 'application/json',
       //contentType: 'application/json',
-      success: function(reply) {
-        jQuery("#user_input").append('<br />' + reply);
+      success: function(content) {
+        jQuery("#user_input").append('<br />' + 'Bot: ' + content);
         //alert(JSON.parse(reply.responseText).NLPtext);
         console.log(reply);
     },

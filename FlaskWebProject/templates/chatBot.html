@@ -34,7 +34,7 @@
 <div class ="column">
   <br>
 
-    <input type="submit" id=consentbtn value="I consent to the Terms and Conditions above and wish to continue with my eHNA."/></a>
+    <input type="submit" id="consentbtn" value="I consent to the Terms and Conditions above and wish to continue with my eHNA."/></a>
   </div>
 </div>
 
@@ -65,8 +65,8 @@ $(function() {
                 window.location.replace("/ehna");}
                 console.log(response);
             },
-            error: function(error) {
-                console.log(error);
+            error: function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
             }
         });
       }
@@ -85,7 +85,7 @@ function getDate(){
   m = document.forms[0].month.value;
   y = document.forms[0].year.value;
   var dob =  (y + - + m + - + d);
-    console.log(dob);
+    //console.log(dob);
 
 }
 

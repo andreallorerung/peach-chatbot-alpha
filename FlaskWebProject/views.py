@@ -6,16 +6,20 @@ Routes and views for the flask application.
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, jsonify, json, abort, session,g, redirect, url_for
 import simplejson as json
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urlparse
 from FlaskWebProject import app
 import os
 import ctypes
 import uuid
+from chatbot.botinterface import bot_builder, bot_rivescript
+from chatbot.concerns import concern_factory, drive_conversation
+from chatbot.messagelog import message
 
-#import subprocess
 
+#instantiate bot
+bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
 
 #connecting to database
@@ -81,24 +85,30 @@ def ehna():
 
 @app.route("/api/chatBot", methods=['POST'])
 def sendConcerns():
-    return NLP(request.get_data())
+    concerns = (request.get_data())
+    print urlparse.parse_qs(concerns)
+    #return 'ok'
+    return concern_factory.getUserConcerns(cls,userid)
+    return drive_conversation.setInitialUserConcerns(self, concerns)
+    #HERE CALL DISTRESS CONVERSATION DRIVER TO PUT CONCERNS INTO RIGHT MODEL FOR bot
+
+    #return redirect(url_for('msgChat'))
+
+
     #return json.loads('[{"name":"respiratory", "value":"3"},{"name":"mouth","value":"3"}]')
     #NLP(request.get_data())
     #result =simplejson.loads('json_arr')
     #initialConcerns= result[{'name':value}]
     #return initialConcerns
-    #for element in result ['name']:
-    #    return element
-
-
 
 @app.route("/api/chatBot/chat", methods=['POST'])
 def postChat():
-    return NLP (request.get_data())
+    return message.__init__(self,userid,content)
+    #return NLP (request.get_data())
 
 def NLP(t):
 
-    return t
+    return urlparse.parse_qsl(t)
 
 
 #build data in correct format to query db
@@ -144,6 +154,7 @@ def before_request():
 def logout():
     return redirect(url_for('chat_main'))
     session.pop('user', None)
+    session.set_cookie('user',expires=0)
     print 'Logged out.'
 
 

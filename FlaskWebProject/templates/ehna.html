@@ -711,16 +711,18 @@ $(document).ready(function () {
     for(var i = 0 ; i < arr.length ; i++) {
       arrText += arr[i].name + " " + arr[i].value + ", ";
     var json_arr = JSON.stringify(arr);
+    //var data_to_send = $.serialize(arr);
     }
     alert(json_arr);
         $.ajax({
          url:'/api/chatBot',
-         data: json_arr, //JSON.stringify(json),
+         data: arr,//{arr:arr}, //JSON.stringify(json),
          type:'POST',
-         //dataType: 'application/json',
-         //contentType: 'application/json',
+         dataType: 'html',
+         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
          success: function(reply) {
-            //console.log(success);
+           var welcome = 'Bot: Thank you for submitting your assessment. Now we will discuss your concerns in further detail.';
+            $("#user_input").append =  welcome;
         },
         error: function(jqXHR, textStatus, errorThrown){
         console.log(errorThrown);
