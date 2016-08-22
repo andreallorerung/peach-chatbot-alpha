@@ -102,7 +102,8 @@ def sendConcerns():
     #print initialConcerns
     #return concerns
     #print json.dumps(initialConcerns)
-    return 'ok'
+    welcome = 'Bot: Thank you for submitting your concerns. Type "set glob" to begin dicussing them.'
+    return welcome
     #print concerns['respiratory',value]
     #print concerns['respiratory']
     #return jsonify('respiratory')

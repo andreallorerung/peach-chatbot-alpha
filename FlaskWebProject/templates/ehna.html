@@ -719,12 +719,12 @@ $(document).ready(function () {
          url:'/api/chatBot',
          data: arr,//json_arr,//{arr:arr}, //JSON.stringify(json),
          type:'POST',
-         dataType: 'html',
+         dataType: 'script',
          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
       //  contentType: 'application/json',
-         success: function(reply) {
+         success: function(welcome) {
         //   var welcome = 'Bot: Try it out: type hi';
-        //    $("#user_input").innerHTML =  welcome;
+         jQuery(welcome).appendTo('#user_input');
         console.log('done');
         },
         error: function(jqXHR, textStatus, errorThrown){

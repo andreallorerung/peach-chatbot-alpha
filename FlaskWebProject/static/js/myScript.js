@@ -1,7 +1,8 @@
 function myFunction() {
   var content = document.getElementById('type_here').value;
-  var prefix= "User: ";
-  document.getElementById("user_input").innerHTML =  prefix + content;
+  //var prefix= "User: ";
+  jQuery("#user_input").append('<br />' + 'User:' + content);
+//  document.getElementById("user_input").append =  prefix + content;
   var json = {"textForPython": content};
   //console.log(JSON.stringify(json));
   document.getElementById("type_here").value = "";
