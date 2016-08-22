@@ -1,20 +1,23 @@
 function myFunction() {
-  var typeHereText = document.getElementById('type_here').value;
+  var content = document.getElementById('type_here').value;
   var prefix= "User: ";
-  document.getElementById("user_input").innerHTML =  prefix + typeHereText;
-  var json = {"textForPython": typeHereText};
+  document.getElementById("user_input").innerHTML =  prefix + content;
+  var json = {"textForPython": content};
   //console.log(JSON.stringify(json));
   document.getElementById("type_here").value = "";
     $.ajax({
       url:'/api/chatBot/chat',
-      data: typeHereText, //JSON.stringify(json),
+      data: content, //JSON.stringify(json),
       type:'POST',
       //dataType: 'application/json',
-      //contentType: 'application/json',
-      success: function(content) {
-        jQuery("#user_input").append('<br />' + 'Bot: ' + content);
+      dataType: 'script',
+      success: function(msg) {
+        console.log('success');
+      //  console.log('success');
+      //  alert(msg);
+        //jQuery("#user_input").append('<br />' + 'Bot: ' + reply);
         //alert(JSON.parse(reply.responseText).NLPtext);
-        console.log(reply);
+      //  console.log(reply);
     },
     error: function(jqXHR, textStatus, errorThrown){
       console.log(errorThrown);
