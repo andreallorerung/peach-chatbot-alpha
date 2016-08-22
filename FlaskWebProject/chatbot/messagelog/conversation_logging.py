@@ -1,5 +1,6 @@
 import conversation as conversation_module
-import messagelog.message
+#import messagelog.message
+import message
 
 MESSAGE_USERNAME_FOR_SYSTEM = "system"
 

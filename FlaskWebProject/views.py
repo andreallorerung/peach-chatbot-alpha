@@ -16,23 +16,28 @@ import uuid
 from chatbot.botinterface import bot_builder, bot_rivescript
 from chatbot.concerns import concern_factory, drive_conversation
 from chatbot.messagelog import message
+from chatbot.messagelog.message import Message
+from chatbot.messagelog.conversation_logging import ConversationLogger
+from chatbot.messagelog.conversation import Conversation
 
 
 #instantiate bot
 bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
+userid1=uuid.uuid4()
+userid = str(userid1)
 
 #connecting to database
-conn = pyodbc.connect('Driver={SQL Server};''Server=tcp:peach-chatbot.database.windows.net,1433;''Database=peach-chatbot;''Uid=chatbot@peach-chatbot;Pwd=Peach-2016;')
+#conn = pyodbc.connect('Driver={SQL Server};''Server=tcp:peach-chatbot.database.windows.net,1433;''Database=peach-chatbot;''Uid=chatbot@peach-chatbot;Pwd=Peach-2016;')
 
 #opening a cursor and query to check data in registration table
-cursor = conn.cursor()
-cursor.execute('SELECT email, PIN FROM registration WHERE DOB = \'1989-08-11\'')
+#cursor = conn.cursor()
+#cursor.execute('SELECT email, PIN FROM registration WHERE DOB = \'1989-08-11\'')
 
-row=cursor.fetchone()
-while row:
-    print row
-    row = cursor.fetchone()
+#row=cursor.fetchone()
+#while row:
+#    print row
+#    row = cursor.fetchone()
 
 #cursor.callproc('sp_createUser',(_pin,_dob))
 
@@ -86,12 +91,30 @@ def ehna():
 @app.route("/api/chatBot", methods=['POST'])
 def sendConcerns():
     concerns = (request.get_data())
-    print urlparse.parse_qs(concerns)
-    #return 'ok'
-    return concern_factory.getUserConcerns(cls,userid)
-    return drive_conversation.setInitialUserConcerns(self, concerns)
-    #HERE CALL DISTRESS CONVERSATION DRIVER TO PUT CONCERNS INTO RIGHT MODEL FOR bot
+    qs = dict( (k, v if len(v)>1 else v[0] )
+           for k, v in urlparse.parse_qs(concerns).iteritems() )
+    build_concernsList(qs)
+    #initialConcerns = json.loads(concerns)
+    #print initialConcerns[0]['name']
+    #initialConcerns= urlparse.parse_qs(concerns)
+    #build_concernsList(initialConcerns)
+    #userConcerns = build_concerns(initialConcerns)
+    #print initialConcerns
+    #return concerns
+    #print json.dumps(initialConcerns)
+    return 'ok'
+    #print concerns['respiratory',value]
+    #print concerns['respiratory']
+    #return jsonify('respiratory')
 
+    #return jsonify(name=name,value=value)
+    #print json.loads(concerns)
+    #return concerns
+    #print urlparse.parse_qs(concerns)
+    userConcernsModel = concern_factory.UserConcernsFactory.getUserConcerns(userid)
+    userConcernsModel.setInitialUserConcerns(qs)
+    #HERE CALL DISTRESS CONVERSATION DRIVER TO PUT CONCERNS INTO RIGHT MODEL FOR bot
+    #return 'ok'
     #return redirect(url_for('msgChat'))
 
 
@@ -100,10 +123,44 @@ def sendConcerns():
     #result =simplejson.loads('json_arr')
     #initialConcerns= result[{'name':value}]
     #return initialConcerns
+def build_concernsList(qs):
+    #concerns = "{"
+    for k,v in qs.items():
+        qs[k] = int(v) #v = int(v)
+        #concerns +=  k + ":"  +  v + ","
+        #concerns += '{0} : {1}, '.format(k, v)
+        #print concerns
+    print qs
+
+    #concerns += "}"
+    #return concerns
+
+#def build_concerns(initialConcerns):
+#    return initialConcerns['name'] +  int(initialConcerns['value'])
 
 @app.route("/api/chatBot/chat", methods=['POST'])
 def postChat():
-    return message.__init__(self,userid,content)
+    content=request.get_data()
+    print content
+    print userid
+    #return content
+    #data sent through will be 'content'
+    userMessage = Message(userid,content)
+    ConversationLogger.logUserMessage(userMessage)
+    msg = bot.reply(userMessage)
+    ConversationLogger.logSystemReplyForUser(msg,userid)
+    _retrieveConversationFor(userid)
+    #return conversation
+    print conversation
+    #print msg
+
+    #return redirect(url_for('chat_main'))
+    #return msg
+
+    #print reply
+    #print msg
+    #return msg
+
     #return NLP (request.get_data())
 
 def NLP(t):
@@ -116,25 +173,25 @@ def build_date_string(login_data):
     return login_data['year'][0] + '-' + login_data['month'][0] + '-%02d' % int(login_data['day'][0])
 
 #perform sql query to validate login details
-def check_credentials(pin, dob):
-    cursor = conn.cursor()
-    cursor.execute('SELECT email FROM registration WHERE PIN = %s AND DOB = \'%s\'' % (pin, dob))
+#def check_credentials(pin, dob):
+#    cursor = conn.cursor()
+#    cursor.execute('SELECT email FROM registration WHERE PIN = %s AND DOB = \'%s\'' % (pin, dob))
 
-    row=cursor.fetchone()
-    while row:
-        return row
+#    row=cursor.fetchone()
+#    while row:
+#        return row
 
 #sign in route and create user session
 @app.route("/signIn", methods =['POST'])
 def signIn():
-    login_data = urlparse.parse_qs(request.get_data())
-    dob = build_date_string(login_data)
-    if str(check_credentials(login_data['pinNumber'][0], dob)) == 'None':
-        return ctypes.windll.user32.MessageBoxA(0, "Your login details were incorrect. Please try again.", "Incorrect Login Details", 1)
-    #session.pop('user', None)
-    userid= uuid.uuid4()
+    #login_data = urlparse.parse_qs(request.get_data())
+    #dob = build_date_string(login_data)
+    #if str(check_credentials(login_data['pinNumber'][0], dob)) == 'None':
+    #    return ctypes.windll.user32.MessageBoxA(0, "Your login details were incorrect. Please try again.", "Incorrect Login Details", 1)
+
+
     session['user'] = userid
-    print userid
+    #print userid
     return redirect(url_for('ehna'))
 
 @app.before_request
@@ -178,3 +235,12 @@ def about():
         year=datetime.now().year,
         message='Your application description page.'
 )
+
+
+
+#String concerns = "{";
+#for (Map.Entry<String, Integer> entry : concerns.entrySet()){
+ # concerns += entry.getKey() + ":" + entry.getValue() + ",\n";
+#}
+#concerns = concerns.subString (0, concerns.lengh -1 );
+#concerns += "}"
