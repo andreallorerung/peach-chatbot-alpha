@@ -149,13 +149,12 @@ def postChat():
     ConversationLogger.logUserMessage(userMessage)
     msg = bot.reply(userMessage)
     ConversationLogger.logSystemReplyForUser(msg,userid)
-    _retrieveConversationFor(userid)
+    #_retrieveConversationFor(userid)
     #return conversation
-    print conversation
-    #print msg
-
+    #print conversation
+    print msg
     #return redirect(url_for('chat_main'))
-    #return msg
+    return msg
 
     #print reply
     #print msg

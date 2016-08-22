@@ -15,7 +15,7 @@ function myFunction() {
         console.log('success');
       //  console.log('success');
       //  alert(msg);
-        //jQuery("#user_input").append('<br />' + 'Bot: ' + reply);
+        jQuery("#user_input").append('<br />' + 'Bot: ' + msg);
         //alert(JSON.parse(reply.responseText).NLPtext);
       //  console.log(reply);
     },
