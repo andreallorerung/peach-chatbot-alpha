@@ -1,6 +1,5 @@
 import conversation as conversation_module
-#import messagelog.message
-import message
+import message as message_module
 
 MESSAGE_USERNAME_FOR_SYSTEM = "system"
 
@@ -30,7 +29,7 @@ class ConversationLogger(object):
 
     @classmethod
     def logSystemReplyForUser(cls, replyContent, userid):
-        message = messagelog.message.Message(MESSAGE_USERNAME_FOR_SYSTEM,
+        message = message_module.Message(MESSAGE_USERNAME_FOR_SYSTEM,
                                                 replyContent)
 
         conversation = cls._retrieveConversationFor(userid)
