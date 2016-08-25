@@ -1,10 +1,12 @@
 from botinterface.bot_rivescript import BotRivescript
-from botinterface.preprocessor import MessagePreprocessor
+import botinterface.bot_builder
 from concerns import concern_factory
 from messagelog.message import Message
 
+
 # set_up
-bot = BotRivescript(preprocessor = MessagePreprocessor())
+bot = botinterface.bot_builder.build()
+
 USERID = "localuser"
 mostDistressful = "urinary"
 macrotopicForMostDistressful = "physical"

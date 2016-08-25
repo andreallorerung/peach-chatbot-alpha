@@ -6,5 +6,5 @@ class Lancaster(Stemmer):
     def __init__(self):
         self.stemmer = LancasterStemmer()
 
-    def stem_word(self, word):
+    def stemWord(self, word):
         return self.stemmer.stem(word)

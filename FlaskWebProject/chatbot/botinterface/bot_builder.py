@@ -1,14 +1,18 @@
 import rivescript
 import bot_rivescript
+import preprocess.preprocessor_builder
+import postprocess.postprocessor_builder
 
 def build():
-    return bot_rivescript.BotRivescript()
+    preprocessor = preprocess.preprocessor_builder.build()
+    postprocessor = postprocess.postprocessor_builder.build()
+    return bot_rivescript.BotRivescript(preprocessor=preprocessor, postprocessor=postprocessor)
 
 class BotBuilder(object):
 
     def __init__(self):
-        self.preprocessor = None
-        self.postprocessor = None
+        self.preprocessor = preprocess.preprocessor_builder.build()
+        self.postprocessor = postprocess.postprocessor_builder.build()
         self.interpreter = None
         self.brain = None
 
