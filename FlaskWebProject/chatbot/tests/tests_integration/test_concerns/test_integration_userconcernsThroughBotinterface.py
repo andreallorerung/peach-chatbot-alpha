@@ -64,6 +64,49 @@ def test_moveToNextTopic():
     # assert False
 
 def test_make_query():
-    resetphysical()
+    setglobal()
     initializeConcerns()
+    bot.createUserSession(USERID)
+
     skipTopicDiscussion()
+
+    # perform:
+    message = "anything"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+
+    assert mostDistressful == getCurrentMicroTopic()
+    assert "Before we move on" in reply
+
+    message = "yes"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+    assert "find more information here" in reply
+
+def test_make_query_no():
+    setglobal()
+    initializeConcerns()
+    bot.createUserSession(USERID)
+
+    skipTopicDiscussion()
+
+    # perform:
+    message = "anything"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+
+    assert mostDistressful == getCurrentMicroTopic()
+    assert "Before we move on" in reply
+
+    message = "no"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+    assert "next topic" in reply
+
+def getCurrentMicroTopic():
+    currentTopicInternalVariableName = "microtopic"
+    return bot._interpreter.get_uservar(USERID, currentTopicInternalVariableName)
