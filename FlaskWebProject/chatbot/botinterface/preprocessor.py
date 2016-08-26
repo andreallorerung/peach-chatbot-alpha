@@ -1,6 +1,5 @@
 '''Module to provide an implementation of a preprocessor'''
 import message_processor
-from preprocess import stemming_lancaster, stopwords_remover_lenient
 
 
 class MessagePreprocessor(message_processor.MessageProcessor):
