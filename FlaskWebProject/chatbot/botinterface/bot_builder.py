@@ -6,7 +6,9 @@ import postprocess.postprocessor_builder
 def build():
     preprocessor = preprocess.preprocessor_builder.build()
     postprocessor = postprocess.postprocessor_builder.build()
-    return bot_rivescript.BotRivescript(preprocessor=preprocessor, postprocessor=postprocessor)
+    return bot_rivescript.BotRivescript(preprocessor=preprocessor,
+                                interpreter=rivescript.RiveScript(debug=True),
+                                postprocessor=postprocessor)
 
 class BotBuilder(object):
 
@@ -26,7 +28,7 @@ class BotBuilder(object):
         self.postprocessor = postprocessor
 
     def build(self):
-        self.interpreter = rivescript.RiveScript()
+        self.interpreter = rivescript.RiveScript(debug=False)
 
         return bot_rivescript.BotRivescript(
             preprocessor=self.preprocessor,
