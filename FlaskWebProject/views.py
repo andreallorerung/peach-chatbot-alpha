@@ -12,6 +12,8 @@ import urlparse
 from FlaskWebProject import app
 import os
 import ctypes
+import urllib
+import urllib2
 import uuid
 from chatbot.botinterface import bot_builder, bot_rivescript
 from chatbot.concerns import concern_factory, drive_conversation
@@ -19,8 +21,12 @@ from chatbot.messagelog import message
 from chatbot.messagelog.message import Message
 from chatbot.messagelog.conversation_logging import ConversationLogger
 from chatbot.messagelog.conversation import Conversation
+from searcher.searcher import Searcher
 
 
+botBuilder = bot_builder.BotBuilder()
+botBuilder.addBrain('FlaskWebProject/chatbot/brain')
+bot = botBuilder.build()
 #instantiate bot
 bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
@@ -72,21 +78,50 @@ def chat_main():
 def chatBot():
         return render_template("chatBot.html")
 
-@app.route("/search")
-def search():
-        return render_template("search.html")
+
+@app.route("/test")
+def test():
+        return render_template("test.html")
+
+
+@app.route("/searchpage")
+def searchpage():
+        return render_template("searchpage.html")
 
 #@login_required #require users to be logged in to access
 @app.route("/msgChat")
 def msgChat():
         return render_template("msgChat.html")
 
+#@login_required #require users to be logged in to access
 @app.route("/ehna")
 def ehna():
     if g.user:
         return render_template("ehna.html")
 
     return render_template("chatBot.html")
+
+
+@app.route("/api/chatBot/search", methods=['POST'])
+def searchforSites():
+    userSearch = (request.get_data())
+    mydict = searcher.search(userSearch)
+
+    #mydict = {'key1': 'value1', 'key2': 'value2'}
+    returnDict = json.dumps(mydict)
+    return returnDict
+    #encoded_dict = urllib.urlencode(mydict)
+    #request = urllib2.Request(myurl, encoded_dict)
+# now make the request
+    #urlList = request.urlopen().read()
+    #urlList={"www.google.co.uk, www.amazon.co.uk, www.macmillan.co.uk"
+    #return urlList
+
+
+    def NLP(t):
+
+        return t
+
 
 @app.route("/api/chatBot", methods=['POST'])
 def sendConcerns():
@@ -102,8 +137,7 @@ def sendConcerns():
     #print initialConcerns
     #return concerns
     #print json.dumps(initialConcerns)
-    welcome = 'Bot: Thank you for submitting your concerns. Type "set glob" to begin dicussing them.'
-    return welcome
+
     #print concerns['respiratory',value]
     #print concerns['respiratory']
     #return jsonify('respiratory')
@@ -117,8 +151,8 @@ def sendConcerns():
     #HERE CALL DISTRESS CONVERSATION DRIVER TO PUT CONCERNS INTO RIGHT MODEL FOR bot
     #return 'ok'
     #return redirect(url_for('msgChat'))
-
-
+    welcome = 'Bot: Thank you for submitting your concerns. Type "set glob" to begin dicussing them.'
+    return welcome
     #return json.loads('[{"name":"respiratory", "value":"3"},{"name":"mouth","value":"3"}]')
     #NLP(request.get_data())
     #result =simplejson.loads('json_arr')
@@ -162,10 +196,6 @@ def postChat():
     #return msg
 
     #return NLP (request.get_data())
-
-def NLP(t):
-
-    return urlparse.parse_qsl(t)
 
 
 #build data in correct format to query db
