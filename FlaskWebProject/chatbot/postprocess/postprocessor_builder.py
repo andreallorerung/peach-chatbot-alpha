@@ -1,5 +1,5 @@
-import postprocess.keyword_extractor_single
-import postprocess.message_decorator_single
+import keyword_extractor_single
+import message_decorator_single
 import botinterface.postprocessor
 
 def build():

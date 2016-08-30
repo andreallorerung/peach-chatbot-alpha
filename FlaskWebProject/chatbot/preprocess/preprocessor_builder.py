@@ -1,6 +1,6 @@
-import preprocess.tokenizer_simple
-import preprocess.stopwords_remover_lenient
-import preprocess.stemming_lancaster
+import tokenizer_simple
+import stopwords_remover_lenient
+import stemming_lancaster
 import botinterface.preprocessor
 
 def build():
