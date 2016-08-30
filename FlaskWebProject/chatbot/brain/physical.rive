@@ -67,7 +67,7 @@
     //follow up questions are asked twice before moving to the next topic
     //(keeping track of them through the counter uservariable)
     + *
-    * <get counter> > 2 => I think that is enough information for the moment.<call>moveToNextTopic</call>
+    * <get counter> > 2 => I think that is enough information for the moment. {@ internal matcher to check if should make query}
     - How severe is your <get physicalissue> problem?<call>increase counter</call>
     - Have you often had similar problems in the past?<call>increase counter</call>
     - Is your <get physicalissue> problem affecting other areas of your life?<call>increase counter</call>
@@ -77,5 +77,19 @@
     // platform cygwin -- Python 2.7.10, pytest-2.9.2, py-1.4.31, pluggy-0.3.1
     // Rivescript version: 1.14.1
     // "TypeError: coercing to Unicode: need string or buffer, int found"
+
+    + internal matcher to check if should make query
+    * <call>shouldMakeQuery</call> == True => {topic=query}Before we move on would you like me to look for some information that might help with this?
+    - <call>moveToNextTopic</call>
+
+< topic
+
+> topic query includes global
+
+    + (@yes)
+    - You can find more information here: {{ '<get microtopic>' }}<call>moveToNextTopic</call>
+
+    + (@not)
+    - <call>moveToNextTopic</call>
 
 < topic

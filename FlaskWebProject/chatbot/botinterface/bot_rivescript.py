@@ -19,13 +19,14 @@ class BotRivescript(bot_abstract.BotInterface):
     def createUserSession(self, userInfo):
         # userinfo is expected to be just the userid *by this implementation!*
         userid = userInfo
-        self._registerUseridWithInterpreter(userid)
+        self._enterGlobalTopicFor(userid)
+        self._moveToFirstConcernFor(userid)
 
-    def _registerUseridWithInterpreter(self, userid):
-        # a dummy user variable with a dummy value must be set by the interpreter
-        uservariableName = "dummy_variable"
-        uservariableValue = "dummy_value"
-        self._interpreter.set_uservar(userid, uservariableName, uservariableValue)
+    def _enterGlobalTopicFor(self, userid):
+        reply = self._interpreter.reply(userid, "set glob")
+
+    def _moveToFirstConcernFor(self, userid):
+        reply = self._interpreter.reply(userid, "internal matcher to start the conversation")
 
     def reply(self, message):
         userid = message.getUserid()

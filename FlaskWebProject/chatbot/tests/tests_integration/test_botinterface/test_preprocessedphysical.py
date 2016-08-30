@@ -1,9 +1,10 @@
 from botinterface.bot_rivescript import BotRivescript
 from botinterface.preprocessor import MessagePreprocessor
+import botinterface.bot_builder
 from messagelog.message import Message
 
 # set_up
-bot = BotRivescript(preprocessor = MessagePreprocessor())
+bot = botinterface.bot_builder.build()
 USERID = "localuser"
 
 def setglobal():
@@ -56,9 +57,3 @@ def test_problem_questions():
     print "User message:'{}'".format(message)
     print "Bot reply:'{}'".format(reply)
     assert "I believe we have covered all the concerns" in reply
-    # should now be in family (if the macros are "rigged" to return "family" instead of "None" while we iron out the issues), test this later
-    # msg = Message(USERID, "discuss partner")
-    # reply = bot.reply(msg)
-    # print "User message:'{}'".format(message)
-    # print "Bot reply:'{}'".format(reply)
-    # assert False #used to force stdout capture with py.test for debugging

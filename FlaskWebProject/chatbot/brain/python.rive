@@ -104,23 +104,23 @@
 
     nextConcern = rivescriptmacros.getNextConcern(currentUserid)
     if nextConcern is None:
+        microtopic = nextConcern
         macrotopic = "None"
         rivescriptInterpreter.set_uservar(currentUserid, uservarName, macrotopic)
-        rivescriptInterpreter.set_uservar(currentUserid, "microtopic", macrotopic)
+        rivescriptInterpreter.set_uservar(currentUserid, "microtopic", microtopic)
     else:
+        microtopic = nextConcern
         macrotopic = topics.macrotopicFor[nextConcern]
         rivescriptInterpreter.set_uservar(currentUserid, uservarName, macrotopic)
-        rivescriptInterpreter.set_uservar(currentUserid, "microtopic", nextConcern)
-        # assert ??rivescriptInterpreter.get_uservar(currentUserid, "microtopic")
+        rivescriptInterpreter.set_uservar(currentUserid, "microtopic", microtopic)
 < object
 
 > object shouldMakeQuery python
     from concerns import rivescriptmacros
     rivescriptInterpreter = rs
     currentUserid = rivescriptInterpreter.current_user()
-    currentConcern = rivescriptInterpreter.get_uservar(currentUserid, microtopic)
+    currentConcern = rivescriptInterpreter.get_uservar(currentUserid, "microtopic")
     decision = rivescriptmacros.isDistressSignificantFor(currentUserid, currentConcern)
-
     return decision
 < object
 

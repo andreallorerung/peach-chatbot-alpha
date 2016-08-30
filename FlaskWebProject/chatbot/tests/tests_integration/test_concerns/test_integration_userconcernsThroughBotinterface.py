@@ -1,10 +1,12 @@
 from botinterface.bot_rivescript import BotRivescript
-from botinterface.preprocessor import MessagePreprocessor
+import botinterface.bot_builder
 from concerns import concern_factory
 from messagelog.message import Message
 
+
 # set_up
-bot = BotRivescript(preprocessor = MessagePreprocessor())
+bot = botinterface.bot_builder.build()
+
 USERID = "localuser"
 mostDistressful = "urinary"
 macrotopicForMostDistressful = "physical"
@@ -62,6 +64,49 @@ def test_moveToNextTopic():
     # assert False
 
 def test_make_query():
-    resetphysical()
+    setglobal()
     initializeConcerns()
+    bot.createUserSession(USERID)
+
     skipTopicDiscussion()
+
+    # perform:
+    message = "anything"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+
+    assert mostDistressful == getCurrentMicroTopic()
+    assert "Before we move on" in reply
+
+    message = "yes"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+    assert "find more information here" in reply
+
+def test_make_query_no():
+    setglobal()
+    initializeConcerns()
+    bot.createUserSession(USERID)
+
+    skipTopicDiscussion()
+
+    # perform:
+    message = "anything"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+
+    assert mostDistressful == getCurrentMicroTopic()
+    assert "Before we move on" in reply
+
+    message = "no"
+
+    msg = Message(USERID, message)
+    reply = bot.reply(msg)
+    assert "next topic" in reply
+
+def getCurrentMicroTopic():
+    currentTopicInternalVariableName = "microtopic"
+    return bot._interpreter.get_uservar(USERID, currentTopicInternalVariableName)
