@@ -2,7 +2,6 @@
 Routes and views for the flask application.
 """
 
-
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, jsonify, json, abort, session,g, redirect, url_for
 import simplejson as json
@@ -24,11 +23,12 @@ from chatbot.messagelog.conversation import Conversation
 from searcher.searcher import Searcher
 
 
+
 botBuilder = bot_builder.BotBuilder()
 botBuilder.addBrain('FlaskWebProject/chatbot/brain')
 bot = botBuilder.build()
 #instantiate bot
-bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
+#bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
 userid1=uuid.uuid4()
 userid = str(userid1)
@@ -44,10 +44,6 @@ userid = str(userid1)
 #while row:
 #    print row
 #    row = cursor.fetchone()
-
-#cursor.callproc('sp_createUser',(_pin,_dob))
-
-#data = cursor.fetchall()
 
 
 @app.route('/')
@@ -70,18 +66,9 @@ def chat_main():
     )
 
 
-#@app.route("/showConsent")
-#def showConsent():
-#    return render_template("consent.html")
-
 @app.route("/chatBot")
 def chatBot():
         return render_template("chatBot.html")
-
-
-@app.route("/test")
-def test():
-        return render_template("test.html")
 
 
 @app.route("/searchpage")
@@ -101,7 +88,7 @@ def ehna():
 
     return render_template("chatBot.html")
 
-
+#search for resources
 @app.route("/api/chatBot/search", methods=['POST'])
 def searchforSites():
     userSearch = (request.get_data())
@@ -122,7 +109,7 @@ def searchforSites():
 
         return t
 
-
+#send initial concerns to set up bot
 @app.route("/api/chatBot", methods=['POST'])
 def sendConcerns():
     concerns = (request.get_data())
@@ -158,6 +145,8 @@ def sendConcerns():
     #result =simplejson.loads('json_arr')
     #initialConcerns= result[{'name':value}]
     #return initialConcerns
+
+#format user concerns into correct structure for bot methods
 def build_concernsList(qs):
     #concerns = "{"
     for k,v in qs.items():
@@ -173,6 +162,7 @@ def build_concernsList(qs):
 #def build_concerns(initialConcerns):
 #    return initialConcerns['name'] +  int(initialConcerns['value'])
 
+#return bot message
 @app.route("/api/chatBot/chat", methods=['POST'])
 def postChat():
     content=request.get_data()
@@ -218,11 +208,10 @@ def signIn():
     #dob = build_date_string(login_data)
     #if str(check_credentials(login_data['pinNumber'][0], dob)) == 'None':
     #    return ctypes.windll.user32.MessageBoxA(0, "Your login details were incorrect. Please try again.", "Incorrect Login Details", 1)
-
-
     session['user'] = userid
     #print userid
     return redirect(url_for('ehna'))
+
 
 @app.before_request
 def before_request():
@@ -243,7 +232,6 @@ def logout():
     session.pop('user', None)
     session.set_cookie('user',expires=0)
     print 'Logged out.'
-
 
 
 @app.route('/contact')
