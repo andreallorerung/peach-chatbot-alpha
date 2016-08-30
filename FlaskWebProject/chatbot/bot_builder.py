@@ -1,12 +1,12 @@
 import rivescript
-import bot_rivescript
+import botinterface.bot_rivescript
 import preprocess.preprocessor_builder
 import postprocess.postprocessor_builder
 
 def build():
     preprocessor = preprocess.preprocessor_builder.build()
     postprocessor = postprocess.postprocessor_builder.build()
-    return bot_rivescript.BotRivescript(preprocessor=preprocessor,
+    return botinterface.bot_rivescript.BotRivescript(preprocessor=preprocessor,
                                 interpreter=rivescript.RiveScript(debug=True),
                                 postprocessor=postprocessor)
 
@@ -30,7 +30,7 @@ class BotBuilder(object):
     def build(self):
         self.interpreter = rivescript.RiveScript(debug=False)
 
-        return bot_rivescript.BotRivescript(
+        return botinterface.bot_rivescript.BotRivescript(
             preprocessor=self.preprocessor,
             postprocessor=self.postprocessor,
             interpreter=self.interpreter,
