@@ -1,5 +1,5 @@
 from nltk.stem.lancaster import LancasterStemmer
-from preprocess.stemming import Stemmer
+from stemming import Stemmer
 
 class Lancaster(Stemmer):
 
