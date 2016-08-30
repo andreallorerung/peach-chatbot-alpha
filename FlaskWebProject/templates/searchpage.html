@@ -1,13 +1,20 @@
 {%extends "/chat_main.html" %}
+{%block mainheading%}
+{%endblock%}
+{%block welcomepg%}
+{%endblock%}
 {%block searchGrid%}
+
+
+
 <div id="searchGrid">
-<h3>Use this page to search for resources.</h3>
+<h3 style=>Search for resources</h3>
 <p>For example try searching for keywords like 'smoking','support groups', 'finance' etc <br>
   Your results will appear in the results box below.</p>
  <form>
    <form action="textbox">
      <input type="text" id="searchBox" class=textbox placeholder="Search Here">
-     <input type="button" id ="submitbtn" value="Search">
+     <button type="submit" id ="searchIcon"> <img src="{{ url_for('static', filename = 'searchIcon.png') }}"  width="30" height="30" function onclick="SearchFunction()"></button>
    </form>
  </form>
 </div>
@@ -15,6 +22,12 @@
 <br>
 {%endblock%}
 {%block chatBoxcontent%}
+<div class="w3-card">
+
+  <div id="w3-container">
+    <p id="user_input"></p>
+</div>
+</div>
 {%endblock%}
 {%block textbox%}
 {%endblock%}

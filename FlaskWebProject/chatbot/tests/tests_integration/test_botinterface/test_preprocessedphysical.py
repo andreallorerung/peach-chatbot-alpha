@@ -57,9 +57,3 @@ def test_problem_questions():
     print "User message:'{}'".format(message)
     print "Bot reply:'{}'".format(reply)
     assert "I believe we have covered all the concerns" in reply
-    # should now be in family (if the macros are "rigged" to return "family" instead of "None" while we iron out the issues), test this later
-    # msg = Message(USERID, "discuss partner")
-    # reply = bot.reply(msg)
-    # print "User message:'{}'".format(message)
-    # print "Bot reply:'{}'".format(reply)
-    # assert False #used to force stdout capture with py.test for debugging

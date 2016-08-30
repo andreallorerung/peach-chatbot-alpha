@@ -1,6 +1,59 @@
 {%extends "/chat_main.html" %}
+{%block mainheading%}
+{%endblock%}
+{%block welcomepg%}
+{%endblock%}
 {%block chatBoxcontent%}
+<span id="step1">Step 3/3: Talk to our ChatBot and submit.</span>
+<p></p>
+<div class="w3-card" id=chatScroll>
+
+  <div class="w3-container">
+    <!--<p style= "color:blue">Bot: Hi, I am the Chatbot. Thanks for submitting your concerns and rating list. Now you can try talking to me, type 'set glob' to start talking.</p>-->
+    <p id="user_input"></p>
+</div>
+</div>
 {%endblock%}
 {%block logout%}
-<input onClick="window.location.href='/logout'" type="button" id="submit"  value="Submit and Logout">
+<input onClick="window.location.href='/logout'" type="button" id="submitLogout"  value="Submit and Logout">
 {%endblock%}
+{%block textbox%}
+<div class = "glyph row">
+  <div class = "container">
+    <div class = "glyph">
+      <div class = "show-glyph">
+      <!--  <button type="submit" id=boldbtn><img src="glyphicons-halflings-regular.svg" img id=boldtrigger></button>
+        <button type = "submit" id=ibtn><img src="/static/fonts/glyphicons-102-italic.png" img id =italictrigger></button>
+        <label>Font Size:</label><select name="font-size">
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>-->
+        <!--<div data-prefix="glyphicons" data-type="" data-name="bold" data-utf="E103" data-position="11 - c">
+          <span class="glyphicons glyphicons-bold" aria-hidden="true"></span></div>
+        <span class="glyphicon glyphicon-bold" aria-hidden="true"></span>-->
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="w3-container">
+
+  <form action="textbox">
+    <label for="textbox">Type in the box below to talk to the ChatBot.</label><br>
+    <input type="text" id="type_here" class=textbox placeholder="Type here">
+      <input type="button" id ="submitbtn" value="Send" function onclick="myFunction()">
+  </form>
+  </div>
+
+
+  <script>
+  $(document).keydown(function(e) {
+      if(e.keyCode == 13) {
+        e.preventDefault();
+        myFunction();
+      }
+  });
+  </script>
+
+
+  {%endblock%}

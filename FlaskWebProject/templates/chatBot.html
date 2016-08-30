@@ -1,17 +1,39 @@
 {%extends "/chat_main.html" %}
+{%block mainheading%}
+{%endblock%}
+{%block welcomepg%}
+
+{%endblock%}
 {%block chatBoxcontent%}
-<br>
-<h3> Terms and Conditions etc</h3>
+<span id="step1">Step 1/3: Consent</span>
+<h4> Terms and Conditions</h4>
+<p>This assessment will ask you to provide some information about yourself. It will also ask you some questions about your needs, feelings and health.</br>
+<b>Information Storage</b></br>
+The information you provide along with other details about your treatment and care will be used by your hospital to develop a care plan for you</br>
+and to provide clinician services, care and support. </br>
+<b>Who has access to your information?</b></br>
+This assessment tool is operated on behalf of your hospital by Macmillan Cancer Support and its service providers. </br>
+Your information will not be shared with anyone else without your agreement. </br>
+Without identifying you personally we may use your information for service development, evaluation and research purposes.</br>
+<li>
+<b>Please note the PIN you have been sent is for ONE TIME SUBMIT USE only</b>.</li>
+<li><b>Once you have submitted your PIN will no longer be active.</b> </li>
+<li><b>The eHNA will time-out after 30 minutes of inactivity and you will be able to log back in.</b></li>
+<b>Don't want to continue?</b> Please be assured your treatment will not be affected if you choose not to continue. </br>
+Other options are available which your GP or nurse will be able to tell you about.
+</p>
 {%endblock%}
 {%block textbox%}
 <div class="container-fluid">
 <form id="myform">
-  <legend><h4>Please enter your Login information below to continue with your eHNA</h4></legend>
-    <div class="column">
+  <legend><h4>Please enter your Login information below to continue with your eHNA.</h4></legend>
+  <div class="card" id="pin1">
+  <!--  <div class="column">-->
   PIN Number:<br>
   <input type "submit" text="pinNumber" name="pinNumber" id="pinNumber" required><br>
 </div>
-<div class="column">
+<!--<div class="column">-->
+  <div class="card" id="dob1">
   Date of Birth:<br>
   <select name="day" class="1-31" id="day"  required></select>
   <select name="month" id="month"  required>
@@ -31,10 +53,11 @@
   <select name="year" class="2000-1920" id ="year" required></select>
 </div>
 </form>
-<div class ="column">
+<!--<div class ="column">-->
+  <div class="card" id="submit1">
   <br>
 
-    <input type="submit" id="consentbtn" value="I consent to the Terms and Conditions above and wish to continue with my eHNA."/></a>
+    <input type="submit" id="consentbtn" value="I consent to the Terms and Conditions above and wish to continue with my eHNA."</a>
   </div>
 </div>
 
@@ -49,7 +72,7 @@ $(function() {
       var dob =  (y + - + m + - + d);
       var pin = document.getElementById('pinNumber').value;
       if(isNaN(pin) || pin.length < 6 || pin.length > 6){
-        alert("You must enter a valid pin in order to proceed with the eHNA.");
+        Alert.render("You must enter a valid pin in order to proceed with the eHNA.");
  }else{
 
         $.ajax({
@@ -103,6 +126,8 @@ function getDate(){
     for (i=2000;i>=1920;i--){
         $select.append($('<option></option>').val(i).html(i))
     }
-}); </script>
+});
+
+var Alert = new CustomAlert();</script>
 
 {%endblock%}
