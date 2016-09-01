@@ -3,6 +3,6 @@ import message_decorator_single
 
 def build():
     return None
-    # postprocessor.MessagePostprocessor(keywordExtractor=postprocess.keyword_extractor_single.SingleKeywordExtractor(),
+    # MessagePostprocessor(keywordExtractor=postprocess.keyword_extractor_single.SingleKeywordExtractor(),
     #                                                         searchAdapter= the real search adapter,
     #                                                         messageDecorator=postprocess.message_decorator_single.MessageDecoratorSingle())
