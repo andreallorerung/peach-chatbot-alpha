@@ -13,9 +13,6 @@ def build():
                                 interpreter=interpreter,
                                 postprocessor=postprocessor)
 
-def _getProductionRiveScript():
-    return
-
 class BotBuilder(object):
 
     def __init__(self):
