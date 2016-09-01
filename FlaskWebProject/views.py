@@ -52,7 +52,7 @@ def home():
     """Renders the home page."""
     return render_template(
         'chat_main.html',
-        title='Welcome to PEACH Chatbot!',
+        title='Welcome to PEACH Chatbot',
         year=datetime.now().year,
     )
 
