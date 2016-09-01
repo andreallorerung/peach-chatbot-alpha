@@ -5,8 +5,7 @@ import rivescript_loader
 
 
 class RiveScriptProxy(interpreter.Interpreter):
-    def __init__(self, brain="./brain",\
-                        rivescriptInterpreter=rivescript.RiveScript()):
+    def __init__(self, brain="./brain",rivescriptInterpreter=rivescript.RiveScript()):
         self._rivescriptInterpreter =\
                     rivescript_loader.loadBrain(rivescriptInterpreter, brain)
 

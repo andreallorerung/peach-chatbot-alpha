@@ -1,6 +1,6 @@
 import keyword_extractor_single
 import message_decorator_single
-import botinterface.postprocessor
+import chatbot.botinterface.postprocessor
 
 def build():
     return None
