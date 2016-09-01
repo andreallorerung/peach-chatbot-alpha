@@ -1,5 +1,5 @@
 '''Module to provide an implementation of a preprocessor'''
-import message_processor
+# import message_processor #python does not understand same level package imports
 
 
 class MessagePreprocessor(message_processor.MessageProcessor):

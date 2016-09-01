@@ -1,5 +1,5 @@
 '''Module to define a concrete system reply processor'''
-import message_processor
+# import message_processor #python does not understand same level package imports
 
 
 class MessagePostprocessor(message_processor.MessageProcessor):
