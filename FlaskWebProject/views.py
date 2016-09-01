@@ -30,8 +30,8 @@ from searcher import search_session
 #instantiate bot
 #bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
-userid1=uuid.uuid4()
-userid = str(userid1)
+#userid1=uuid.uuid4()
+#userid = str(userid1)
 
 #connecting to database
 #conn = pyodbc.connect('Driver={SQL Server};''Server=tcp:peach-chatbot.database.windows.net,1433;''Database=peach-chatbot;''Uid=chatbot@peach-chatbot;Pwd=Peach-2016;')
@@ -66,27 +66,27 @@ def chat_main():
     )
 
 
-@app.route("/chatBot")
-def chatBot():
-        return render_template("chatBot.html")
+#@app.route("/chatBot")
+#def chatBot():
+#        return render_template("chatBot.html")
 
 
-@app.route("/searchpage")
-def searchpage():
-        return render_template("searchpage.html")
-
-#@login_required #require users to be logged in to access
-@app.route("/msgChat")
-def msgChat():
-        return render_template("msgChat.html")
+#@app.route("/searchpage")
+#def searchpage():
+#        return render_template("searchpage.html")
 
 #@login_required #require users to be logged in to access
-@app.route("/ehna")
-def ehna():
-    if g.user:
-        return render_template("ehna.html")
+#@app.route("/msgChat")
+#def msgChat():
+#        return render_template("msgChat.html")
 
-    return render_template("chatBot.html")
+#@login_required #require users to be logged in to access
+#@app.route("/ehna")
+#def ehna():
+#    if g.user:
+#        return render_template("ehna.html")
+
+#    return render_template("chatBot.html")
 
 #search for resources
 #@app.route("/api/chatBot/search", methods=['POST'])
@@ -120,12 +120,12 @@ def ehna():
 
 
 #format user concerns into correct structure for bot methods
-def build_concernsList(qs):
+#def build_concernsList(qs):
 
-    for k,v in qs.items():
-        qs[k] = int(v)
+#    for k,v in qs.items():
+#        qs[k] = int(v)
 
-    print qs
+#    print qs
 
 
 #return bot message
@@ -150,8 +150,8 @@ def build_concernsList(qs):
 
 
 #build data in correct format to query db
-def build_date_string(login_data):
-    return login_data['year'][0] + '-' + login_data['month'][0] + '-%02d' % int(login_data['day'][0])
+#def build_date_string(login_data):
+#    return login_data['year'][0] + '-' + login_data['month'][0] + '-%02d' % int(login_data['day'][0])
 
 #perform sql query to validate login details
 #def check_credentials(pin, dob):
@@ -163,54 +163,54 @@ def build_date_string(login_data):
 #        return row
 
 #sign in route and create user session
-@app.route("/signIn", methods =['POST'])
-def signIn():
+#@app.route("/signIn", methods =['POST'])
+#def signIn():
     #login_data = urlparse.parse_qs(request.get_data())
     #dob = build_date_string(login_data)
     #if str(check_credentials(login_data['pinNumber'][0], dob)) == 'None':
     #    return ctypes.windll.user32.MessageBoxA(0, "Your login details were incorrect. Please try again.", "Incorrect Login Details", 1)
-    session['user'] = userid
+#    session['user'] = userid
     #print userid
-    return redirect(url_for('ehna'))
+#    return redirect(url_for('ehna'))
 
 
-@app.before_request
-def before_request():
-    g.user = None
-    if 'user' in session:
-        g.user =session['user']
-        session.permanent = True
-        app.permanent_session_lifetime = timedelta(minutes=1)
-        session.modified = True
-        if timedelta(minutes=0):
-            return logout()
+#@app.before_request
+#def before_request():
+#    g.user = None
+#    if 'user' in session:
+#        g.user =session['user']
+#        session.permanent = True
+#        app.permanent_session_lifetime = timedelta(minutes=1)
+#        session.modified = True
+#        if timedelta(minutes=0):
+#            return logout()
 
     #return 'not timed out yet'
 
-@app.route('/logout')
-def logout():
-    return redirect(url_for('chat_main'))
-    session.pop('user', None)
-    session.set_cookie('user',expires=0)
-    print 'Logged out.'
+#@app.route('/logout')
+#def logout():
+#    return redirect(url_for('chat_main'))
+#    session.pop('user', None)
+#    session.set_cookie('user',expires=0)
+#    print 'Logged out.'
 
 
-@app.route('/contact')
-def contact():
+#@app.route('/contact')
+#def contact():
     #"""Renders the contact page."""
-    return render_template(
-        'contact.html',
-        title='Contact',
-        year=datetime.now().year,
-        message='Your contact page.'
-    )
+#    return render_template(
+#        'contact.html',
+#        title='Contact',
+#        year=datetime.now().year,
+#        message='Your contact page.'
+#    )
 
-@app.route('/about')
-def about():
+#@app.route('/about')
+#def about():
 #    """Renders the about page."""
-    return render_template(
-        'about.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
-)
+#    return render_template(
+#        'about.html',
+#        title='About',
+#        year=datetime.now().year,
+#        message='Your application description page.'
+#)
