@@ -24,9 +24,9 @@ from searcher import search_session
 
 
 
-botBuilder = bot_builder.BotBuilder()
-botBuilder.addBrain('FlaskWebProject/chatbot/brain')
-bot = botBuilder.build()
+#botBuilder = bot_builder.BotBuilder()
+#botBuilder.addBrain('FlaskWebProject/chatbot/brain')
+#bot = botBuilder.build()
 #instantiate bot
 #bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
@@ -91,115 +91,62 @@ def ehna():
 #search for resources
 @app.route("/api/chatBot/search", methods=['POST'])
 def searchforSites():
-
+    #get user input search field
     userSearch = (request.get_data())
-    #return userSearch
+
     # initialize search session
     s = search_session.SearchSession()
     s.add_index('FlaskWebProject/searcher/inverted_integration_test.txt')
     sresults = s.search(userSearch)
     results = jsonify(sresults)
-    #for item in results:
-    #    print item
     return results
-    #return 'ok'
-    #print results
-    #return results
-    #return results.pop([0])
-    #results1 = results.replace(' ', ',').split(',')
-    #list1 = ['wwww.google.com', 'www.help.com', 'www.amazon.com']
-    #searchList = ''.join(results)
-    #searchList = ''.join(map(str, results))
-    #searchList = str(results)
-#    searchList = jsonify(results)
-    #print results
-#    print searchList
-    #return searchList
-    #print searchList
-    #return results
 
-
-    #def NLP(t):
-
-    #    return t
 
 #send initial concerns to set up bot
-@app.route("/api/chatBot", methods=['POST'])
-def sendConcerns():
-    concerns = (request.get_data())
-    qs = dict( (k, v if len(v)>1 else v[0] )
-           for k, v in urlparse.parse_qs(concerns).iteritems() )
-    build_concernsList(qs)
-    #initialConcerns = json.loads(concerns)
-    #print initialConcerns[0]['name']
-    #initialConcerns= urlparse.parse_qs(concerns)
-    #build_concernsList(initialConcerns)
-    #userConcerns = build_concerns(initialConcerns)
-    #print initialConcerns
-    #return concerns
-    #print json.dumps(initialConcerns)
+#@app.route("/api/chatBot", methods=['POST'])
+#def sendConcerns():
+    #get users concerns
+#    concerns = (request.get_data())
+    #parse concerns into dictionary format
+#    qs = dict( (k, v if len(v)>1 else v[0] )
+#           for k, v in urlparse.parse_qs(concerns).iteritems() )
+#    build_concernsList(qs)
+    #create concerns object required for bot conversation
+#    userConcernsModel = concern_factory.UserConcernsFactory.getUserConcerns(userid)
+#    userConcernsModel.setInitialUserConcerns(qs)
+    #return welcome message
+#    welcome = 'Bot: Thank you for submitting your concerns. Type "set glob" to begin dicussing them.'
+#    return welcome
 
-    #print concerns['respiratory',value]
-    #print concerns['respiratory']
-    #return jsonify('respiratory')
-
-    #return jsonify(name=name,value=value)
-    #print json.loads(concerns)
-    #return concerns
-    #print urlparse.parse_qs(concerns)
-    userConcernsModel = concern_factory.UserConcernsFactory.getUserConcerns(userid)
-    userConcernsModel.setInitialUserConcerns(qs)
-    #HERE CALL DISTRESS CONVERSATION DRIVER TO PUT CONCERNS INTO RIGHT MODEL FOR bot
-    #return 'ok'
-    #return redirect(url_for('msgChat'))
-    welcome = 'Bot: Thank you for submitting your concerns. Type "set glob" to begin dicussing them.'
-    return welcome
-    #return json.loads('[{"name":"respiratory", "value":"3"},{"name":"mouth","value":"3"}]')
-    #NLP(request.get_data())
-    #result =simplejson.loads('json_arr')
-    #initialConcerns= result[{'name':value}]
-    #return initialConcerns
 
 #format user concerns into correct structure for bot methods
 def build_concernsList(qs):
-    #concerns = "{"
+
     for k,v in qs.items():
-        qs[k] = int(v) #v = int(v)
-        #concerns +=  k + ":"  +  v + ","
-        #concerns += '{0} : {1}, '.format(k, v)
-        #print concerns
+        qs[k] = int(v)
+
     print qs
 
-    #concerns += "}"
-    #return concerns
-
-#def build_concerns(initialConcerns):
-#    return initialConcerns['name'] +  int(initialConcerns['value'])
 
 #return bot message
-@app.route("/api/chatBot/chat", methods=['POST'])
-def postChat():
-    content=request.get_data()
-    print content
-    print userid
-    #return content
+#@app.route("/api/chatBot/chat", methods=['POST'])
+#def postChat():
+    #get user input text
+#    content=request.get_data()
+#    print content
+#    print userid
+
     #data sent through will be 'content'
-    userMessage = Message(userid,content)
-    ConversationLogger.logUserMessage(userMessage)
-    msg = bot.reply(userMessage)
-    ConversationLogger.logSystemReplyForUser(msg,userid)
+#    userMessage = Message(userid,content)
+#    ConversationLogger.logUserMessage(userMessage)
+#    msg = bot.reply(userMessage)
+#    ConversationLogger.logSystemReplyForUser(msg,userid)
     #_retrieveConversationFor(userid)
     #return conversation
     #print conversation
-    print msg
+#    print msg
     #return redirect(url_for('chat_main'))
-    return msg
-
-    #print reply
-    #print msg
-    #return msg
-
-    #return NLP (request.get_data())
+#    return msg
 
 
 #build data in correct format to query db
@@ -267,12 +214,3 @@ def about():
         year=datetime.now().year,
         message='Your application description page.'
 )
-
-
-
-#String concerns = "{";
-#for (Map.Entry<String, Integer> entry : concerns.entrySet()){
- # concerns += entry.getKey() + ":" + entry.getValue() + ",\n";
-#}
-#concerns = concerns.subString (0, concerns.lengh -1 );
-#concerns += "}"
