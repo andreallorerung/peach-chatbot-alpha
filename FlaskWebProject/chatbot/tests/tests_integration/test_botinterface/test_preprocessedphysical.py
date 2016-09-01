@@ -1,10 +1,10 @@
 from botinterface.bot_rivescript import BotRivescript
 from botinterface.preprocessor import MessagePreprocessor
-import botinterface.bot_builder
+import bot_builder
 from messagelog.message import Message
 
 # set_up
-bot = botinterface.bot_builder.build()
+bot = bot_builder.build()
 USERID = "localuser"
 
 def setglobal():
@@ -48,7 +48,7 @@ def test_problem_questions():
         reply = bot.reply(msg)
         print "User message:'{}'".format(message)
         print "Bot reply:'{}'".format(reply)
-        print "counter variable value:{}".format(bot._interpreter.get_uservar(USERID, "counter"))
+        print "counter variable value:{}".format(bot._interpreter._rivescriptInterpreter.get_uservar(USERID, "counter"))
         # test:
         assert "severe" in reply or "often" in reply or "affecting" in reply
 

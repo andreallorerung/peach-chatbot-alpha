@@ -1,11 +1,11 @@
 from botinterface.bot_rivescript import BotRivescript
-import botinterface.bot_builder
+import bot_builder
 from concerns import concern_factory
 from messagelog.message import Message
 
 
 # set_up
-bot = botinterface.bot_builder.build()
+bot = bot_builder.build()
 
 USERID = "localuser"
 mostDistressful = "urinary"
@@ -41,7 +41,7 @@ def movedIntoPhysical():
 def skipTopicDiscussion():
     internalVariableNameForCountingMessagesReceivedOnTopic = "counter"
     numberOfMessagesReceivedOnTopic = 3 # pretending this has actually happened
-    bot._interpreter.set_uservar(USERID,
+    bot._interpreter._rivescriptInterpreter.set_uservar(USERID,
                         internalVariableNameForCountingMessagesReceivedOnTopic,
                         str(numberOfMessagesReceivedOnTopic))
 
@@ -109,4 +109,4 @@ def test_make_query_no():
 
 def getCurrentMicroTopic():
     currentTopicInternalVariableName = "microtopic"
-    return bot._interpreter.get_uservar(USERID, currentTopicInternalVariableName)
+    return bot._interpreter._rivescriptInterpreter.get_uservar(USERID, currentTopicInternalVariableName)

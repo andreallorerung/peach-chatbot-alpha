@@ -1,4 +1,5 @@
 import rivescript
+import botinterface.rivescript_proxy
 import botinterface.bot_rivescript
 import preprocess.preprocessor_builder
 import postprocess.postprocessor_builder
@@ -6,9 +7,14 @@ import postprocess.postprocessor_builder
 def build():
     preprocessor = preprocess.preprocessor_builder.build()
     postprocessor = postprocess.postprocessor_builder.build()
+    interpreter = botinterface.rivescript_proxy.RiveScriptProxy(\
+                        rivescriptInterpreter=rivescript.RiveScript(debug=False))
     return botinterface.bot_rivescript.BotRivescript(preprocessor=preprocessor,
-                                interpreter=rivescript.RiveScript(debug=True),
+                                interpreter=interpreter,
                                 postprocessor=postprocessor)
+
+def _getProductionRiveScript():
+    return
 
 class BotBuilder(object):
 
@@ -16,7 +22,7 @@ class BotBuilder(object):
         self.preprocessor = preprocess.preprocessor_builder.build()
         self.postprocessor = postprocess.postprocessor_builder.build()
         self.interpreter = None
-        self.brain = None
+        self.brain = "./brain"
 
     def addBrain(self, brain):
         self.brain = brain
@@ -27,11 +33,17 @@ class BotBuilder(object):
     def addPostprocessor(self, postprocessor):
         self.postprocessor = postprocessor
 
+    def addInterpreter(self, interpreter):
+        self.interpreter = interpreter
+
     def build(self):
-        self.interpreter = rivescript.RiveScript(debug=False)
+        if self.interpreter is None:
+            productionRiveScript = rivescript.RiveScript(debug=True)
+            self.interpreter = botinterface.rivescript_proxy.RiveScriptProxy(\
+                                brain=self.brain,
+                                rivescriptInterpreter=productionRiveScript) #rivescript.RiveScript(debug=False)
 
         return botinterface.bot_rivescript.BotRivescript(
             preprocessor=self.preprocessor,
             postprocessor=self.postprocessor,
-            interpreter=self.interpreter,
-            brain=self.brain)
+            interpreter=self.interpreter)

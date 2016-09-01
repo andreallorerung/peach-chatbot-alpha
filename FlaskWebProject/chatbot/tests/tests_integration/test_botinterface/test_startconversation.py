@@ -1,7 +1,7 @@
-import botinterface.bot_builder
+import bot_builder
 from concerns import concern_factory
 
-bot = botinterface.bot_builder.build()
+bot = bot_builder.build()
 
 USERID = "boop"
 mostDistressful = "respiratory"
@@ -21,8 +21,8 @@ def test_start():
 
 def getCurrentMicroTopic():
     currentTopicInternalVariableName = "microtopic"
-    return bot._interpreter.get_uservar(USERID, currentTopicInternalVariableName)
+    return bot._interpreter._rivescriptInterpreter.get_uservar(USERID, currentTopicInternalVariableName)
 
 def getCurrentMacroTopic():
     currentTopicInternalVariableName = "macrotopic"
-    return bot._interpreter.get_uservar(USERID, currentTopicInternalVariableName)
+    return bot._interpreter._rivescriptInterpreter.get_uservar(USERID, currentTopicInternalVariableName)

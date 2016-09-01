@@ -1,9 +1,12 @@
-import rivescript
+import bot_builder
 from botinterface.bot_rivescript import BotRivescript
 from messagelog.message import Message
 import mock_messageprocessor, mock_interpreter
 
-bot = BotRivescript()
+builder = bot_builder.BotBuilder()
+builder.addPreprocessor(None)
+builder.addPostprocessor(None)
+bot = builder.build()
 
 def test_init():
 
@@ -27,10 +30,10 @@ def test_haspostprocessor():
     assert hasattr(bot, "_postprocessor")
 
 def test_init_customparameters():
-    bot = BotRivescript(preprocessor="magic",postprocessor="super")
+    initbot = BotRivescript(preprocessor="magic",postprocessor="super")
 
-    assert bot._preprocessor == "magic"
-    assert bot._postprocessor == "super"
+    assert initbot._preprocessor == "magic"
+    assert initbot._postprocessor == "super"
 
 def test_preandpostprocess_unchanged():
 
@@ -71,7 +74,7 @@ def get_expected_uservar_value():
 
 def bot_recognizes_user(userid):
     expected = get_expected_uservar_value()
-    actual = bot._interpreter.get_uservar(userid, "the name of a variable that "
+    actual = bot._interpreter._rivescriptInterpreter.get_uservar(userid, "the name of a variable that "
                                             "does not exist")
 
     return expected == actual

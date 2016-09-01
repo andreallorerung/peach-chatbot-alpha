@@ -1,32 +1,22 @@
 '''Module to define one implementation of the general interface to the chatbot'''
-import rivescript
-import rivescript_loader
+import interpreter
+import message_processor
 import bot_abstract
 
 
 class BotRivescript(bot_abstract.BotInterface):
     '''Concrete class to define a general interface for the chatbot'''
     def __init__(self, preprocessor=None,
-                       brain="./brain",
-                       interpreter=rivescript.RiveScript(),
+                       interpreter=None,
                        postprocessor=None):
         '''The chatbot interface includes an optional message preprocessing and
         reply postprocessing layers'''
-        self._preprocessor   = preprocessor
-        self._interpreter    = rivescript_loader.loadBrain(interpreter, brain)
-        self._postprocessor  = postprocessor
+        self._preprocessor = preprocessor
+        self._interpreter = interpreter
+        self._postprocessor = postprocessor
 
     def createUserSession(self, userInfo):
-        # userinfo is expected to be just the userid *by this implementation!*
-        userid = userInfo
-        self._enterGlobalTopicFor(userid)
-        self._moveToFirstConcernFor(userid)
-
-    def _enterGlobalTopicFor(self, userid):
-        reply = self._interpreter.reply(userid, "set glob")
-
-    def _moveToFirstConcernFor(self, userid):
-        reply = self._interpreter.reply(userid, "internal matcher to start the conversation")
+        self._interpreter.createUserSession(userInfo)
 
     def reply(self, message):
         userid = message.getUserid()

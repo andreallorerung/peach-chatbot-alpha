@@ -1,10 +1,10 @@
 from botinterface.bot_rivescript import BotRivescript
 from botinterface.preprocessor import MessagePreprocessor
-import botinterface.bot_builder
+import bot_builder
 from messagelog.message import Message
 
 # set_up
-bot = botinterface.bot_builder.build()
+bot = bot_builder.build()
 USERID = "localuser"
 
 def setglobal():

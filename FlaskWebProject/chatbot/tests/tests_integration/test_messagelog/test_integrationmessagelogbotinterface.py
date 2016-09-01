@@ -1,9 +1,15 @@
 import messagelog.conversation_logging
 import botinterface.bot_rivescript
 import messagelog.message
+import bot_builder
 
 mockbrain = "tests/tests_integration/test_messagelog/mockbrain.rive"
-bot = botinterface.bot_rivescript.BotRivescript(brain=mockbrain)
+builder = bot_builder.BotBuilder()
+builder.addPreprocessor(None)
+builder.addPostprocessor(None)
+builder.addBrain(mockbrain)
+bot = builder.build()
+# bot = botinterface.bot_rivescript.BotRivescript(brain=mockbrain)
 ConversationLogger = messagelog.conversation_logging.ConversationLogger
 
 userid = "bob"

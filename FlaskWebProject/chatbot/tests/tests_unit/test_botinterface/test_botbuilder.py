@@ -1,4 +1,4 @@
-from botinterface import bot_builder
+import bot_builder
 
 builder = bot_builder.BotBuilder()
 

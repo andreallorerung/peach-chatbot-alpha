@@ -1,4 +1,5 @@
 import os
+import rivescript
 
 def loadBrain(interpreter, brain):
     interpreter = _loadDirOrFile(interpreter, brain)
