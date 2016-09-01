@@ -14,13 +14,13 @@ import ctypes
 import urllib
 import urllib2
 import uuid
-from chatbot.botinterface import bot_rivescript
-from chatbot import bot_builder
-from chatbot.concerns import concern_factory, drive_conversation
-from chatbot.messagelog import message
-from chatbot.messagelog.message import Message
-from chatbot.messagelog.conversation_logging import ConversationLogger
-from chatbot.messagelog.conversation import Conversation
+#from chatbot.botinterface import bot_rivescript
+#from chatbot import bot_builder
+#from chatbot.concerns import concern_factory, drive_conversation
+#from chatbot.messagelog import message
+#from chatbot.messagelog.message import Message
+#from chatbot.messagelog.conversation_logging import ConversationLogger
+#from chatbot.messagelog.conversation import Conversation
 from searcher import search_session
 
 
@@ -172,8 +172,8 @@ def signIn():
     #    return ctypes.windll.user32.MessageBoxA(0, "Your login details were incorrect. Please try again.", "Incorrect Login Details", 1)
     session['user'] = userid
     #print userid
-    return redirect(url_for('ehna'))
-
+    redirect(url_for('ehna'))
+    return 'ok'
 
 @app.before_request
 def before_request():
