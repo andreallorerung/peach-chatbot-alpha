@@ -1,7 +1,6 @@
 import tokenizer_simple
 import stopwords_remover_lenient
 import stemming_lancaster
-import chatbot.botinterface.preprocessor
 
 def build():
     return botinterface.preprocessor.MessagePreprocessor(tokenizer=tokenizer_simple.SimpleTokenizerProxy(),
