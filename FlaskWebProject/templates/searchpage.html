@@ -13,7 +13,7 @@
   Your results will appear in the results box below.</p>
 
      <input type="text" id="searchBox" class=textbox placeholder="Search Here">
-     <button type="submit" type="button" id ="searchIcon"> <img src="{{ url_for('static', filename = 'searchIcon.png') }}"  width="30" height="30" function onclick="SearchFunction()"></button>
+     <button onclick="SearchFunction()" type="button" id ="searchIcon"> <img src="{{ url_for('static', filename = 'searchIcon.png') }}"  width="30" height="30"></button>
      <button type="button" id ="clear" function onclick="clearSearch()">CLEAR</button>
 </div>
 <br>

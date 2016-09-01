@@ -50,13 +50,13 @@ function SearchFunction() {
       success: function(results) {
         console.log('success')
         //error message if no search results were found
-//    if (results == 'no results found'){
-  //    jQuery("#search_input").append('There were no search results found for ' + '"'+searchEntry + '"'+ '. Please try a different search field.');
-  //  }else{
+    if (results == 'no results found'){
+     jQuery("#search_input").append('There were no search results found for ' + '"'+searchEntry + '"'+ '. Please try a different search field.');
+    }else{
       //otherwise create hyperlink from each element in the array
-  //  jQuery("#search_input").append('Your Search Results for '+ '"'+ searchEntry + '"'+  ':').append(results.map(function(link){return '<li><a href="'+link+'">'+link+'</a></li>';}));
+    jQuery("#search_input").append('Your Search Results for '+ '"'+ searchEntry + '"'+  ':').append(results.map(function(link){return '<li><a href="'+link+'">'+link+'</a></li>';}));
 
-    //}
+    }
     },
     error: function(jqXHR, textStatus, errorThrown){
       console.log(errorThrown);
