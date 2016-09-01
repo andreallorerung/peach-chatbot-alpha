@@ -25,9 +25,9 @@ from chatbot.messagelog.conversation import Conversation
 
 
 
-botBuilder = bot_builder.BotBuilder()
-botBuilder.addBrain('FlaskWebProject/chatbot/brain')
-bot = botBuilder.build()
+#botBuilder = bot_builder.BotBuilder()
+#botBuilder.addBrain('FlaskWebProject/chatbot/brain')
+#bot = botBuilder.build()
 #instantiate bot
 #bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
