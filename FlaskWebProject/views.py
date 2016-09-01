@@ -20,7 +20,7 @@ from chatbot.messagelog import message
 from chatbot.messagelog.message import Message
 from chatbot.messagelog.conversation_logging import ConversationLogger
 from chatbot.messagelog.conversation import Conversation
-from searcher import search_session
+#from searcher import search_session
 
 
 
