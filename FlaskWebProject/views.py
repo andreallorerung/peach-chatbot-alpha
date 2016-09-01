@@ -21,7 +21,7 @@ import uuid
 #from chatbot.messagelog.message import Message
 #from chatbot.messagelog.conversation_logging import ConversationLogger
 #from chatbot.messagelog.conversation import Conversation
-from searcher import search_session
+#from searcher import search_session
 
 
 
@@ -90,17 +90,17 @@ def ehna():
     return render_template("chatBot.html")
 
 #search for resources
-@app.route("/api/chatBot/search", methods=['POST'])
-def searchforSites():
+#@app.route("/api/chatBot/search", methods=['POST'])
+#def searchforSites():
     #get user input search field
-    userSearch = (request.get_data())
+#    userSearch = (request.get_data())
 
     # initialize search session
-    s = search_session.SearchSession()
-    s.add_index('FlaskWebProject/searcher/inverted_integration_test.txt')
-    sresults = s.search(userSearch)
-    results = jsonify(sresults)
-    return results
+#    s = search_session.SearchSession()
+#    s.add_index('FlaskWebProject/searcher/inverted_integration_test.txt')
+#    sresults = s.search(userSearch)
+#    results = jsonify(sresults)
+#    return results
 
 
 #send initial concerns to set up bot
@@ -121,12 +121,12 @@ def searchforSites():
 
 
 #format user concerns into correct structure for bot methods
-def build_concernsList(qs):
+#def build_concernsList(qs):
 
-    for k,v in qs.items():
-        qs[k] = int(v)
+#    for k,v in qs.items():
+#        qs[k] = int(v)
 
-    print qs
+#    print qs
 
 
 #return bot message
