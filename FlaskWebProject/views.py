@@ -14,20 +14,20 @@ import ctypes
 import urllib
 import urllib2
 import uuid
-from chatbot.botinterface import bot_rivescript
-from chatbot import bot_builder
-from chatbot.concerns import concern_factory, drive_conversation
+#from chatbot.botinterface import bot_rivescript
+#from chatbot import bot_builder
+#from chatbot.concerns import concern_factory, drive_conversation
 #from chatbot.messagelog import message
 #from chatbot.messagelog.message import Message
 #from chatbot.messagelog.conversation_logging import ConversationLogger
 #from chatbot.messagelog.conversation import Conversation
-#from searcher import search_session
+from searcher import search_session
 
 
 
-botBuilder = bot_builder.BotBuilder()
-botBuilder.addBrain('FlaskWebProject/chatbot/brain')
-bot = botBuilder.build()
+#botBuilder = bot_builder.BotBuilder()
+#botBuilder.addBrain('FlaskWebProject/chatbot/brain')
+#bot = botBuilder.build()
 #instantiate bot
 #bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 
@@ -90,34 +90,34 @@ def ehna():
     return render_template("chatBot.html")
 
 #search for resources
-#@app.route("/api/chatBot/search", methods=['POST'])
-#def searchforSites():
+@app.route("/api/chatBot/search", methods=['POST'])
+def searchforSites():
     #get user input search field
-#    userSearch = (request.get_data())
+    userSearch = (request.get_data())
 
     # initialize search session
-#    s = search_session.SearchSession()
-#    s.add_index('FlaskWebProject/searcher/inverted_integration_test.txt')
-#    sresults = s.search(userSearch)
-#    results = jsonify(sresults)
-#    return results
+    s = search_session.SearchSession()
+    s.add_index('FlaskWebProject/searcher/inverted_integration_test.txt')
+    sresults = s.search(userSearch)
+    results = jsonify(sresults)
+    return results
 
 
 #send initial concerns to set up bot
-@app.route("/api/chatBot", methods=['POST'])
-def sendConcerns():
+#@app.route("/api/chatBot", methods=['POST'])
+#def sendConcerns():
     #get users concerns
-    concerns = (request.get_data())
+#    concerns = (request.get_data())
     #parse concerns into dictionary format
-    qs = dict( (k, v if len(v)>1 else v[0] )
-           for k, v in urlparse.parse_qs(concerns).iteritems() )
-    build_concernsList(qs)
+#    qs = dict( (k, v if len(v)>1 else v[0] )
+#           for k, v in urlparse.parse_qs(concerns).iteritems() )
+#    build_concernsList(qs)
     #create concerns object required for bot conversation
-    userConcernsModel = concern_factory.UserConcernsFactory.getUserConcerns(userid)
-    userConcernsModel.setInitialUserConcerns(qs)
+#    userConcernsModel = concern_factory.UserConcernsFactory.getUserConcerns(userid)
+#    userConcernsModel.setInitialUserConcerns(qs)
     #return welcome message
-    welcome = 'Bot: Thank you for submitting your concerns. Type "set glob" to begin dicussing them.'
-    return welcome
+#    welcome = 'Bot: Thank you for submitting your concerns. Type "set glob" to begin dicussing them.'
+#    return welcome
 
 
 #format user concerns into correct structure for bot methods
