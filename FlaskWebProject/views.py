@@ -20,7 +20,7 @@ from chatbot.messagelog import message
 from chatbot.messagelog.message import Message
 from chatbot.messagelog.conversation_logging import ConversationLogger
 from chatbot.messagelog.conversation import Conversation
-from searcher.searcher import Searcher
+from searcher import search_session
 
 
 
@@ -91,23 +91,37 @@ def ehna():
 #search for resources
 @app.route("/api/chatBot/search", methods=['POST'])
 def searchforSites():
+
     userSearch = (request.get_data())
-    mydict = searcher.search(userSearch)
+    #return userSearch
+    # initialize search session
+    s = search_session.SearchSession()
+    s.add_index('FlaskWebProject/searcher/inverted_integration_test.txt')
+    sresults = s.search(userSearch)
+    results = jsonify(sresults)
+    #for item in results:
+    #    print item
+    return results
+    #return 'ok'
+    #print results
+    #return results
+    #return results.pop([0])
+    #results1 = results.replace(' ', ',').split(',')
+    #list1 = ['wwww.google.com', 'www.help.com', 'www.amazon.com']
+    #searchList = ''.join(results)
+    #searchList = ''.join(map(str, results))
+    #searchList = str(results)
+#    searchList = jsonify(results)
+    #print results
+#    print searchList
+    #return searchList
+    #print searchList
+    #return results
 
-    #mydict = {'key1': 'value1', 'key2': 'value2'}
-    returnDict = json.dumps(mydict)
-    return returnDict
-    #encoded_dict = urllib.urlencode(mydict)
-    #request = urllib2.Request(myurl, encoded_dict)
-# now make the request
-    #urlList = request.urlopen().read()
-    #urlList={"www.google.co.uk, www.amazon.co.uk, www.macmillan.co.uk"
-    #return urlList
 
+    #def NLP(t):
 
-    def NLP(t):
-
-        return t
+    #    return t
 
 #send initial concerns to set up bot
 @app.route("/api/chatBot", methods=['POST'])
