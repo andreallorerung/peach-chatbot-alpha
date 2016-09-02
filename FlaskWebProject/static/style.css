@@ -426,10 +426,6 @@ table#t {
 }
 
 
-
-#homeicon {
-
-}
 #pin1{
 padding-: 10px;
 margin: 2px;
@@ -438,8 +434,10 @@ justify-content: center;
 }
 #consentbtn{
   white-space: normal;
-    width: 200px;
-    border:2px solid yellow;
+    width: 250px;
+    border:3px solid yellow;
+    background-color: white;
+    font-weight: bold;
 }
 
 #dob1{
@@ -515,6 +513,36 @@ color: black;
 background-color: #0AB240;
 border-radius: 10px !important;
 }
+
+/**Search Page**/
+#scard{
+width: 50%;
+height: 200px;
+padding: 10px;
+margin: 2px;
+float:left;
+justify-content: center;
+
+}
+
+
+/**About Page**/
+#ucl-logo{
+border-left: 30px;
+border-right: 30px;
+}
+#microsoft{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+#uclhlogo{
+  margin-left: 30px;
+  border-right: 30px;
+}
+.logo-container {
+  justify-content: center;
+}
+
 /** source: https://www.developphp.com/video/JavaScript/Custom-Confirm-Box-Programming-Tutorial**/
 #dialogoverlay{
 	display: none;
@@ -529,12 +557,12 @@ border-radius: 10px !important;
 #dialogbox{
 	display: none;
 	position: fixed;
-	background: #000;
+	background: red;
 	border-radius:7px;
 	width:550px;
 	z-index: 10;
 }
 #dialogbox > div{ background:#FFF; margin:8px; }
-#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
+#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:white; }
 #dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
 #dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }

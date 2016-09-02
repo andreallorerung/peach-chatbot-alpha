@@ -8,6 +8,7 @@
 
 
 <div id="searchGrid">
+
 <h3 style=>Search for resources</h3>
 <p>Tip: Try searching for keywords like 'smoking', 'finance' etc <br>
   Your results will appear in the results box below.</p>
@@ -15,7 +16,11 @@
      <input type="text" id="searchBox" class=textbox placeholder="Search Here">
      <button onclick="SearchFunction()" type="button" id ="searchIcon"> <img src="{{ url_for('static', filename = 'searchIcon.png') }}"  width="30" height="30"></button>
      <button type="button" id ="clear" function onclick="clearSearch()">CLEAR</button>
-</div>
+
+
+
+  </div>
+
 <br>
 <br>
 {%endblock%}

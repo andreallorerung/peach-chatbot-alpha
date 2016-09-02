@@ -17,10 +17,12 @@ Your information will not be shared with anyone else without your agreement. </b
 Without identifying you personally we may use your information for service development, evaluation and research purposes.</br>
 <li>
 <b>Please note the PIN you have been sent is for ONE TIME SUBMIT USE only</b>.</li>
-<li><b>Once you have submitted your PIN will no longer be active.</b> </li>
-<li><b>The eHNA will time-out after 30 minutes of inactivity and you will be able to log back in.</b></li>
-<b>Don't want to continue?</b> Please be assured your treatment will not be affected if you choose not to continue. </br>
-Other options are available which your GP or nurse will be able to tell you about.
+<li><b>This means once you have submitted and logged out your PIN will no longer be active.</b> </li>
+<li><b>The eHNA will time-out after 30 minutes of inactivity. You will be able to log back in if you have not submitted.</b></li>
+<br>
+<a href="#" style="color:red"  function onclick="noConsent()">Don't wish to consent and continue?</a>
+<!--Please be assured your treatment will not be affected if you choose not to continue. </br>
+Other options are available which your GP or nurse will be able to tell you about.-->
 </p>
 {%endblock%}
 {%block textbox%}
@@ -29,12 +31,12 @@ Other options are available which your GP or nurse will be able to tell you abou
   <legend><h4>Please enter your Login information below to continue with your eHNA.</h4></legend>
   <div class="card" id="pin1">
   <!--  <div class="column">-->
-  PIN Number:<br>
+  <b>PIN Number:</b><br>
   <input type "submit" text="pinNumber" name="pinNumber" id="pinNumber" required><br>
 </div>
 <!--<div class="column">-->
   <div class="card" id="dob1">
-  Date of Birth:<br>
+  <b>Date of Birth:</b><br>
   <select name="day" class="1-31" id="day"  required></select>
   <select name="month" id="month"  required>
     <option value="01">January</option>

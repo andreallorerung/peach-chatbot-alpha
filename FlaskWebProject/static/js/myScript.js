@@ -1,7 +1,8 @@
 function myFunction() {
   var content = document.getElementById('type_here').value;
+  content.fontcolor("blue");
   //var prefix= "User: ";
-  jQuery("#user_input").append('<br />' + 'User:' + content);
+  jQuery("#user_input").append('<b>User: </b>' + content);
 
   var elem = document.getElementById('chatScroll');
   elem.scrollTop = elem.scrollHeight;
@@ -19,7 +20,7 @@ function myFunction() {
         console.log('success');
       //  console.log('success');
       //  alert(msg);
-        jQuery("#user_input").append('<br />' + 'Bot: ' + msg);
+        jQuery("#user_input").append('<br />' + '<b>Bot: </b>' + msg + '</br />');
       //  updateScroll();
         //alert(JSON.parse(reply.responseText).NLPtext);
       //  console.log(reply);
@@ -68,6 +69,9 @@ function clearSearch(){
     document.getElementById("search_input").innerHTML= "";
 }
 
+function noConsent(){
+  Alert.render("Please be assured your treatment will not be affected if you choose not to continue. \n Other options are available which your GP or nurse will be able to tell you about.");
+}
 
 // source: https://www.developphp.com/video/JavaScript/Custom-Confirm-Box-Programming-Tutorial
 function CustomAlert(){
@@ -81,7 +85,7 @@ function CustomAlert(){
         dialogbox.style.left = (winW/2) - (550 * .5)+"px";
         dialogbox.style.top = "100px";
         dialogbox.style.display = "block";
-        document.getElementById('dialogboxhead').innerHTML = "Error Message";
+        document.getElementById('dialogboxhead').innerHTML = "Information Message";
         document.getElementById('dialogboxbody').innerHTML = dialog;
         document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
     }
