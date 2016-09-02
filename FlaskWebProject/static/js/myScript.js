@@ -69,6 +69,10 @@ function clearSearch(){
     document.getElementById("search_input").innerHTML= "";
 }
 
+function chatHelp(){
+  Alert.render("The ChatBot can talk to you about any of your concerns from the previous page.First tell the bot what topic you want to discuss by setting the topic - like 'set practical' or 'set family'. Then you can begin, try saying 'I want to talk about my friend.' or 'I want to talk about work'.");
+
+}
 function noConsent(){
   Alert.render("Please be assured your treatment will not be affected if you choose not to continue. \n Other options are available which your GP or nurse will be able to tell you about.");
 }

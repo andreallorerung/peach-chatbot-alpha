@@ -447,6 +447,11 @@ float:left;
 justify-content: center;
 }
 
+#tip{
+margin-left: 80px;
+
+}
+
 #submit1{
 padding-: 10px;
 margin: 2px;
