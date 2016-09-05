@@ -38,6 +38,7 @@ function updateScroll(){
     element.scrollTop = element.scrollHeight;
 }
 
+
 function SearchFunction() {
   var searchEntry = document.getElementById('searchBox').value;
 
@@ -70,11 +71,21 @@ function clearSearch(){
 }
 
 function chatHelp(){
-  Alert.render("The ChatBot can talk to you about any of your concerns from the previous page.First tell the bot what topic you want to discuss by setting the topic - like 'set practical' or 'set family'. Then you can begin, try saying 'I want to talk about my friend.' or 'I want to talk about work'.");
+  Alert.render("The ChatBot can talk to you about any of your concerns from the previous page.  First tell the bot what topic you want to discuss by setting the topic - like 'set emotional' or 'set family'. Then you can begin, try saying 'I feel really worried'or 'I want to talk about my friend.'.");
 
 }
 function noConsent(){
   Alert.render("Please be assured your treatment will not be affected if you choose not to continue. \n Other options are available which your GP or nurse will be able to tell you about.");
+}
+
+function addSelect(){
+$('#checkbox').change(function() {
+  if ($(this).is(':checked')) {
+    alert('Checked');
+  } else {
+    console.log('Unchecked');
+  }
+});
 }
 
 // source: https://www.developphp.com/video/JavaScript/Custom-Confirm-Box-Programming-Tutorial
@@ -99,17 +110,38 @@ function CustomAlert(){
 	}
 }
 
+function CustomConfirm(){
+	this.render = function(dialog){
+		var winW = window.innerWidth;
+	    var winH = window.innerHeight;
+		var dialogoverlay = document.getElementById('dialogoverlay');
+	    var dialogbox = document.getElementById('dialogbox');
+		dialogoverlay.style.display = "block";
+	    dialogoverlay.style.height = winH+"px";
+		dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+	    dialogbox.style.top = "100px";
+	    dialogbox.style.display = "block";
 
+		document.getElementById('dialogboxhead').innerHTML = "Confirm Your Selection";
+	    document.getElementById('dialogboxbody').innerHTML = dialog;
+      //dialog="You have selected the following options: " + arrText + 'Please confirm you have finished your selection.'
+		document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Confirm.yes()">Yes</button> <button onclick="Confirm.no()">No</button>';
+	}
+	this.no = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
+	this.yes =function(){
 
-function addSelect(){
-$('#checkbox').change(function() {
-  if ($(this).is(':checked')) {
-    alert('Checked');
-  } else {
-    console.log('Unchecked');
-  }
-});
+    			concernsConfirm();
+          document.getElementById('dialogbox').style.display = "none";
+      		document.getElementById('dialogoverlay').style.display = "none";
+
+	}
 }
+var Confirm = new CustomConfirm();
+
+
 
 //function addSelect(){
   //if(document.getElementById('breathing').checked) {

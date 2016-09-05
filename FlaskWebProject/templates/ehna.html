@@ -7,7 +7,7 @@
 <span id="step1">Step 2/3: Rate your Concerns</span>
 <p></p>
 <p> For this first part of the assessment select and rate the severity of any of the following that have caused you concern recently. </br>
-<p style= "color:red">Please ensure you scroll down to see all the options, and press 'submit' when you are finished.
+<b>Please ensure you scroll down to see all the options, and press 'submit' when you are finished.</b>
 </p>
 <div class="ccard">
 
@@ -714,7 +714,8 @@
 </table>
 </div>
 <br>
-<input type="button" id="submitConcerns"  value="Submit">
+<input type="button" id="submitConcerns"  value="Submit" onclick="Confirm.render(messageText,'delete_post')">
+
 </div>
 </div>
 
@@ -722,12 +723,16 @@
 <!--makes array of concern and rating-->
 <script>
 
+var arrText;
+
+//var messageText;
+//messageText = 'You have selected the following options: ' + arrText + '. Please confirm you have finished your selection.';
 
 
 $(document).ready(function () {
 
     $('#submitConcerns').click(function () {
-        var arr = [];
+        arr = [];
         $("#t td").each(function () {
             $this = $(this)
             var $checkbox = $this.find("input:checkbox")
@@ -742,46 +747,49 @@ $(document).ready(function () {
         }
 
     });
-    var arrText =  "";
+
+    arrText =  "";
     for(var i = 0 ; i < arr.length ; i++) {
       arrText += arr[i].name + " " + arr[i].value + ", ";
 
     var json_arr = JSON.stringify(arr);
+    //var messageText;
+
     //var data_to_send = $.serialize(arr);
-
     }
-//    alert(arrText);
-//var alert = "You have selected: ".concat(arrText);
-//    if ( arrText = ""){
-  //alert("You have not selected any concerns. Please select and rate your concerns to continue.");}
-  //else {alert(alert)}
-  //else {alert("You have selected: " + arrText + ". Please confirm your selection before preceding to the next page.");}
 
-        $.ajax({
-         url:'/api/chatBot',
-         data: arr,//json_arr,//{arr:arr}, //JSON.stringify(json),
-         type:'POST',
-         dataType: 'script',
-         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-      //  contentType: 'application/json',
-         success: function(welcome) {
-        // alert(welcome);
-        //   var welcome = 'Bot: Try it out: type hi';
-        window.location.href='/msgChat';
-        //if(window.location.href='/msgChat'){
-        //jQuery('#user_input').append(welcome);
-        //console.log(welcome)
-      //} else {
-      //  console.log('not worked');
-      //}
-      //  console.log('done');
-        },
-        error: function(jqXHR, textStatus, errorThrown){
-        console.log(errorThrown);
-        }
-    });
   });
+
 });
+
+function concernsConfirm(){
+      $.ajax({
+       url:'/api/chatBot',
+       data: arr,//json_arr,//{arr:arr}, //JSON.stringify(json),
+       type:'POST',
+       dataType: 'script',
+       contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    //  contentType: 'application/json',
+       success: function(welcome) {
+      // alert(welcome);
+      //   var welcome = 'Bot: Try it out: type hi';
+      window.location.href='/msgChat';
+      //if(window.location.href='/msgChat'){
+      //jQuery('#user_input').append(welcome);
+      //console.log(welcome)
+    //} else {
+    //  console.log('not worked');
+    //}
+    //  console.log('done');
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+      console.log(errorThrown);
+      }
+  });
+}
+var messageText = 'Have you confirmed your selection? Press YES to continue or NO to check your selection before proceeding.'
+//'You have selected the following options: ' + arrText + '. Please confirm you have finished your selection.';
+var Confirm = new CustomConfirm();
 </script>
 
 
