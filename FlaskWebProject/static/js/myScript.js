@@ -47,7 +47,7 @@ function SearchFunction() {
       url:'/api/chatBot/search',
       data: searchEntry,
       type:'POST',
-     dataType: 'jsonp',
+     dataType: 'json',
       //dataType: 'text',
       success: function(results) {
         console.log('success')
