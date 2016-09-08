@@ -14,20 +14,20 @@ import ctypes
 import urllib
 import urllib2
 import uuid
-#from chatbot.botinterface import bot_rivescript
-#from chatbot import bot_builder
-#from chatbot.concerns import concern_factory, drive_conversation
-#from chatbot.messagelog import message
-#from chatbot.messagelog.message import Message
-#from chatbot.messagelog.conversation_logging import ConversationLogger
-#from chatbot.messagelog.conversation import Conversation
+from chatbot.botinterface import bot_rivescript
+from chatbot import bot_builder
+from chatbot.concerns import concern_factory, drive_conversation
+from chatbot.messagelog import message
+from chatbot.messagelog.message import Message
+from chatbot.messagelog.conversation_logging import ConversationLogger
+from chatbot.messagelog.conversation import Conversation
 from searcher import search_session
 
 
 
-#botBuilder = bot_builder.BotBuilder()
-#botBuilder.addBrain('FlaskWebProject/chatbot/brain')
-#bot = botBuilder.build()
+botBuilder = bot_builder.BotBuilder()
+botBuilder.addBrain('FlaskWebProject/chatbot/brain')
+bot = botBuilder.build()
 #instantiate bot
 #bot = bot_rivescript.BotRivescript(brain='FlaskWebProject/chatbot/brain')
 

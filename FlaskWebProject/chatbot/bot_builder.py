@@ -1,4 +1,3 @@
-import rivescript
 import botinterface.rivescript_proxy
 import botinterface.bot_rivescript
 import preprocess.preprocessor_builder
@@ -36,7 +35,8 @@ class BotBuilder(object):
     def build(self):
         if self.interpreter is None:
             productionRiveScript = rivescript.RiveScript(debug=False)
-            self.interpreter = botinterface.rivescript_proxy.RiveScriptProxy(rivescriptInterpreter=productionRiveScript,brain=self.brain)
+            self.interpreter = botinterface.rivescript_proxy.RiveScriptProxy(
+                rivescriptInterpreter=productionRiveScript, brain=self.brain)
 
         return botinterface.bot_rivescript.BotRivescript(
             preprocessor=self.preprocessor,
