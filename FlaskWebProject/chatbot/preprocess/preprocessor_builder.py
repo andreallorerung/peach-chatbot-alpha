@@ -1,4 +1,4 @@
-import tokenizer_simple
+# import tokenizer_simple
 # import stopwords_remover_lenient
 # import stemming_lancaster
 # import preprocessor
