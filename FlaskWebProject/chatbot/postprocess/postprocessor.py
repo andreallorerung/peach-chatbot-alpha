@@ -1,9 +1,7 @@
 '''Module to define a concrete system reply processor'''
-# import message_processor #python does not understand same level package imports
 
 
 class MessagePostprocessor(object):
-#class MessagePostprocessor(message_processor.MessageProcessor):
     '''Class to postprocess a system reply by decorating it with the result
     of a search query, if the system reply cointained a template to decorate
     with such result'''

@@ -1,9 +1,7 @@
 '''Module to provide an implementation of a preprocessor'''
-# import message_processor #python does not understand same level package imports
 
 
 class MessagePreprocessor(object):
-#class MessagePreprocessor(message_processor.MessageProcessor):
     '''Class to implement the interface of a message processor'''
     def __init__(self, tokenizer, stopwordRemover, stemmer):
         '''To set appropriate objects to the properties of the preprocessor'''
