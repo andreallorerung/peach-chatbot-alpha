@@ -14,8 +14,8 @@ import ctypes
 import urllib
 import urllib2
 import uuid
-# from chatbot.botinterface import bot_rivescript
-# from chatbot import bot_builder
+from chatbot.botinterface import bot_rivescript
+from chatbot import bot_builder
 from chatbot.concerns import concern_factory, drive_conversation
 from chatbot.messagelog import message
 from chatbot.messagelog.message import Message
