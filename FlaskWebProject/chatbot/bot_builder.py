@@ -1,7 +1,7 @@
 import rivescript
 import botinterface.rivescript_proxy
 import botinterface.bot_rivescript
-# import preprocess.preprocessor_builder
+import preprocess.preprocessor_builder
 # import postprocess.postprocessor_builder
 
 def build():
