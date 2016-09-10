@@ -89,4 +89,4 @@ ENV/
 .ropeproject
 
 # Chatbot gensim word2vec model
-FlaskWebProject/chatbot/synonym/trainedWord2Vec
+chatbot/synonym/trainedWord2Vec
