@@ -1,3 +1,0 @@
-[submodule "FlaskWebProject/chatbot/categorizer"]
-	path = FlaskWebProject/chatbot/categorizer
-	url = https://github.com/nterreri/peach-categorize
