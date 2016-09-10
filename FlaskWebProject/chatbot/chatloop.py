@@ -1,3 +1,4 @@
+'''Module used for initial demo'''
 import os
 from concerns import topics
 from concerns import rivescriptmacros

@@ -1,5 +1,6 @@
 '''Module defining an equivalence class.'''
 
+
 class EquivalenceClasses(object):
     '''An equivalence class is here implemented as a dictionary with multiple keys
     for the same value.

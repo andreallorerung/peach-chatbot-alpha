@@ -3,6 +3,7 @@ import topics
 import concern_factory
 from operator import itemgetter
 
+
 def validateParametersNumber(args, num=1):
     '''Checks that there are enough arguments being passed into the macro'''
     if not args or len(args) < num:
@@ -31,6 +32,7 @@ def getNextConcern(userid):
     return conversationDriver.getNextConcernName()
 
 def isDistressSignificantFor(userid, microtopic):
+    '''To decide whether distress score is significant for the user and topic'''
     conversationDriver = \
         concern_factory.UserConcernsFactory.getUserConcerns(userid)
     distressScore = conversationDriver.getConcernScore(microtopic)

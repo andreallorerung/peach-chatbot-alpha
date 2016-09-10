@@ -116,6 +116,7 @@
 < object
 
 > object shouldMakeQuery python
+    '''To decide whether a query should be made'''
     from concerns import rivescriptmacros
     rivescriptInterpreter = rs
     currentUserid = rivescriptInterpreter.current_user()
@@ -137,7 +138,7 @@
 < object
 
 > object resetUservars python
-    '''Resets all uservariables for the current user'''
+    '''To reset all uservariables for the current user'''
     rivescriptInterpreter = rs
     currentUserid = rivescriptInterpreter.current_user()
 
@@ -145,6 +146,7 @@
 < object
 
 > object dummy python
+    '''dummy experiment'''
     from concerns import rivescriptmacros
 
     return rivescriptmacros.dummy_f()

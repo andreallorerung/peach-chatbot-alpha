@@ -1,3 +1,4 @@
+'''Module to define creational logic for a message postprocessor'''
 import keyword_extractor_single
 import message_decorator_single
 import postprocessor

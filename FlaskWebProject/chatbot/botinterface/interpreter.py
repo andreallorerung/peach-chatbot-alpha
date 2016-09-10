@@ -2,7 +2,7 @@
 
 
 class Interpreter(object):
-    """docstring for ."""
+    '''Interface a template language interpreter must be made to conform to'''
     def __init__(self):
         raise NotImplementedError("Interpreter is an interface")
 

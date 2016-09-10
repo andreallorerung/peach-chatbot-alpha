@@ -1,3 +1,4 @@
+'''Module to define creational logic for user concerns data models'''
 import drive_conversation
 
 class UserConcernsFactory(object):

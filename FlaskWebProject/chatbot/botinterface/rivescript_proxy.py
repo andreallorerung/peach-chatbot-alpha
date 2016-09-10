@@ -16,9 +16,11 @@ class RiveScriptProxy(interpreter.Interpreter):
         self._moveToFirstConcernFor(userid)
 
     def _enterGlobalTopicFor(self, userid):
+        '''To enter the global topic on behalf of the user'''
         reply = self._rivescriptInterpreter.reply(userid, "set glob")
 
     def _moveToFirstConcernFor(self, userid):
+        '''To move to the first concern on behalf of the user'''
         reply = self._rivescriptInterpreter.reply(userid,
                                 "internal matcher to start the conversation")
 

@@ -4,6 +4,7 @@ import topics
 import drive_conversation_abstract
 import concern
 
+
 class DistressConversationDriver(drive_conversation_abstract.ConversationDriver):
     '''Class to drive the conversation through the questionnaire topics'''
     def __init__(self, userid):
@@ -73,6 +74,7 @@ class DistressConversationDriver(drive_conversation_abstract.ConversationDriver)
         return (concern is not None) and concern.hasBeenAddressed()
 
     def getConcernScore(self, concernName):
+        '''To get the score for a concern'''
         try:
             concern = self.userConcerns[concernName]
         except KeyError:
