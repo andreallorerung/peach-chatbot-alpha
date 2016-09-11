@@ -1,4 +1,4 @@
-'''Module to write rivescript data to '''
+'''Module to write rivescript array to file'''
 import store_synonyms
 
 
