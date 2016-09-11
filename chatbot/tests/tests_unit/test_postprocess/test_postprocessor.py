@@ -1,5 +1,5 @@
 import pytest
-import botinterface.postprocessor
+import postprocess.postprocessor
 import mock_keywordextractor
 import mock_search
 import mock_decorator
