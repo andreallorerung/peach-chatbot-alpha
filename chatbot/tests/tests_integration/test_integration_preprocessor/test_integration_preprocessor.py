@@ -1,4 +1,4 @@
-from botinterface.preprocessor import MessagePreprocessor
+from preprocess.preprocessor import MessagePreprocessor
 import preprocess.tokenizer_simple
 import preprocess.stopwords_remover_lenient
 import preprocess.stemming_lancaster

@@ -1,7 +1,7 @@
 import bot_builder
 from botinterface.rivescript_proxy import RiveScriptProxy
 from botinterface.bot_rivescript import BotRivescript
-from botinterface.preprocessor import MessagePreprocessor
+from preprocess.preprocessor import MessagePreprocessor
 import preprocess.preprocessor_builder
 from messagelog.message import Message
 

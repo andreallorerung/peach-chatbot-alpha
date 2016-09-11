@@ -1,5 +1,5 @@
 import pytest
-import botinterface.postprocessor
+import postprocess.postprocessor
 import postprocess.keyword_extractor_single
 import postprocess.message_decorator_single
 import mock_search_integration
@@ -15,7 +15,7 @@ MANYTEMPLATESANDKEYWORDS = "Oh no! {{ 'this' 'means' }} {{ 'trouble' }}"
 NOTEMPLATES = "Forgot to add templates"
 NOKEYWORDS = "Here is an empty template: {{ }}"
 
-postprocessor = botinterface.postprocessor.\
+postprocessor = postprocess.postprocessor.\
     MessagePostprocessor(keywordExtractor=postprocess.keyword_extractor_single.SingleKeywordExtractor(),
                         searchAdapter=mock_search_integration.MockSearch(),
                         messageDecorator=postprocess.message_decorator_single.MessageDecoratorSingle())
