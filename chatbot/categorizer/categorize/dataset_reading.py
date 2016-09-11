@@ -1,6 +1,8 @@
 '''
 Module responsible for reading a dataset from file.
 
+Adapted from:
+https://github.com/sloria/TextBlob/blob/dev/textblob/classifiers.py#L128
 '''
 from textblob import formats
 from textblob.exceptions import FormatError

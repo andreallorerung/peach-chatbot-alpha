@@ -1,6 +1,7 @@
 '''
 Module responsible for deserializing a classifier.
 
+See: http://stackoverflow.com/questions/10017086/save-naive-bayes-trained-classifier-in-nltk
 '''
 import pickle
 
