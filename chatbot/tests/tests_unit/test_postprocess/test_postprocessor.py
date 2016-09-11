@@ -6,7 +6,7 @@ import mock_decorator
 
 REPLYSMOKING = "You can find more information here: {{ 'smoking' }}"
 
-postprocessor = botinterface.postprocessor.\
+postprocessor = postprocess.postprocessor.\
     MessagePostprocessor(keywordExtractor=mock_keywordextractor.MockKeywordextractor(),
                         searchAdapter=mock_search.MockSearch(),
                         messageDecorator=mock_decorator.MockDecorator())

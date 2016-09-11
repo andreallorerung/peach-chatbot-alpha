@@ -1,4 +1,4 @@
-from botinterface.preprocessor import MessagePreprocessor
+from preprocess.preprocessor import MessagePreprocessor
 import mock_tokenizer
 import mock_stopwordremover
 import mock_stemmer
