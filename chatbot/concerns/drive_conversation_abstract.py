@@ -20,7 +20,6 @@ class ConversationDriver(object):
         '''To return the concern distress score'''
         raise NotImplementedError("ConversationDriver is an interface")
 
-
     def concernHasBeenAddressed(self, concern):
         '''To decide whether a concern has been addressed'''
         raise NotImplementedError("ConversationDriver is an interface")
